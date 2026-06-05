@@ -1,0 +1,1502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+  <title>National Diploma - Acquire In-Demand Tech skills.</title>
+  <meta name="description" content="With the accredited MONOTECHNIC status, SQI now offers a range of industry-relevant ICT based National Diploma programs with the same practical approach." />
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <!-- Google Fonts: Open Sans -->
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ============================================================
+       CSS VARIABLES
+    ============================================================ */
+    :root {
+      --blue-primary: rgb(0,11,63);
+      --blue-dark:    rgb(9,3,38);
+      --blue-deeper:  rgb(86,195,249);
+      --blue-light:   rgb(46,163,242);
+      --blue-mid:     rgb(0,11,63);
+      --orange-primary: rgb(239,112,40);
+      --white:        #ffffff;
+      --off-white:    #f8f9fa;
+      --grey:         #f2f4f6;
+      --border:       #dee2e6;
+      --border-lt:    #e9ecef;
+      --text:         #212529;
+      --text-mid:     #495057;
+      --text-soft:    #6c757d;
+      --text-muted:   #adb5bd;
+      --dark-bg:      #1a1a1a;
+      --shadow-xs:    0 1px 4px rgba(0,0,0,.06);
+      --shadow-sm:    0 2px 12px rgba(0,0,0,.08);
+      --shadow-md:    0 6px 28px rgba(0,0,0,.12);
+      --shadow-lg:    0 12px 48px rgba(0,0,0,.18);
+      --radius:       8px;
+      --radius-lg:    14px;
+      --navbar-h:     72px;
+      --t:            .25s ease;
+    }
+
+    /* ============================================================
+       RESET & BASE
+    ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; }
+
+    body {
+      font-family: 'Open Sans', sans-serif;
+      font-size: 15px;
+      color: var(--text);
+      background: var(--white);
+      line-height: 1.75;
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; text-decoration: none; transition: color var(--t); }
+    a:hover { color: var(--blue-primary); }
+    img { max-width: 100%; display: block; }
+    ul  { list-style: none; padding: 0; margin: 0; }
+
+    /* ============================================================
+       FRAUD POPUP MODAL
+    ============================================================ */
+    .fraud-dialog  { max-width: 380px; }
+    .fraud-content {
+      border: none; border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg); overflow: hidden;
+    }
+    .fraud-body {
+      padding: 40px 32px 32px; text-align: center; position: relative;
+    }
+    .fraud-x {
+      position: absolute; top: 14px; right: 14px;
+      background: none; border: none; font-size: 22px; line-height: 1;
+      cursor: pointer; color: var(--text-soft); transition: color var(--t);
+    }
+    .fraud-x:hover { color: var(--text); }
+    .fraud-bell-img {
+      width: 64px; height: 64px; object-fit: contain;
+      margin: 0 auto 16px; display: block;
+    }
+    .fraud-body h5 { font-size: 18px; font-weight: 700; color: var(--text); margin-bottom: 14px; }
+    .fraud-body p  { font-size: 13.5px; color: var(--text-mid); line-height: 1.65; margin-bottom: 10px; }
+    .fraud-ok {
+      display: inline-block; margin-top: 14px;
+      padding: 10px 32px; background: var(--blue-primary); color: var(--white);
+      border: none; border-radius: var(--radius);
+      font-size: 14px; font-weight: 700; cursor: pointer;
+      transition: background var(--t);
+    }
+    .fraud-ok:hover { background: var(--blue-dark); }
+
+    /* ============================================================
+       STICKY NAVBAR
+    ============================================================ */
+  .sqi-navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: var(--white);
+      box-shadow: 0 2px 10px rgba(0,0,0,.10);
+      transition: box-shadow var(--transition);
+    }
+    .sqi-navbar.scrolled { box-shadow: 0 4px 20px rgba(0,0,0,.15); }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: var(--navbar-h);
+    }
+
+    /* Logo */
+    .nav-logo img {
+      height: 52px;
+      width: auto;
+      object-fit: contain;
+    }
+    .logo-fallback {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .logo-badge {
+      background: var(--blue);
+      color: var(--white);
+      font-weight: 800;
+      font-size: 14px;
+      padding: 6px 10px;
+      border-radius: 6px;
+      letter-spacing: 1px;
+    }
+    .logo-words { display: flex; flex-direction: column; }
+    .logo-words span { font-size: 14px; font-weight: 700; color: var(--blue-dark); }
+    .logo-words small { font-size: 10px; color: var(--text-soft); }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 6px;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--text);
+      border-radius: 2px;
+      transition: all .3s;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* Nav menu */
+    .nav-menu { display: flex; align-items: center; gap: 2px; }
+
+    .nav-item { position: relative; }
+    .nav-link {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      padding: 8px 13px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+      border-radius: var(--radius);
+      white-space: nowrap;
+      transition: color var(--transition), background var(--transition);
+    }
+    .nav-link:hover, .nav-link.active { color: var(--blue); background: var(--blue-light); }
+    .nav-link .chevron {
+      font-size: 10px;
+      transition: transform .25s;
+    }
+    .nav-item:hover .chevron { transform: rotate(180deg); }
+
+    /* Dropdown */
+    .dropdown {
+      display: none;
+      position: absolute;
+      top: calc(100% + 4px);
+      left: 0;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-md);
+      min-width: 250px;
+      padding: 6px 0;
+      animation: dropIn .2s ease;
+      z-index: 200;
+    }
+    @keyframes dropIn {
+      from { opacity: 0; transform: translateY(-8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .nav-item:hover .dropdown { display: block; }
+    .dropdown a {
+      display: block;
+      padding: 9px 18px;
+      font-size: 13.5px;
+      font-weight: 500;
+      color: var(--text);
+      border-left: 3px solid transparent;
+      transition: background var(--transition), color var(--transition), border-color var(--transition);
+    }
+    .dropdown a:hover {
+      background: var(--blue-light);
+      color: var(--blue);
+      border-left-color: var(--blue);
+    }
+
+    /* ============================================================
+       HERO SECTION
+    ============================================================ */
+    .nd-hero {
+      background: linear-gradient(135deg, var(--blue-dark) 0%, var(--blue-primary) 55%, #2aad6a 100%);
+      padding: 88px 0 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    .nd-hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M50 50c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10c0 5.523-4.477 10-10 10s-10-4.477-10-10 4.477-10 10-10zM10 10c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10c0 5.523-4.477 10-10 10S0 25.523 0 20s4.477-10 10-10z' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      pointer-events: none;
+    }
+    .nd-hero .container { position: relative; z-index: 1; }
+
+    .hero-kicker {
+      font-size: 11px; font-weight: 700; letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.6); margin-bottom: 14px;
+    }
+    .hero-h1 {
+      font-size: clamp(24px, 4.5vw, 48px);
+      font-weight: 800; color: var(--white);
+      line-height: 1.15; margin-bottom: 22px; max-width: 740px;
+    }
+    .hero-sub {
+      font-size: 18px; font-weight: 600;
+      color: rgba(255,255,255,.82); margin-bottom: 40px;
+    }
+
+    /* Hero quick-link buttons */
+    .hero-btns { display: flex; flex-wrap: wrap; gap: 12px; }
+    .hero-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 11px 22px;
+      background: rgba(255,255,255,.15);
+      color: var(--blue-primary) !important;
+      border: 1.5px solid rgba(255,255,255,.45);
+      border-radius: var(--radius);
+      font-size: 13.5px; font-weight: 600;
+      backdrop-filter: blur(4px);
+      transition: background var(--t), border-color var(--t), transform var(--t);
+    }
+    .hero-btn:hover {
+      background: rgba(255,255,255,.25);
+      border-color: rgba(255,255,255,.75);
+      transform: translateY(-2px);
+    }
+    .hero-btn.primary-cta {
+      background: var(--white);
+      color: var(--blue-dark) !important;
+      border-color: var(--white);
+      font-weight: 700;
+    }
+    .hero-btn.primary-cta:hover { background: var(--off-white); color: var(--blue-dark) !important; }
+
+    /* ============================================================
+       MONOTECHNIC IMAGE + INTRO TEXT
+    ============================================================ */
+    .mono-section {
+      background: var(--off-white);
+      padding: 70px 0;
+      border-bottom: 1px solid var(--border-lt);
+    }
+    .mono-img-wrap {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+      margin-bottom: 48px;
+    }
+    .mono-img-wrap img {
+      width: 100%; max-height: 420px;
+      object-fit: cover; object-position: center;
+    }
+    .mono-text h2 {
+      font-size: clamp(20px, 3vw, 30px);
+      font-weight: 800; color: var(--text);
+      margin-bottom: 18px; line-height: 1.3;
+    }
+    .mono-text p {
+      font-size: 15px; color: var(--text-mid);
+      line-height: 1.8;
+    }
+
+    /* ============================================================
+       AVAILABLE COURSES
+    ============================================================ */
+    .courses-section {
+      background: var(--white);
+      padding: 70px 0;
+      border-bottom: 1px solid var(--border-lt);
+    }
+    .section-eyebrow {
+      font-size: 11px; font-weight: 700; letter-spacing: 2.5px;
+      text-transform: uppercase; color: var(--blue-primary);
+      margin-bottom: 10px; display: block;
+    }
+    .section-h2 {
+      font-size: clamp(20px, 3vw, 32px);
+      font-weight: 800; color: var(--text);
+      margin-bottom: 42px; line-height: 1.25;
+    }
+    .course-card {
+      background: var(--white);
+      border: 1px solid var(--border-lt);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      height: 100%;
+      display: flex; flex-direction: column;
+      transition: transform var(--t), box-shadow var(--t), border-color var(--t);
+    }
+    .course-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--blue-primary);
+    }
+    .course-card-img {
+      width: 100%; height: 210px; overflow: hidden; background: var(--grey);
+    }
+    .course-card-img img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform .4s ease;
+    }
+    .course-card:hover .course-card-img img { transform: scale(1.05); }
+    .course-card-body {
+      padding: 22px 22px 26px; flex: 1; display: flex; flex-direction: column;
+    }
+    .course-faculty {
+      font-size: 11px; font-weight: 700; letter-spacing: 1.5px;
+      text-transform: uppercase; color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+    .course-name {
+      font-size: 16px; font-weight: 800;
+      color: var(--blue-dark); margin-bottom: 10px; line-height: 1.3;
+    }
+    .course-desc {
+      font-size: 13.5px; color: var(--text-soft);
+      line-height: 1.65; flex: 1;
+    }
+
+    /* ============================================================
+       WHY CHOOSE SQI  — text + 3 icon features
+    ============================================================ */
+    .why-section {
+      background: var(--blue-dark);
+      padding: 72px 0;
+      color: var(--white);
+    }
+    .why-section h2 {
+      font-size: clamp(20px, 3vw, 32px);
+      font-weight: 800; color: var(--white);
+      margin-bottom: 18px; line-height: 1.25;
+    }
+    .why-section p {
+      font-size: 15px; color: rgba(255,255,255,.8);
+      line-height: 1.8; margin-bottom: 14px;
+    }
+    .why-feature {
+      text-align: center;
+      padding: 28px 20px;
+      background: rgba(255,255,255,.08);
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(255,255,255,.12);
+      transition: background var(--t), transform var(--t);
+    }
+    .why-feature:hover {
+      background: rgba(255,255,255,.14);
+      transform: translateY(-4px);
+    }
+    .why-feature-icon {
+      width: 80px; height: 80px; margin: 0 auto 16px;
+      overflow: hidden;
+    }
+    .why-feature-icon img {
+      width: 100%; height: 100%; object-fit: contain;
+    }
+    .why-feature h5 {
+      font-size: 15px; font-weight: 700; color: var(--white);
+      margin-bottom: 10px;
+    }
+    .why-feature p {
+      font-size: 13px; color: rgba(255,255,255,.72); margin: 0; line-height: 1.65;
+    }
+
+    /* ============================================================
+       ELIGIBILITY SECTION
+    ============================================================ */
+    .eligibility-section {
+      background: var(--off-white);
+      padding: 72px 0;
+      border-bottom: 1px solid var(--border-lt);
+    }
+    .elig-step {
+      display: flex; gap: 16px; align-items: flex-start;
+      padding: 16px 0; border-bottom: 1px solid var(--border-lt);
+    }
+    .elig-step:last-child { border-bottom: none; }
+    .elig-num {
+      flex-shrink: 0; width: 38px; height: 38px;
+      background: var(--blue-primary); color: var(--white);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; font-weight: 800;
+    }
+    .elig-text {
+      font-size: 14.5px; color: var(--text-mid); line-height: 1.7;
+    }
+    .elig-text strong { color: var(--text); }
+    .elig-text a { color: var(--blue-primary); font-weight: 600; }
+    .elig-text a:hover { text-decoration: underline; }
+
+    /* Who can apply */
+    .who-apply-box {
+      background: var(--white);
+      border: 1px solid var(--border-lt);
+      border-left: 4px solid var(--blue-primary);
+      border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+      padding: 22px 24px;
+      box-shadow: var(--shadow-xs);
+      font-size: 15px; color: var(--text-mid); line-height: 1.75;
+      margin-top: 32px;
+    }
+    .who-apply-box strong { color: var(--blue-dark); }
+
+    /* ============================================================
+       FAQ ACCORDION
+    ============================================================ */
+    .faq-section {
+      background: var(--white);
+      padding: 72px 0;
+      border-bottom: 1px solid var(--border-lt);
+    }
+    .faq-accordion .accordion-item {
+      border: 1px solid var(--border) !important;
+      border-radius: 0 !important;
+      border-bottom: none !important;
+      background: var(--white);
+    }
+    .faq-accordion .accordion-item:first-child {
+      border-radius: var(--radius) var(--radius) 0 0 !important;
+    }
+    .faq-accordion .accordion-item:last-child {
+      border-bottom: 1px solid var(--border) !important;
+      border-radius: 0 0 var(--radius) var(--radius) !important;
+    }
+    .faq-accordion .accordion-button {
+      font-size: 14.5px; font-weight: 700;
+      color: var(--text); background: var(--white);
+      padding: 16px 20px; box-shadow: none !important;
+    }
+    .faq-accordion .accordion-button:not(.collapsed) {
+      color: var(--blue-primary); background: var(--blue-light);
+    }
+    .faq-accordion .accordion-button:not(.collapsed)::after {
+      filter: invert(38%) sepia(72%) saturate(500%) hue-rotate(100deg);
+    }
+    .faq-accordion .accordion-body {
+      font-size: 14px; color: var(--text-mid);
+      line-height: 1.75; padding: 14px 20px 18px;
+      background: var(--white);
+    }
+    .faq-accordion .accordion-body a { color: var(--blue-primary); font-weight: 600; }
+    .faq-accordion .accordion-body strong { color: var(--text); }
+
+    /* ============================================================
+       ENQUIRIES BAND
+    ============================================================ */
+    .enquiries-band {
+      background: var(--blue-light);
+      border-top: 3px solid var(--blue-primary);
+      border-bottom: 3px solid var(--blue-primary);
+      padding: 40px 0;
+      text-align: center;
+    }
+    .enquiries-band h2 {
+      font-size: clamp(20px, 3vw, 28px);
+      font-weight: 800; color: var(--blue-dark); margin-bottom: 12px;
+    }
+    .enquiries-band p {
+      font-size: 16px; color: var(--text-mid); margin: 0;
+    }
+    .enquiries-band strong { color: var(--blue-dark); font-size: 18px; }
+
+    /* ============================================================
+       WHY SQI STANDS OUT — 4 feature cards
+    ============================================================ */
+    .standout-section {
+      background: var(--off-white);
+      padding: 72px 0;
+      border-bottom: 1px solid var(--border-lt);
+    }
+    .standout-card {
+      background: var(--white);
+      border: 1px solid var(--border-lt);
+      border-radius: var(--radius-lg);
+      padding: 28px 24px 26px;
+      box-shadow: var(--shadow-sm);
+      height: 100%;
+      transition: transform var(--t), box-shadow var(--t), border-color var(--t);
+    }
+    .standout-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--blue-primary);
+    }
+    .standout-icon {
+      width: 54px; height: 54px;
+      background: var(--blue-light);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 16px;
+      transition: background var(--t);
+    }
+    .standout-icon i { font-size: 22px; color: var(--blue-primary); transition: color var(--t); }
+    .standout-card:hover .standout-icon { background: var(--blue-primary); }
+    .standout-card:hover .standout-icon i { color: var(--white); }
+    .standout-card h5 {
+      font-size: 15px; font-weight: 800; color: var(--text);
+      margin-bottom: 10px; line-height: 1.35;
+    }
+    .standout-card p {
+      font-size: 13.5px; color: var(--text-soft); line-height: 1.65; margin: 0;
+    }
+
+    /* ============================================================
+       2026/2027 ADMISSION SECTION
+    ============================================================ */
+    .admission-section {
+      background: var(--blue-dark);
+      padding: 72px 0;
+      color: var(--white);
+    }
+    .admission-section h2 {
+      font-size: clamp(20px, 3vw, 32px);
+      font-weight: 800; color: var(--white);
+      margin-bottom: 6px; line-height: 1.25;
+    }
+    .admission-section .admission-badge {
+      display: inline-block;
+      background: rgba(255,255,255,.15);
+      border: 1px solid rgba(255,255,255,.3);
+      border-radius: 100px;
+      padding: 5px 16px;
+      font-size: 12px; font-weight: 700; letter-spacing: 1px;
+      color: rgba(255,255,255,.9); margin-bottom: 20px;
+    }
+    .admission-section p {
+      font-size: 15px; color: rgba(255,255,255,.82);
+      line-height: 1.8; margin-bottom: 14px; max-width: 740px;
+    }
+    /* Student photo strip */
+    .student-photos { display: flex; gap: 14px; margin-top: 32px; flex-wrap: wrap; }
+    .student-photo {
+      width: 80px; height: 80px; border-radius: 50%;
+      overflow: hidden; border: 3px solid rgba(255,255,255,.3);
+      flex-shrink: 0;
+      transition: border-color var(--t), transform var(--t);
+    }
+    .student-photo:hover { border-color: var(--white); transform: scale(1.08); }
+    .student-photo img {
+      width: 100%; height: 100%; object-fit: cover; object-position: top;
+    }
+    /* CTA button */
+    .btn-blue {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 13px 30px;
+      background: var(--white); color: var(--blue-dark) !important;
+      border: none; border-radius: var(--radius);
+      font-size: 14px; font-weight: 700;
+      transition: background var(--t), transform var(--t);
+      box-shadow: 0 4px 16px rgba(0,0,0,.2);
+    }
+    .btn-blue:hover { background: var(--off-white); transform: translateY(-2px); }
+
+    /* ============================================================
+       JOIN CTA BANNER
+    ============================================================ */
+    .join-section {
+      background: var(--off-white);
+      padding: 72px 0;
+      text-align: center;
+      border-top: 1px solid var(--border-lt);
+    }
+    .join-section h2 {
+      font-size: clamp(20px, 3vw, 32px);
+      font-weight: 800; color: var(--text);
+      margin-bottom: 24px; line-height: 1.3;
+    }
+    .btn-apply-cta {
+      display: inline-flex; align-items: center; gap: 9px;
+      padding: 14px 34px;
+      background: var(--blue-primary); color: var(--white) !important;
+      border: none; border-radius: var(--radius);
+      font-size: 15px; font-weight: 700;
+      transition: background var(--t), transform var(--t), box-shadow var(--t);
+      box-shadow: 0 4px 18px rgba(30,125,52,.3);
+    }
+    .btn-apply-cta:hover {
+      background: var(--blue-dark); transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(30,125,52,.4);
+    }
+
+    /* ============================================================
+       SCROLL REVEAL
+    ============================================================ */
+    .reveal {
+      opacity: 0; transform: translateY(28px);
+      transition: opacity .55s ease, transform .55s ease;
+    }
+    .reveal.in { opacity: 1; transform: none; }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+.sqi-footer {
+  background: #1a1a1a;
+  color: rgba(255,255,255,.72);
+  padding: 0;
+}
+
+.footer-top-row {
+  padding: 60px 0 40px;
+}
+
+/* Brand */
+.footer-brand h4 {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.footer-brand p {
+  font-size: 13.5px;
+  color: rgba(255,255,255,.65);
+  line-height: 1.65;
+}
+
+/* Socials */
+.footer-socials {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.footer-socials a {
+  width: 36px;
+  height: 36px;
+  background: rgba(255,255,255,.1);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255,255,255,.8);
+  font-size: 15px;
+  transition: background var(--transition), color var(--transition);
+}
+.footer-socials a:hover {
+  background: var(--blue-primary);
+  color: var(--white);
+}
+
+/* Emails */
+.footer-emails h6 {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: rgba(255,255,255,.5);
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.footer-emails ul li {
+  margin-bottom: 6px;
+}
+.footer-emails ul li a {
+  font-size: 13px;
+  color: rgb(86,195,249);
+  transition: color var(--transition);
+}
+.footer-emails ul li a:hover { color: var(--orange-primary); }
+
+/* Col titles */
+.footer-col-title {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: rgba(255,255,255,.5);
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+/* Quick links */
+.footer-links li {
+  margin-bottom: 8px;
+}
+.footer-links li a {
+  font-size: 13px;
+  color: rgba(255,255,255,.65);
+  transition: color var(--transition);
+}
+.footer-links li a:hover { color: var(--orange-primary); }
+
+/* Addresses */
+.footer-address {
+  font-size: 12px;
+  color: rgba(255,255,255,.6);
+  line-height: 1.6;
+  margin-bottom: 4px;
+}
+.footer-address strong { color: rgba(255,255,255,.85); }
+
+.footer-map-link {
+  font-size: 12px;
+  color: var(--orange-primary);
+  font-weight: 600;
+  transition: color var(--transition);
+}
+.footer-map-link:hover {
+  color: rgb(86,195,249);
+  text-decoration: underline;
+}
+
+/* Footer bottom */
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,.1);
+  padding: 18px 0;
+  text-align: center;
+}
+.footer-bottom p {
+  font-size: 13px;
+  color: rgba(255,255,255,.45);
+  margin: 0;
+}
+
+/* ================================================================
+   BACK TO TOP
+   ================================================================ */
+.back-to-top {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 999;
+  width: 42px;
+  height: 42px;
+  background: var(--blue-primary);
+  color: var(--white);
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(0,0,0,.25);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(12px);
+  transition: opacity 0.3s, transform 0.3s, background 0.2s;
+}
+.back-to-top.visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+.back-to-top:hover { background: var(--blue-dark); }
+
+.git_footer{
+    display: inline-flex;
+    justify-content: space-between;
+    height: 50px;
+    width: 100%;
+    border-top: 0px solid rgb(218, 220, 222);
+    align-items: center;
+    padding-left: 30px;
+    background-color: rgb(0, 0, 0);
+}
+
+.git_footer a{
+    text-decoration: none;
+    color: rgb(232, 17, 35);
+    font-size: 20px;
+    font-weight: 600;
+}
+
+    /* ============================================================
+       RESPONSIVE
+    ============================================================ */
+    @media (max-width: 991.98px) {
+      .sqi-nav-list { padding: 10px 0; gap: 0; }
+      .sqi-nav-link { border-radius: 0; }
+      .sqi-drop { box-shadow: none; border: none; background: var(--off-white); animation: none; margin-top: 0 !important; padding-left: 12px; }
+      .nd-hero { padding: 64px 0 56px; }
+      .why-section { padding: 52px 0; }
+    }
+    @media (max-width: 767.98px) {
+      .nd-hero { padding: 52px 0 44px; }
+      .hero-h1 { font-size: 28px; }
+      .hero-btns { gap: 8px; }
+      .hero-btn { padding: 9px 16px; font-size: 12px; }
+      .btt { bottom: 16px; right: 16px; width: 38px; height: 38px; font-size: 14px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ================================================================
+       FRAUD WARNING POPUP
+  ================================================================ -->
+  <div class="modal fade" id="fraudModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered fraud-dialog">
+      <div class="modal-content fraud-content">
+        <div class="modal-body fraud-body">
+          <button class="fraud-x" data-bs-dismiss="modal" type="button">&times;</button>
+          <img
+            src="Images/red-bell.png"
+            alt="Alert" class="fraud-bell-img"
+            onerror="this.outerHTML='<span style=\'font-size:3rem;display:block;margin-bottom:14px;\'>🔔</span>'"
+          />
+          <h5>Please be advised!</h5>
+          <p>Do not make any payment for our courses or services to any account or platform other than corporate accounts provided by SQI College of ICT.</p>
+          <p>The College will not be held responsible for any loss or issue arising from payments made to unauthorised individuals or channels.</p>
+          <p><strong>Thank you for your cooperation.</strong></p>
+          <button class="fraud-ok" data-bs-dismiss="modal" type="button">OK, I understand</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================================================================
+       STICKY NAVBAR
+  ================================================================ -->
+  <nav class="sqi-navbar" id="sqiNavbar">
+    <div class="container">
+      <div class="nav-inner">
+
+        <!-- Logo -->
+        <a href="index.html" class="nav-logo">
+          <img src="Images/icon.jpg" alt="SQI College of ICT"
+            onerror="this.style.display='none';document.getElementById('logoFb').style.display='flex';" />
+          <div id="logoFb" class="logo-fallback" style="display:none;">
+            <span class="logo-badge">SQI</span>
+            <div class="logo-words">
+              <span>SQI College of ICT</span>
+              <small>Acquire In-Demand Tech Skills</small>
+            </div>
+          </div>
+        </a>
+
+        <!-- Hamburger -->
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+
+        <!-- Menu -->
+        <ul class="nav-menu" id="navMenu">
+
+          <li class="nav-item">
+            <a href="#" class="nav-link">About <i class="fas fa-chevron-down chevron"></i></a>
+            <ul class="dropdown">
+              <li><a href="story.html">Our Story</a></li>
+              <li><a href="team.html">Our Team</a></li>
+              <li><a href="campus.html">Campus Info</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a href="#" class="nav-link">Programmes <i class="fas fa-chevron-down chevron"></i></a>
+            <ul class="dropdown">
+              <li><a href="pre-nd.html">Pre-National Diploma</a></li>
+              <li><a href="nd.html">National Diploma</a></li>
+              <li><a href="procert.html">Professional Diploma Program</a></li>
+              <li><a href="epcp.html">Executive Professional Certificate Programme</a></li>
+              <li><a href="bsc.html">Bachelor Degree | LAUTECH PT</a></li>
+              <li><a href="post-utme.html">Post-UTME</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a href="#" class="nav-link">Admissions <i class="fas fa-chevron-down chevron"></i></a>
+            <ul class="dropdown">
+              <li><a href="afap.html">Apply for a Programme</a></li>
+              <li><a href="mos.html">Mode of Study</a></li>
+              <li><a href="tuition.html">Tuition</a></li>
+              <li><a href="https://drive.google.com/file/d/1w_itppr3K0MMy5Sdf8uFkCO7eCyAYiRf/view?usp=sharing">Student's Handbook</a></li>
+              <li><a href="faq.html">Frequently Asked Questions</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a href="#" class="nav-link">E-Portal <i class="fas fa-chevron-down chevron"></i></a>
+            <ul class="dropdown">
+              <li><a href="student.html">Student</a></li>
+              <li><a href="staff.html">Staff</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a href="scholarship.html" class="nav-link">SQI Scholarship</a>
+          </li>
+          <li class="nav-item">
+            <a href="news.html" class="nav-link">News</a>
+          </li>
+          <li class="nav-item">
+            <a href="contact.html" class="nav-link">Contact</a>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ================================================================
+       HERO
+  ================================================================ -->
+  <section class="nd-hero">
+    <div class="container">
+      <p class="hero-kicker">SQI College of ICT</p>
+      <h1 class="hero-h1">Beyond Education,<br />Empowering Futures!</h1>
+      <p class="hero-sub">Study at SQI College of ICT</p>
+      <div class="hero-btns">
+        <a href="#eligibility" class="hero-btn primary-cta"><i class="fas fa-check-circle"></i> Admission Requirements</a>
+        <a href="#admission" class="hero-btn primary-cta"><i class="fas fa-calendar-alt"></i> 2026/2027 Admission</a>
+        <a href="#courses" class="hero-btn primary-cta"><i class="fas fa-book-open"></i> Our ND Courses</a>
+        <a href="https://drive.google.com/file/d/1Xe2FWvBwbW_8hv_aLDWNbg3dWI5hxMH6/view?usp=sharing" target="_blank" class="hero-btn primary-cta"><i class="fas fa-download"></i> Admissions &amp; Tuition</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       MONOTECHNIC IMAGE + INTRO TEXT
+  ================================================================ -->
+  <section class="mono-section">
+    <div class="container">
+      <div class="mono-img-wrap reveal">
+        <img
+          src="Images/nd/1.jpg"
+          alt="SQI Monotechnic Certificate"
+          onerror="this.src='Images/nd/1.jpg'"
+        />
+      </div>
+      <div class="mono-text text-center reveal">
+        <h2>Our students graduate with both the skills and certificate to excel globally!</h2>
+        <p>With the accredited MONOTECHNIC status, SQI now offers a range of industry-relevant ICT based National Diploma programs with the same practical approach.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       AVAILABLE COURSES
+  ================================================================ -->
+  <section class="courses-section" id="courses">
+    <div class="container">
+      <span class="section-eyebrow reveal">Our Programmes</span>
+      <h2 class="section-h2 reveal">Available Courses</h2>
+      <p class="text-muted mb-5 reveal" style="margin-top:-28px; font-size:15px;">Checkout our available courses for National Diploma</p>
+
+      <div class="row g-4">
+
+        <!-- Computer Science -->
+        <div class="col-md-4">
+          <div class="course-card reveal">
+            <div class="course-card-img">
+              <img
+                src="Images/nd/2.jpg"
+                alt="Computer Science"
+                onerror="this.src='Images/nd/2.jpg'"
+              />
+            </div>
+            <div class="course-card-body">
+              <p class="course-faculty">Faculty of Engineering and Technology</p>
+              <h4 class="course-name">Computer Science</h4>
+              <p class="course-desc">The Computer Science program provides in-depth knowledge of programming, software development, data structures, cybersecurity, and artificial intelligence, equipping students with the right skillset.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Accountancy -->
+        <div class="col-md-4">
+          <div class="course-card reveal">
+            <div class="course-card-img">
+              <img
+                src="Images/nd/3.jpg"
+                alt="Accountancy with ICT"
+                onerror="this.src='Images/nd/3.jpg'"
+              />
+            </div>
+            <div class="course-card-body">
+              <p class="course-faculty">Faculty of Administration and Technology</p>
+              <h4 class="course-name">Accountancy (with ICT)</h4>
+              <p class="course-desc">Our accountancy program is with ICT, this integrated approach equips students with a strong foundation in accounting and financial reporting, while leveraging modern digital tools and technologies.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Business Administration -->
+        <div class="col-md-4">
+          <div class="course-card reveal">
+            <div class="course-card-img">
+              <img
+                src="Images/nd/4.jpg"
+                alt="Business Administration with ICT"
+                onerror="this.src='Images/nd/4.jpg'"
+              />
+            </div>
+            <div class="course-card-body">
+              <p class="course-faculty">Faculty of Administration and Technology</p>
+              <h4 class="course-name">Business Administration &amp; Management (with ICT)</h4>
+              <p class="course-desc">Our Business Management and Administration program blends ICT with core business principles, equipping students with both business and tech.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       WHY CHOOSE SQI — dark blue bg + 3 features
+  ================================================================ -->
+  <section class="why-section">
+    <div class="container">
+      <div class="row g-5 align-items-center mb-5">
+        <div class="col-lg-8 reveal">
+          <h2>Why Choose SQI College of ICT?</h2>
+          <p>At SQI College of ICT, we are dedicated to nurturing the next generation of tech leaders. Our National Diploma (ND) programs are designed to provide students with the practical skills and knowledge needed to excel in the rapidly evolving tech industry.</p>
+          <p>With a focus on 80% hands-on training, our students are not only prepared for the job market but also equipped to secure remote jobs even before graduation.</p>
+        </div>
+      </div>
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="why-feature reveal">
+            <div class="why-feature-icon">
+              <img src="https://edu.sqi.ng/wp-content/uploads/2025/03/artificial-intelligence-icon-small-01@2x.png" alt="Get the skills"
+                onerror="this.outerHTML='<i class=\'fas fa-laptop-code\' style=\'font-size:3rem;color:#28a745;\'></i>'" />
+            </div>
+            <h5>Get the skills</h5>
+            <p>SQI integrates quality, convenience, and modern technology into education, bridging the gap between theory and real-world application.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="why-feature reveal">
+            <div class="why-feature-icon">
+              <img src="https://edu.sqi.ng/wp-content/uploads/2025/03/artificial-intelligence-icon-small-03@2x.png" alt="Get the certificate"
+                onerror="this.outerHTML='<i class=\'fas fa-certificate\' style=\'font-size:3rem;color:#28a745;\'></i>'" />
+            </div>
+            <h5>Get the certificate</h5>
+            <p>The National Diploma (ND) offered at SQI College of ICT is a 2 year approved academic program of the National Board for Technical Education (NBTE).</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="why-feature reveal">
+            <div class="why-feature-icon">
+              <img src="https://edu.sqi.ng/wp-content/uploads/2025/03/artificial-intelligence-icon-small-05@2x.png" alt="Get the job"
+                onerror="this.outerHTML='<i class=\'fas fa-briefcase\' style=\'font-size:3rem;color:#28a745;\'></i>'" />
+            </div>
+            <h5>Get the job</h5>
+            <p>78.5% of our students found secure employment within three months of graduation. Students leave from learning to getting job roles.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       ELIGIBILITY
+  ================================================================ -->
+  <section class="eligibility-section" id="eligibility">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8">
+          <span class="section-eyebrow reveal">Requirements</span>
+          <h2 class="section-h2 reveal">Eligibility</h2>
+          <p class="text-muted mb-4 reveal">Here are the processes to gain admission to the college's National Diploma program?</p>
+
+          <div class="reveal">
+            <div class="elig-step">
+              <div class="elig-num">1</div>
+              <p class="elig-text mb-0"><strong>Five (5) Credit Pass</strong> at your O'Level (<strong>WAEC/NECO/GCE/NABTEB</strong>) result is required in relevant subjects not more than 2 sittings. <strong>English Language</strong> and <strong>Mathematics</strong> are COMPULSORY.</p>
+            </div>
+            <div class="elig-step">
+              <div class="elig-num">2</div>
+              <p class="elig-text mb-0">Apply through JAMB and choose "<strong>SQI College of ICT</strong>" as your first choice.</p>
+            </div>
+            <div class="elig-step">
+              <div class="elig-num">3</div>
+              <p class="elig-text mb-0">A minimum <strong>JAMB score of 120</strong> is required in your UTME.</p>
+            </div>
+            <div class="elig-step">
+              <div class="elig-num">4</div>
+              <p class="elig-text mb-0">Obtain the Application/Post UTME form at the college or online: <a href="post-utme.html" target="_blank">Click here</a></p>
+            </div>
+            <div class="elig-step">
+              <div class="elig-num">5</div>
+              <p class="elig-text mb-0">Attend a scheduled screening (exam and interview) at the college's main campus.</p>
+            </div>
+            <div class="elig-step">
+              <div class="elig-num">6</div>
+              <p class="elig-text mb-0">Check your email regularly for admission updates.</p>
+            </div>
+          </div>
+
+          <!-- Who can apply -->
+          <div class="who-apply-box reveal">
+            <strong>Who Can Apply?</strong><br />
+            Whether you are a student of Arts, Commercial, or Science, you are welcome to apply. Our programs are open to all disciplines!<br />
+            Additionally, applicants with Awaiting Results can also apply. Just ensure all required documents are completed before the end of your program.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       FAQ ACCORDION
+  ================================================================ -->
+  <section class="faq-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8">
+          <span class="section-eyebrow reveal">FAQs</span>
+          <h2 class="section-h2 reveal">Frequently Asked Questions</h2>
+
+          <div class="accordion faq-accordion reveal" id="faqAccordion">
+
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                  Is SQI deviating from its core ICT focus?
+                </button>
+              </h2>
+              <div id="faq1" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">No! SQI is taking ICT where it belongs. The function of ICT is to empower other industries and should not be standalone. Every industry today requires knowledge of ICT, and schools should no longer be delivering any course without it. This is what SQI is pioneering. Our accredited Accountancy and Business Administration courses integrate ICT.</div>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                  Is the school accredited, and if so, by what accrediting body?
+                </button>
+              </h2>
+              <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">SQI College of ICT is fully registered with the <strong>Federal Ministry of Education</strong>, <strong>National Board for Technical Education</strong> (who regulate Polytechnics, Monotechnics and Others in Nigeria) and is recognized by <strong>JAMB</strong>.</div>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                  Can I obtain a degree certificate at SQI?
+                </button>
+              </h2>
+              <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">Students with our ND Certificate can either proceed to HND or take Direct Entry into any University of choice.</div>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                  Do the HND students go for NYSC?
+                </button>
+              </h2>
+              <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">We're currently running ND programmes; however, our students will serve after completing their HND.</div>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq5">
+                  Can I apply online?
+                </button>
+              </h2>
+              <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">Yes. You can purchase the Application form online. Visit: <a href="post-utme.html" target="_blank">edu.sqi.ng/post-utme</a>.<br />Or contact the admission office (<strong>0906 281 9993</strong>)</div>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq6">
+                  How much is the School Fees?
+                </button>
+              </h2>
+              <div id="faq6" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">SQI has a very flexible school fees payment plan. Download the tuition schedule here: <a href="tuition.html" target="_blank">edu.sqi.ng/tuition</a></div>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq7">
+                  Does the college go on strike?
+                </button>
+              </h2>
+              <div id="faq7" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                <div class="accordion-body"><strong>NEVER!</strong> Never have and Never Will!</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       ENQUIRIES BAND
+  ================================================================ -->
+  <section class="enquiries-band">
+    <div class="container reveal">
+      <h2>Enquiries</h2>
+      <p>Further clarification may be obtained via the admission office. Call/WhatsApp: <strong>09062819993</strong></p>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       WHY SQI STANDS OUT — 4 feature cards
+  ================================================================ -->
+  <section class="standout-section">
+    <div class="container">
+      <span class="section-eyebrow reveal">Our Advantages</span>
+      <h2 class="section-h2 reveal">Why SQI Stands Out</h2>
+      <div class="row g-4">
+
+        <div class="col-sm-6 col-lg-3">
+          <div class="standout-card reveal">
+            <div class="standout-icon"><i class="fas fa-university"></i></div>
+            <h5>Easy Admission into 200L (Direct Entry)</h5>
+            <p>Direct Entry to 200 Level: Secure direct entry into the 200 level of any university of your choice.</p>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-lg-3">
+          <div class="standout-card reveal">
+            <div class="standout-icon"><i class="fas fa-laptop-code"></i></div>
+            <h5>Practical Learning</h5>
+            <p>Benefit from our 80% practical-based curriculum, designed to ensure you gain real-world skills.</p>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-lg-3">
+          <div class="standout-card reveal">
+            <div class="standout-icon"><i class="fas fa-briefcase"></i></div>
+            <h5>Industry-Ready Graduates</h5>
+            <p>Our graduates are highly sought after, with many securing remote jobs even before completing their programs.</p>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-lg-3">
+          <div class="standout-card reveal">
+            <div class="standout-icon"><i class="fas fa-building"></i></div>
+            <h5>State-of-the-Art Facilities</h5>
+            <p>Experience learning in a world-class environment with seasoned lecturers and certified instructors.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       2026/2027 ADMISSION — dark blue
+  ================================================================ -->
+  <section class="admission-section" id="admission">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8">
+          <span class="admission-badge reveal">2026/2027 Academic Session</span>
+          <h2 class="reveal">Admission is ongoing!</h2>
+          <p class="reveal">Applications are invited from eligible candidates into the full-time National Diploma Programmes of SQI College of ICT for the 2026/2027 academic session.</p>
+          <p class="reveal">All prospective candidates who sat for the 2026 UTME exams and scored a minimum of <strong>120</strong> but are yet to gain admission for the 2026/2027 academic year are enjoined to apply immediately before the admission closes.</p>
+
+          <!-- Student photos -->
+          <div class="student-photos reveal">
+            <div class="student-photo">
+              <img src="Images/nd/5.png" alt="Student" onerror="this.src='Images/nd/5.png'" />
+            </div>
+            <div class="student-photo">
+              <img src="Images/nd/6.jpg" alt="Uche" onerror="this.src='Images/nd/6.jpg'" />
+            </div>
+            <div class="student-photo">
+              <img src="Images/nd/7.jpg" alt="Student" onerror="this.src='Images/nd/7.jpg'" />
+            </div>
+            <div class="student-photo">
+              <img src="Images/nd/8.jpg" alt="Student" onerror="this.src='Images/nd/8.jpg'" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       JOIN CTA BANNER
+  ================================================================ -->
+  <section class="join-section">
+    <div class="container reveal">
+      <h2>Join hundreds of students learning at SQI.<br />Your Path to Success Begins Here</h2>
+      <a href="#" target="_blank" rel="noopener" class="btn-apply-cta">
+        <i class="fas fa-pen-to-square"></i> Apply Now
+      </a>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       FOOTER
+  ================================================================ -->
+  <footer class="sqi-footer">
+    <div class="container">
+      <div class="row g-5 footer-top-row">
+
+        <!-- Brand + Socials + Emails -->
+        <div class="col-lg-3 col-md-6">
+          <div class="footer-brand">
+            <h4>Hello, we're SQI College of ICT</h4>
+            <p>We provide and lead others in quality ICT education.</p>
+          </div>
+          <div class="footer-socials mt-3">
+            <a href="#" title="Follow on Facebook" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" title="Follow on X" target="_blank"><i class="fab fa-x-twitter"></i></a>
+            <a href="#" title="Follow on LinkedIn" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" title="Follow on Youtube" target="_blank"><i class="fab fa-youtube"></i></a>
+            <a href="#" title="Follow on Instagram" target="_blank"><i class="fab fa-instagram"></i></a>
+          </div>
+          <div class="footer-emails mt-4">
+            <h6>Send us a mail</h6>
+            <ul>
+              <li><a href="#">enquiry@sqi.edu.ng</a></li>
+              <li><a href="#">admissions@sqi.edu.ng</a></li>
+              <li><a href="#">examsandrecords@sqi.edu.ng</a></li>
+              <li><a href="#">rector@sqi.edu.ng</a></li>
+              <li><a href="#">partnerships@sqi.edu.ng</a></li>
+              <li><a href="#">internship@sqi.edu.ng</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="col-lg-2 col-md-6 col-sm-6">
+          <h6 class="footer-col-title">Quick Links</h6>
+          <ul class="footer-links">
+            <li><a href="#">Application Portal</a></li>
+            <li><a href="student.html">Student Portal</a></li>
+            <li><a href="procert.html">Professional Courses</a></li>
+            <li><a href="nd.html">ND Courses</a></li>
+            <li><a href="campus.html">Campus Info</a></li>
+            <li><a href="#">Accommodation</a></li>
+            <li><a href="scholarship.html">SQI Scholarship</a></li>
+            <li><a href="#">SQI Anthem</a></li>
+            <li><a href="#">Donate</a></li>
+          </ul>
+        </div>
+
+        <!-- Locations col 1 -->
+        <div class="col-lg-4 col-md-6">
+          <div class="row g-3">
+            <div class="col-6">
+              <h6 class="footer-col-title">Ogbomoso</h6>
+              <p class="footer-address">Old Ilorin Road, Opposite Yoaco Filling Station, Yoaco, Ogbomoso.<br /><strong>0906 281 9991, 0906 281 9993</strong></p>
+              <a href="#" class="footer-map-link" target="_blank">Locate on the map</a>
+              <h6 class="footer-col-title">Ibadan</h6>
+              <p class="footer-address">First Floor, H25 Heritage Mall, Opposite Central Bank of Nigeria, Dugbe, Ibadan.<br /><strong>0906 281 9994</strong></p>
+              <a href="#" class="footer-map-link" target="_blank">Locate on the map</a>
+            </div>
+            <div class="col-6">
+              <h6 class="footer-col-title">Lagos</h6>
+              <p class="footer-address">Suite 219, Opic Plaza, Mobolaji Bank Anthony Way, beside Sheraton Hotel, Ikeja, Lagos<br /><strong>0906 281 9999</strong></p>
+              <a href="#" class="footer-map-link" target="_blank">Locate on the map</a>
+              <h6 class="footer-col-title">Abeokuta</h6>
+              <p class="footer-address">First floor, OPIC Tower building, Okeilewo, Abeokuta.<br /><strong>0906 281 9996</strong></p>
+              <a href="#" class="footer-map-link" target="_blank">Locate on the map</a>
+            </div>
+            <div class="col-6">
+              <h6 class="footer-col-title">Virtual</h6>
+              <p class="footer-address">Available Globally Online.<br /><strong>0906 281 9992</strong></p>
+              <a href="#" class="footer-map-link" target="_blank">Locate on the map</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Locations col 2 -->
+        <div class="col-lg-3 col-md-6">
+          <div class="row g-3">
+            <div class="col-12">
+              <p class="footer-address mt-2">Christianah Oyinade Ajoke House, beside First Bank, Arisekola Central Mosque, Opposite Jaiz bank, Idi Ape, Iwo road, Ibadan.<br /><strong>0906 281 9995</strong></p>
+              <a href="#" class="footer-map-link" target="_blank">Locate on the map</a>
+              <p class="footer-address mt-2">Haier Thermocool Building, opposite SAO filling station, Challenge, Ibadan, Oyo State.<br /><strong>0906 281 9992</strong></p>
+              <a href="#" class="footer-map-link" target="_blank">Locate on the map</a>
+            </div>
+            <div class="col-6">
+              <h6 class="footer-col-title">Osogbo</h6>
+              <p class="footer-address">Opposite Jaiz bank, Ogo-Oluwa, Osogbo<br /><strong>0906 281 9997</strong></p>
+              <a href="#" class="footer-map-link" target="_blank">Locate on the map</a>
+            </div>
+            <div class="col-6">
+              <h6 class="footer-col-title">Abuja</h6>
+              <p class="footer-address">Suite Banking Hall SF, Febson Mall, Wuse Zone 4, Abuja<br /><strong>090 628 20000</strong></p>
+              <a href="#" class="footer-map-link" target="_blank">Locate on the map</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Footer Bottom -->
+      <div class="footer-bottom">
+        <p>Copyright &copy; 2026 | SQI ICT Consultants | Powered by Edozzier</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ================================================================
+       BACK TO TOP BUTTON
+  ================================================================ -->
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+  <div class="git_footer">
+    <a href="https://github.com/Analyst-Foundry">By Analyst Foundry</a>
+  </div>
+
+  <!-- ================================================================
+       SCRIPTS
+  ================================================================ -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    (function () {
+      'use strict';
+
+      /* Fraud modal */
+      const fraudEl = document.getElementById('fraudModal');
+      if (fraudEl) {
+        const fm = new bootstrap.Modal(fraudEl, { keyboard: true });
+        setTimeout(() => fm.show(), 800);
+      }
+
+      /* Sticky navbar */
+      const nav = document.getElementById('sqiNavbar');
+      const sn  = () => nav.classList.toggle('scrolled', window.scrollY > 10);
+      window.addEventListener('scroll', sn, { passive: true }); sn();
+
+      /* Dropdown chevron */
+      document.querySelectorAll('.sqi-dd').forEach(el => {
+        el.addEventListener('show.bs.dropdown', () => { const c = el.querySelector('.sqi-chev'); if (c) c.style.transform = 'rotate(180deg)'; });
+        el.addEventListener('hide.bs.dropdown', () => { const c = el.querySelector('.sqi-chev'); if (c) c.style.transform = 'rotate(0deg)'; });
+      });
+
+      /* Close mobile nav */
+      const nc = document.getElementById('navmenu');
+      document.querySelectorAll('#navmenu .sqi-di').forEach(i => {
+        i.addEventListener('click', () => { if (window.innerWidth < 992) bootstrap.Collapse.getInstance(nc)?.hide(); });
+      });
+
+      /* Scroll reveal with stagger */
+      const ro = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (!e.isIntersecting) return;
+          const row = e.target.closest('.row');
+          const siblings = Array.from((row || e.target.parentElement).querySelectorAll('.reveal:not(.in)'));
+          const idx = siblings.indexOf(e.target);
+          setTimeout(() => e.target.classList.add('in'), Math.min(idx * 100, 500));
+          ro.unobserve(e.target);
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+      document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+
+      /* Back to top */
+      const btt = document.getElementById('btt');
+      window.addEventListener('scroll', () => btt.classList.toggle('on', window.scrollY > 400), { passive: true });
+      btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    })();
+  </script>
+</body>
+</html>

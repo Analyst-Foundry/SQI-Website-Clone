@@ -1,0 +1,1410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+  <title>Our Team - Acquire In-Demand Tech skills.</title>
+  <meta name="description" content="Meet the amazing team behind SQI College of ICT — Board of Advisors, Executive Council, Administrators, Heads of Department and Instructors." />
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <!-- Google Fonts: Open Sans -->
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ============================================================
+       CSS CUSTOM PROPERTIES
+    ============================================================ */
+    :root {
+      --blue-primary: rgb(0,11,63);
+      --blue-dark:    rgb(9,3,38);
+      --blue-deeper:  rgb(86,195,249);
+      --blue-light:   rgb(46,163,242);
+      --blue-mid:     rgb(0,11,63);
+      --orange-primary: rgb(239,112,40);
+      --white:        #ffffff;
+      --off-white:    #f8f9fa;
+      --grey-bg:      #f2f4f6;
+      --border:       #dee2e6;
+      --border-light: #e9ecef;
+      --text:         #212529;
+      --text-mid:     #495057;
+      --text-soft:    #6c757d;
+      --text-muted:   #adb5bd;
+      --dark-bg:      #1a1a1a;
+      --shadow-xs:    0 1px 4px rgba(0,0,0,.06);
+      --shadow-sm:    0 2px 10px rgba(0,0,0,.08);
+      --shadow-md:    0 6px 24px rgba(0,0,0,.12);
+      --shadow-hover: 0 12px 40px rgba(0,0,0,.16);
+      --radius:       8px;
+      --radius-lg:    14px;
+      --navbar-h:     72px;
+      --transition:   .25s ease;
+    }
+
+    /* ============================================================
+       RESET & BASE
+    ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; }
+
+    body {
+      font-family: 'Open Sans', sans-serif;
+      font-size: 15px;
+      color: var(--text);
+      background: var(--white);
+      line-height: 1.75;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      transition: color var(--transition);
+    }
+    a:hover { color: var(--blue-primary); }
+
+    img { max-width: 100%; display: block; }
+    ul  { list-style: none; padding: 0; margin: 0; }
+
+    /* ============================================================
+       FRAUD POPUP MODAL
+    ============================================================ */
+    /* Uses Bootstrap modal — custom styling only */
+    .fraud-modal-dialog {
+      max-width: 380px;
+    }
+    .fraud-modal-content {
+      border: none;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-hover);
+      overflow: hidden;
+    }
+    .fraud-modal-body {
+      padding: 40px 32px 32px;
+      text-align: center;
+      position: relative;
+    }
+    .fraud-close-btn {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      background: none;
+      border: none;
+      font-size: 22px;
+      cursor: pointer;
+      color: var(--text-soft);
+      line-height: 1;
+      padding: 0;
+      transition: color var(--transition);
+    }
+    .fraud-close-btn:hover { color: var(--text); }
+    .fraud-bell-img {
+      width: 64px;
+      height: 64px;
+      object-fit: contain;
+      margin: 0 auto 16px;
+    }
+    .fraud-modal-body h5 {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 14px;
+    }
+    .fraud-modal-body p {
+      font-size: 13.5px;
+      color: var(--text-mid);
+      line-height: 1.65;
+      margin-bottom: 10px;
+    }
+    .fraud-ok-btn {
+      display: inline-block;
+      margin-top: 14px;
+      padding: 10px 32px;
+      background: var(--blue-primary);
+      color: var(--white);
+      border: none;
+      border-radius: var(--radius);
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background var(--transition);
+    }
+    .fraud-ok-btn:hover { background: var(--blue-dark); }
+
+    /* ============================================================
+       STICKY NAVBAR
+    ============================================================ */
+  .sqi-navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: var(--white);
+      box-shadow: 0 2px 10px rgba(0,0,0,.10);
+      transition: box-shadow var(--transition);
+    }
+    .sqi-navbar.scrolled { box-shadow: 0 4px 20px rgba(0,0,0,.15); }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: var(--navbar-h);
+    }
+
+    /* Logo */
+    .nav-logo img {
+      height: 52px;
+      width: auto;
+      object-fit: contain;
+    }
+    .logo-fallback {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .logo-badge {
+      background: var(--blue);
+      color: var(--white);
+      font-weight: 800;
+      font-size: 14px;
+      padding: 6px 10px;
+      border-radius: 6px;
+      letter-spacing: 1px;
+    }
+    .logo-words { display: flex; flex-direction: column; }
+    .logo-words span { font-size: 14px; font-weight: 700; color: var(--blue-dark); }
+    .logo-words small { font-size: 10px; color: var(--text-soft); }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 6px;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--text);
+      border-radius: 2px;
+      transition: all .3s;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* Nav menu */
+    .nav-menu { display: flex; align-items: center; gap: 2px; }
+
+    .nav-item { position: relative; }
+    .nav-link {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      padding: 8px 13px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+      border-radius: var(--radius);
+      white-space: nowrap;
+      transition: color var(--transition), background var(--transition);
+    }
+    .nav-link:hover, .nav-link.active { color: var(--blue); background: var(--blue-light); }
+    .nav-link .chevron {
+      font-size: 10px;
+      transition: transform .25s;
+    }
+    .nav-item:hover .chevron { transform: rotate(180deg); }
+
+    /* Dropdown */
+    .dropdown {
+      display: none;
+      position: absolute;
+      top: calc(100% + 4px);
+      left: 0;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-md);
+      min-width: 250px;
+      padding: 6px 0;
+      animation: dropIn .2s ease;
+      z-index: 200;
+    }
+    @keyframes dropIn {
+      from { opacity: 0; transform: translateY(-8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .nav-item:hover .dropdown { display: block; }
+    .dropdown a {
+      display: block;
+      padding: 9px 18px;
+      font-size: 13.5px;
+      font-weight: 500;
+      color: var(--text);
+      border-left: 3px solid transparent;
+      transition: background var(--transition), color var(--transition), border-color var(--transition);
+    }
+    .dropdown a:hover {
+      background: var(--blue-light);
+      color: var(--blue);
+      border-left-color: var(--blue);
+    }
+
+    /* ============================================================
+       PAGE TITLE SECTION
+    ============================================================ */
+    .page-title-section {
+      background: var(--off-white);
+      border-bottom: 1px solid var(--border);
+      padding: 48px 0 36px;
+    }
+    .page-title-section h1 {
+      font-size: clamp(26px, 4vw, 40px);
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 0;
+      line-height: 1.2;
+    }
+
+    /* ============================================================
+       TEAM SECTION — shared styles
+    ============================================================ */
+    .team-section {
+      padding: 60px 0;
+      background: var(--white);
+    }
+    .team-section:nth-child(even) {
+      background: var(--off-white);
+    }
+    .team-section-title {
+      font-size: clamp(20px, 3vw, 28px);
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 36px;
+      padding-bottom: 14px;
+      border-bottom: 3px solid var(--blue-primary);
+      display: inline-block;
+    }
+
+    /* ============================================================
+       STANDARD TEAM CARD (Advisors, Admins, HODs, Instructors)
+    ============================================================ */
+    .team-card {
+      background: var(--white);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+      padding: 28px 22px 24px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 100%;
+      transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+    }
+    .team-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-hover);
+      border-color: var(--blue-primary);
+    }
+
+    /* Photo */
+    .team-photo-wrap {
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 4px solid var(--blue-light);
+      margin-bottom: 18px;
+      flex-shrink: 0;
+      background: var(--grey-bg);
+      transition: border-color var(--transition);
+    }
+    .team-card:hover .team-photo-wrap { border-color: var(--blue-primary); }
+    .team-photo-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+    }
+
+    .team-name {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 4px;
+      line-height: 1.3;
+    }
+    .team-role {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--blue-primary);
+      text-transform: uppercase;
+      letter-spacing: .8px;
+      margin-bottom: 8px;
+    }
+    .team-bio-short {
+      font-size: 13px;
+      color: var(--text-soft);
+      line-height: 1.65;
+      margin-bottom: 16px;
+      flex: 1;
+    }
+
+    /* Social icons */
+    .team-socials {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-top: auto;
+    }
+    .team-social-link {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: var(--grey-bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-soft);
+      font-size: 14px;
+      transition: background var(--transition), color var(--transition), transform var(--transition);
+    }
+    .team-social-link:hover {
+      background: var(--blue-primary);
+      color: var(--white);
+      transform: scale(1.12);
+    }
+    .team-social-link.fb:hover  { background: #1877f2; }
+    .team-social-link.tw:hover  { background: #000000; }
+    .team-social-link.li:hover  { background: #0a66c2; }
+
+    /* ============================================================
+       EXECUTIVE CARD — larger, horizontal layout, with full bio
+    ============================================================ */
+    .exec-card {
+      background: var(--white);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+      height: 100%;
+      transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+    }
+    .exec-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-hover);
+      border-color: var(--blue-primary);
+    }
+
+    /* Photo block on top */
+    .exec-photo-wrap {
+      width: 100%;
+      height: 280px;
+      overflow: hidden;
+      background: var(--grey-bg);
+      position: relative;
+    }
+    .exec-photo-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      transition: transform .4s ease;
+    }
+    .exec-card:hover .exec-photo-wrap img { transform: scale(1.04); }
+
+    /* Blue accent bar */
+    .exec-accent-bar {
+      height: 4px;
+      background: linear-gradient(90deg, var(--blue-primary), var(--blue-mid));
+    }
+
+    .exec-body {
+      padding: 24px 26px 26px;
+    }
+    .exec-name {
+      font-size: 19px;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 4px;
+      line-height: 1.25;
+    }
+    .exec-title {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--blue-primary);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 16px;
+    }
+    .exec-bio {
+      font-size: 13.5px;
+      color: var(--text-mid);
+      line-height: 1.75;
+      margin-bottom: 20px;
+    }
+    .exec-bio p { margin-bottom: 12px; }
+    .exec-bio p:last-child { margin-bottom: 0; }
+
+    .exec-socials {
+      display: flex;
+      gap: 8px;
+    }
+    .exec-social-link {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--grey-bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-soft);
+      font-size: 15px;
+      transition: background var(--transition), color var(--transition), transform var(--transition);
+    }
+    .exec-social-link:hover {
+      background: var(--blue-primary);
+      color: var(--white);
+      transform: scale(1.12);
+    }
+    .exec-social-link.fb:hover { background: #1877f2; }
+    .exec-social-link.tw:hover { background: #000000; }
+    .exec-social-link.li:hover { background: #0a66c2; }
+
+    /* ============================================================
+       SCROLL REVEAL
+    ============================================================ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity .55s ease, transform .55s ease;
+    }
+    .reveal.in-view {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+.sqi-footer {
+  background: #1a1a1a;
+  color: rgba(255,255,255,.72);
+  padding: 0;
+}
+
+.footer-top-row {
+  padding: 60px 0 40px;
+}
+
+/* Brand */
+.footer-brand h4 {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.footer-brand p {
+  font-size: 13.5px;
+  color: rgba(255,255,255,.65);
+  line-height: 1.65;
+}
+
+/* Socials */
+.footer-socials {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.footer-socials a {
+  width: 36px;
+  height: 36px;
+  background: rgba(255,255,255,.1);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255,255,255,.8);
+  font-size: 15px;
+  transition: background var(--transition), color var(--transition);
+}
+.footer-socials a:hover {
+  background: var(--blue-primary);
+  color: var(--white);
+}
+
+/* Emails */
+.footer-emails h6 {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: rgba(255,255,255,.5);
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.footer-emails ul li {
+  margin-bottom: 6px;
+}
+.footer-emails ul li a {
+  font-size: 13px;
+  color: rgb(86,195,249);
+  transition: color var(--transition);
+}
+.footer-emails ul li a:hover { color: var(--orange-primary); }
+
+/* Col titles */
+.footer-col-title {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: rgba(255,255,255,.5);
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+/* Quick links */
+.footer-links li {
+  margin-bottom: 8px;
+}
+.footer-links li a {
+  font-size: 13px;
+  color: rgba(255,255,255,.65);
+  transition: color var(--transition);
+}
+.footer-links li a:hover { color: var(--orange-primary); }
+
+/* Addresses */
+.footer-address {
+  font-size: 12px;
+  color: rgba(255,255,255,.6);
+  line-height: 1.6;
+  margin-bottom: 4px;
+}
+.footer-address strong { color: rgba(255,255,255,.85); }
+
+.footer-map-link {
+  font-size: 12px;
+  color: var(--orange-primary);
+  font-weight: 600;
+  transition: color var(--transition);
+}
+.footer-map-link:hover {
+  color: rgb(86,195,249);
+  text-decoration: underline;
+}
+
+/* Footer bottom */
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,.1);
+  padding: 18px 0;
+  text-align: center;
+}
+.footer-bottom p {
+  font-size: 13px;
+  color: rgba(255,255,255,.45);
+  margin: 0;
+}
+
+/* ================================================================
+   BACK TO TOP
+   ================================================================ */
+.back-to-top {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 999;
+  width: 42px;
+  height: 42px;
+  background: var(--blue-primary);
+  color: var(--white);
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(0,0,0,.25);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(12px);
+  transition: opacity 0.3s, transform 0.3s, background 0.2s;
+}
+.back-to-top.visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+.back-to-top:hover { background: var(--blue-dark); }
+
+.git_footer{
+    display: inline-flex;
+    justify-content: space-between;
+    height: 50px;
+    width: 100%;
+    border-top: 0px solid rgb(218, 220, 222);
+    align-items: center;
+    padding-left: 30px;
+    background-color: rgb(0, 0, 0);
+}
+
+.git_footer a{
+    text-decoration: none;
+    color: rgb(232, 17, 35);
+    font-size: 20px;
+    font-weight: 600;
+}
+
+    /* ============================================================
+       RESPONSIVE TWEAKS
+    ============================================================ */
+    @media (max-width: 991.98px) {
+      .sqi-nav-list {
+        padding: 10px 0;
+        gap: 0;
+      }
+      .sqi-nav-link { border-radius: 0; }
+      .sqi-dropdown-menu {
+        box-shadow: none;
+        border: none;
+        background: var(--off-white);
+        animation: none;
+        margin-top: 0 !important;
+        padding-left: 12px;
+      }
+      .exec-photo-wrap { height: 220px; }
+    }
+
+    @media (max-width: 767.98px) {
+      .page-title-section { padding: 36px 0 28px; }
+      .team-section { padding: 44px 0; }
+      .exec-photo-wrap { height: 200px; }
+      .back-to-top { bottom: 16px; right: 16px; width: 38px; height: 38px; font-size: 14px; }
+    }
+
+    @media (max-width: 575.98px) {
+      .exec-body { padding: 18px 18px 20px; }
+      .exec-name { font-size: 17px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ================================================================
+       FRAUD WARNING POPUP (Bootstrap Modal)
+  ================================================================ -->
+  <div class="modal fade" id="fraudModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered fraud-modal-dialog">
+      <div class="modal-content fraud-modal-content">
+        <div class="modal-body fraud-modal-body">
+          <button
+            class="fraud-close-btn"
+            type="button"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          >&times;</button>
+
+          <img
+            src="Images/red-bell.png"
+            alt="Alert Bell"
+            class="fraud-bell-img"
+            onerror="this.outerHTML='<span style=\'font-size:3rem;margin-bottom:14px;display:block;\'>🔔</span>'"
+          />
+
+          <h5>Please be advised!</h5>
+          <p>Do not make any payment for our courses or services to any account or platform other than corporate accounts provided by SQI College of ICT.</p>
+          <p>The College will not be held responsible for any loss or issue arising from payments made to unauthorised individuals or channels.</p>
+          <p><strong>Thank you for your cooperation.</strong></p>
+          <button class="fraud-ok-btn" data-bs-dismiss="modal">OK, I understand</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================================================================
+       STICKY NAVBAR
+  ================================================================ -->
+  <nav class="sqi-navbar" id="sqiNavbar">
+    <div class="container">
+      <div class="nav-inner">
+
+        <!-- Logo -->
+        <a href="index.html" class="nav-logo">
+          <img src="Images/icon.jpg" alt="SQI College of ICT"
+            onerror="this.style.display='none';document.getElementById('logoFb').style.display='flex';" />
+          <div id="logoFb" class="logo-fallback" style="display:none;">
+            <span class="logo-badge">SQI</span>
+            <div class="logo-words">
+              <span>SQI College of ICT</span>
+              <small>Acquire In-Demand Tech Skills</small>
+            </div>
+          </div>
+        </a>
+
+        <!-- Hamburger -->
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+
+        <!-- Menu -->
+        <ul class="nav-menu" id="navMenu">
+
+          <li class="nav-item">
+            <a href="#" class="nav-link">About <i class="fas fa-chevron-down chevron"></i></a>
+            <ul class="dropdown">
+              <li><a href="story.html">Our Story</a></li>
+              <li><a href="team.html">Our Team</a></li>
+              <li><a href="campus.html">Campus Info</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a href="#" class="nav-link">Programmes <i class="fas fa-chevron-down chevron"></i></a>
+            <ul class="dropdown">
+              <li><a href="pre-nd.html">Pre-National Diploma</a></li>
+              <li><a href="nd.html">National Diploma</a></li>
+              <li><a href="procert.html">Professional Diploma Program</a></li>
+              <li><a href="epcp.html">Executive Professional Certificate Programme</a></li>
+              <li><a href="bsc.html">Bachelor Degree | LAUTECH PT</a></li>
+              <li><a href="post-utme.html">Post-UTME</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a href="#" class="nav-link">Admissions <i class="fas fa-chevron-down chevron"></i></a>
+            <ul class="dropdown">
+              <li><a href="afap.html">Apply for a Programme</a></li>
+              <li><a href="mos.html">Mode of Study</a></li>
+              <li><a href="tuition.html">Tuition</a></li>
+              <li><a href="https://drive.google.com/file/d/1w_itppr3K0MMy5Sdf8uFkCO7eCyAYiRf/view?usp=sharing">Student's Handbook</a></li>
+              <li><a href="faq.html">Frequently Asked Questions</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a href="#" class="nav-link">E-Portal <i class="fas fa-chevron-down chevron"></i></a>
+            <ul class="dropdown">
+              <li><a href="student.html">Student</a></li>
+              <li><a href="staff.html">Staff</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a href="scholarship.html" class="nav-link">SQI Scholarship</a>
+          </li>
+          <li class="nav-item">
+            <a href="news.html" class="nav-link">News</a>
+          </li>
+          <li class="nav-item">
+            <a href="contact.html" class="nav-link">Contact</a>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ================================================================
+       PAGE TITLE
+  ================================================================ -->
+  <section class="page-title-section">
+    <div class="container">
+      <h1>Our Team</h1>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       BOARD OF ADVISORS
+  ================================================================ -->
+  <section class="team-section">
+    <div class="container">
+      <h2 class="team-section-title">Board of Advisors</h2>
+      <div class="row g-4">
+
+        <!-- Rev'd Taiwo Opajobi -->
+        <div class="col-sm-6 col-md-4 col-lg-3">
+          <div class="team-card reveal">
+            <div class="team-photo-wrap">
+              <img
+                src="Images/team/1.jpeg"
+                alt="Rev'd. Taiwo Opajobi"
+                onerror="this.src='Images/team/1.jpeg'"
+              />
+            </div>
+            <h4 class="team-name">Rev'd. Taiwo Opajobi</h4>
+            <p class="team-bio-short">A thought leader and Pastor, University Baptist Church, Ogbomoso.</p>
+            <div class="team-socials">
+              <a href="#" target="_blank" class="team-social-link fb" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+              <a href="#" target="_blank" class="team-social-link tw" title="X"><i class="fab fa-x-twitter"></i></a>
+              <a href="#" target="_blank" class="team-social-link li" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Professor Adefemi Adekunle -->
+        <div class="col-sm-6 col-md-4 col-lg-3">
+          <div class="team-card reveal">
+            <div class="team-photo-wrap">
+              <img
+                src="Images/team/2.png"
+                alt="Professor Adefemi Adekunle"
+                onerror="this.src='Images/team/2.png'"
+              />
+            </div>
+            <h4 class="team-name">Professor Adefemi Adekunle</h4>
+            <p class="team-bio-short">Professor of Mechatronics Engineering, FUOYE, Ekiti.</p>
+            <div class="team-socials">
+              <a href="#" class="team-social-link fb" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+              <a href="#" class="team-social-link tw" title="X"><i class="fab fa-x-twitter"></i></a>
+              <a href="#" class="team-social-link li" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       EXECUTIVE COUNCIL
+  ================================================================ -->
+  <section class="team-section">
+    <div class="container">
+      <h2 class="team-section-title">Executive Council</h2>
+      <div class="row g-4">
+
+        <!-- Adeyemi Aderinto -->
+        <div class="col-md-6">
+          <div class="exec-card reveal">
+            <div class="exec-photo-wrap">
+              <img
+                src="Images/team/3.png"
+                alt="Adeyemi C. Aderinto"
+                onerror="this.src='Images/team/3.png'"
+              />
+            </div>
+            <div class="exec-accent-bar"></div>
+            <div class="exec-body">
+              <h3 class="exec-name">Adeyemi C. Aderinto</h3>
+              <p class="exec-title">President &amp; Founder</p>
+              <div class="exec-bio">
+                <p>Adeyemi Aderinto is a seasoned ICT Consultant and technology trainer with 12+ years of combined experience in different modern technology practices including Software Engineering, Software Architecture, Database Design and Administration, Digital Marketing, and more.</p>
+                <p>Adeyemi Aderinto has the vision to make Africa a pool of talent one mind at a time and he so founded and established SQI ICT Consultant in Sept. 2008 a parent establishment to SQI Solutions and SQI COLLEGE of ICT.</p>
+                <p>Under these franchises, through a sustained commitment to promoting a faculty culture of mentoring and learner empowerment, for both students and staff to create an environment where students can thrive, he has directly mentored 900+ students in ICT in over 15 years, some of whom are heads of different solutions company across the world and some have joined him to train and mentor thousands more.</p>
+                <p>Adeyemi holds a B.Sc in Computer Science from the National Open University and an Honorary PhD in Theology.</p>
+              </div>
+              <div class="exec-socials">
+                <a href="#" target="_blank" class="exec-social-link fb" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" target="_blank" class="exec-social-link tw" title="X"><i class="fab fa-x-twitter"></i></a>
+                <a href="#" target="_blank" class="exec-social-link li" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dr. Adegbenro Ajani -->
+        <div class="col-md-6">
+          <div class="exec-card reveal">
+            <div class="exec-photo-wrap">
+              <img
+                src="Images/team/4.jpg"
+                alt="Dr. Adegbenro Sunday Ajani"
+                onerror="this.src='Images/team/4.jpg'"
+              />
+            </div>
+            <div class="exec-accent-bar"></div>
+            <div class="exec-body">
+              <h3 class="exec-name">Dr. Adegbenro Sunday Ajani</h3>
+              <p class="exec-title">Rector at SQI College of ICT</p>
+              <div class="exec-bio">
+                <p>Dr Adegbenro Sunday Ajani is a leader, an influencer and a human skill developer with close to two decades experience in the academic and administrative sectors.</p>
+                <p>Dr Ajani is a Doctor of Electronics and Communication Physics with core interest in Medical Instrumentation Research from Ladoke Akintola University of Technology, Ogbomoso. He has worked as an Administrator in notable private institutions and lectures Physics at Kwara State University.</p>
+                <p>Dr Ajani is a committed researcher. In 2023, Dr Ajani collaborated with Western University, Ontario Canada on developing medical devices to care for Parkinson disease patients and is currently being nominated as the only Africa independent Investigator to oversee the survey and mass production of Parkinson disease device for Nigeria, Kenya and Ethiopia.</p>
+                <p>Dr Ajani, a happy family man and the Lead Pastor of Co-Elect Christian Family Church Inc where he supplies spiritual leadership and add value to the members of the church. Dr Ajani is also an hardened Farmer with specialty in Animal husbandry, Fishery and Tuber Planting.</p>
+              </div>
+              <div class="exec-socials">
+                <a href="#" target="_blank" class="exec-social-link fb" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       ADMINISTRATORS
+  ================================================================ -->
+  <section class="team-section">
+    <div class="container">
+      <h2 class="team-section-title">Administrators</h2>
+      <div class="row g-4">
+
+        <!-- Grace Damilola Aderinto -->
+        <div class="col-6 col-sm-4 col-md-3 col-lg-2half">
+          <div class="team-card reveal">
+            <div class="team-photo-wrap">
+              <img
+                src="Images/team/5.jpg"
+                alt="Grace Damilola Aderinto"
+                onerror="this.src='Images/team/5.jpg'"
+              />
+            </div>
+            <h4 class="team-name">Grace Damilola Aderinto</h4>
+            <p class="team-role">Registrar</p>
+            <div class="team-socials">
+              <a href="#" target="_blank" class="team-social-link fb" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+              <a href="#" target="_blank" class="team-social-link tw" title="X"><i class="fab fa-x-twitter"></i></a>
+              <a href="#" target="_blank" class="team-social-link li" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Olubunmi Olawole -->
+        <div class="col-6 col-sm-4 col-md-3 col-lg-2half">
+          <div class="team-card reveal">
+            <div class="team-photo-wrap">
+              <img
+                src="Images/team/6.jpg"
+                alt="Olubunmi Olawole"
+                onerror="this.src='Images/team/6.jpg'"
+              />
+            </div>
+            <h4 class="team-name">Olubunmi Olawole</h4>
+            <p class="team-role">HPC Manager</p>
+            <div class="team-socials">
+              <a href="#" target="_blank" class="team-social-link fb" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+              <a href="#" target="_blank" class="team-social-link li" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Comfort Odey -->
+        <div class="col-6 col-sm-4 col-md-3 col-lg-2half">
+          <div class="team-card reveal">
+            <div class="team-photo-wrap">
+              <img
+                src="Images/team/7.jpg"
+                alt="Comfort Odey"
+                onerror="this.src='Images/team/7.jpg'"
+              />
+            </div>
+            <h4 class="team-name">Comfort Odey</h4>
+            <p class="team-role">HR Manager</p>
+            <div class="team-socials">
+              <a href="#" target="_blank" class="team-social-link fb" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+              <a href="#" target="_blank" class="team-social-link tw" title="X"><i class="fab fa-x-twitter"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Wumi Peters -->
+        <div class="col-6 col-sm-4 col-md-3 col-lg-2half">
+          <div class="team-card reveal">
+            <div class="team-photo-wrap">
+              <img
+                src="Images/team/8.jpg"
+                alt="Wumi Peters"
+                onerror="this.src='Images/team/8.jpg'"
+              />
+            </div>
+            <h4 class="team-name">Wumi Peters</h4>
+            <p class="team-role">Branch Coordinator</p>
+            <div class="team-socials">
+              <a href="#" target="_blank" class="team-social-link fb" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+              <a href="#" target="_blank" class="team-social-link tw" title="X"><i class="fab fa-x-twitter"></i></a>
+              <a href="#" target="_blank" class="team-social-link li" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Jacob Daramola -->
+        <div class="col-6 col-sm-4 col-md-3 col-lg-2half">
+          <div class="team-card reveal">
+            <div class="team-photo-wrap">
+              <img
+                src="Images/team/9.jpg"
+                alt="Jacob Daramola"
+                onerror="this.src='Images/team/9.jpg'"
+              />
+            </div>
+            <h4 class="team-name">Jacob Daramola</h4>
+            <p class="team-role">Project Manager</p>
+            <div class="team-socials">
+              <a href="#" target="_blank" class="team-social-link tw" title="X"><i class="fab fa-x-twitter"></i></a>
+              <a href="#" target="_blank" class="team-social-link li" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       HEADS OF DEPARTMENTS
+  ================================================================ -->
+  <section class="team-section">
+    <div class="container">
+      <h2 class="team-section-title">Heads of Departments</h2>
+      <div class="row g-4">
+
+        <!-- Opeyemi Sunday Ojo -->
+        <div class="col-6 col-sm-4 col-md-3">
+          <div class="team-card reveal">
+            <div class="team-photo-wrap">
+              <img
+                src="Images/team/10.jpg"
+                alt="Opeyemi Sunday Ojo"
+                onerror="this.src='Images/team/10.jpg'"
+              />
+            </div>
+            <h4 class="team-name">Opeyemi Sunday Ojo</h4>
+            <p class="team-role">HOD — Data Science/Robotics</p>
+            <div class="team-socials">
+              <a href="#" target="_blank" class="team-social-link fb" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+              <a href="#" target="_blank" class="team-social-link tw" title="X"><i class="fab fa-x-twitter"></i></a>
+              <a href="#" target="_blank" class="team-social-link li" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Oluwatimileyin Alamu -->
+        <div class="col-6 col-sm-4 col-md-3">
+          <div class="team-card reveal">
+            <div class="team-photo-wrap">
+              <img
+                src="Images/team/11.jpg"
+                alt="Oluwatimileyin Alamu"
+                onerror="this.src='Images/team/11.jpg'"
+              />
+            </div>
+            <h4 class="team-name">Oluwatimileyin Alamu</h4>
+            <p class="team-role">HOD — Graphics &amp; Multimedia</p>
+            <div class="team-socials">
+              <a href="#" target="_blank" class="team-social-link fb" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+              <a href="#" target="_blank" class="team-social-link tw" title="X"><i class="fab fa-x-twitter"></i></a>
+              <a href="#" target="_blank" class="team-social-link li" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Oluwaseyifunmi Odekomaya -->
+        <div class="col-6 col-sm-4 col-md-3">
+          <div class="team-card reveal">
+            <div class="team-photo-wrap">
+              <img
+                src="Images/team/12.jpg"
+                alt="Oluwaseyifunmi Odekomaya"
+                onerror="this.src='Images/team/12.jpg'"
+              />
+            </div>
+            <h4 class="team-name">Oluwaseyifunmi Odekomaya</h4>
+            <p class="team-role">HOD — Software Engineering</p>
+            <div class="team-socials">
+              <a href="#" target="_blank" class="team-social-link fb" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+              <a href="#" target="_blank" class="team-social-link tw" title="X"><i class="fab fa-x-twitter"></i></a>
+              <a href="#" target="_blank" class="team-social-link li" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Amos Ayanshina -->
+        <div class="col-6 col-sm-4 col-md-3">
+          <div class="team-card reveal">
+            <div class="team-photo-wrap">
+              <img
+                src="Images/team/13.jpg"
+                alt="Amos Ayanshina"
+                onerror="this.src='Images/team/13.jpg'"
+              />
+            </div>
+            <h4 class="team-name">Amos Ayanshina</h4>
+            <p class="team-role">HOD — Computer Hardware Engineering</p>
+            <div class="team-socials">
+              <a href="#" target="_blank" class="team-social-link fb" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+              <a href="#" target="_blank" class="team-social-link tw" title="X"><i class="fab fa-x-twitter"></i></a>
+              <a href="#" target="_blank" class="team-social-link li" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       INSTRUCTORS
+  ================================================================ -->
+  <section class="team-section">
+    <div class="container">
+      <h2 class="team-section-title">Instructors</h2>
+      <div class="row g-4">
+
+        <!-- Favour Afolabi -->
+        <div class="col-6 col-sm-4 col-md-3">
+          <div class="team-card reveal">
+            <div class="team-photo-wrap">
+              <img
+                src="Images/team/14.jpg"
+                alt="Favour Afolabi"
+                onerror="this.src='Images/team/14.jpg'"
+              />
+            </div>
+            <h4 class="team-name">Favour Afolabi</h4>
+            <p class="team-role">Instructor — Software Engineering</p>
+            <div class="team-socials">
+              <a href="#" target="_blank" class="team-social-link fb" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+              <a href="#" target="_blank" class="team-social-link tw" title="X"><i class="fab fa-x-twitter"></i></a>
+              <a href="#" target="_blank" class="team-social-link li" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Teslim Salaudeen -->
+        <div class="col-6 col-sm-4 col-md-3">
+          <div class="team-card reveal">
+            <div class="team-photo-wrap">
+              <img
+                src="Images/team/15.jpg"
+                alt="Teslim Salaudeen"
+                onerror="this.src='Images/team/15.jpg'"
+              />
+            </div>
+            <h4 class="team-name">Teslim Salaudeen</h4>
+            <p class="team-role">Instructor — Software Engineering</p>
+            <div class="team-socials">
+              <a href="#" target="_blank" class="team-social-link fb" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+              <a href="#" target="_blank" class="team-social-link tw" title="X"><i class="fab fa-x-twitter"></i></a>
+              <a href="#" target="_blank" class="team-social-link li" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Blessing Adegboyega -->
+        <div class="col-6 col-sm-4 col-md-3">
+          <div class="team-card reveal">
+            <div class="team-photo-wrap">
+              <img
+                src="Images/team/16.jpg"
+                alt="Blessing Adegboyega"
+                onerror="this.src='Images/team/16.jpg'"
+              />
+            </div>
+            <h4 class="team-name">Blessing Adegboyega</h4>
+            <p class="team-role">Instructor — Software Engineering</p>
+            <div class="team-socials">
+              <a href="#" target="_blank" class="team-social-link fb" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+              <a href="#" target="_blank" class="team-social-link tw" title="X"><i class="fab fa-x-twitter"></i></a>
+              <a href="#" target="_blank" class="team-social-link li" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       FOOTER
+  ================================================================ -->
+  <footer class="sqi-footer">
+    <div class="container">
+      <div class="row g-5 footer-top-row">
+
+        <!-- Brand + Socials + Emails -->
+        <div class="col-lg-3 col-md-6">
+          <div class="footer-brand">
+            <h4>Hello, we're SQI College of ICT</h4>
+            <p>We provide and lead others in quality ICT education.</p>
+          </div>
+          <div class="footer-socials mt-3">
+            <a href="#" title="Follow on Facebook" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" title="Follow on X" target="_blank"><i class="fab fa-x-twitter"></i></a>
+            <a href="#" title="Follow on LinkedIn" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" title="Follow on Youtube" target="_blank"><i class="fab fa-youtube"></i></a>
+            <a href="#" title="Follow on Instagram" target="_blank"><i class="fab fa-instagram"></i></a>
+          </div>
+          <div class="footer-emails mt-4">
+            <h6>Send us a mail</h6>
+            <ul>
+              <li><a href="#">enquiry@sqi.edu.ng</a></li>
+              <li><a href="#">admissions@sqi.edu.ng</a></li>
+              <li><a href="#">examsandrecords@sqi.edu.ng</a></li>
+              <li><a href="#">rector@sqi.edu.ng</a></li>
+              <li><a href="#">partnerships@sqi.edu.ng</a></li>
+              <li><a href="#">internship@sqi.edu.ng</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="col-lg-2 col-md-6 col-sm-6">
+          <h6 class="footer-col-title">Quick Links</h6>
+          <ul class="footer-links">
+            <li><a href="#">Application Portal</a></li>
+            <li><a href="student.html">Student Portal</a></li>
+            <li><a href="procert.html">Professional Courses</a></li>
+            <li><a href="nd.html">ND Courses</a></li>
+            <li><a href="campus.html">Campus Info</a></li>
+            <li><a href="#">Accommodation</a></li>
+            <li><a href="scholarship.html">SQI Scholarship</a></li>
+            <li><a href="#">SQI Anthem</a></li>
+            <li><a href="#">Donate</a></li>
+          </ul>
+        </div>
+
+        <!-- Locations col 1 -->
+        <div class="col-lg-4 col-md-6">
+          <div class="row g-3">
+            <div class="col-6">
+              <h6 class="footer-col-title">Ogbomoso</h6>
+              <p class="footer-address">Old Ilorin Road, Opposite Yoaco Filling Station, Yoaco, Ogbomoso.<br /><strong>0906 281 9991, 0906 281 9993</strong></p>
+              <a href="#" class="footer-map-link" target="_blank">Locate on the map</a>
+              <h6 class="footer-col-title">Ibadan</h6>
+              <p class="footer-address">First Floor, H25 Heritage Mall, Opposite Central Bank of Nigeria, Dugbe, Ibadan.<br /><strong>0906 281 9994</strong></p>
+              <a href="#" class="footer-map-link" target="_blank">Locate on the map</a>
+            </div>
+            <div class="col-6">
+              <h6 class="footer-col-title">Lagos</h6>
+              <p class="footer-address">Suite 219, Opic Plaza, Mobolaji Bank Anthony Way, beside Sheraton Hotel, Ikeja, Lagos<br /><strong>0906 281 9999</strong></p>
+              <a href="#" class="footer-map-link" target="_blank">Locate on the map</a>
+              <h6 class="footer-col-title">Abeokuta</h6>
+              <p class="footer-address">First floor, OPIC Tower building, Okeilewo, Abeokuta.<br /><strong>0906 281 9996</strong></p>
+              <a href="#" class="footer-map-link" target="_blank">Locate on the map</a>
+            </div>
+            <div class="col-6">
+              <h6 class="footer-col-title">Virtual</h6>
+              <p class="footer-address">Available Globally Online.<br /><strong>0906 281 9992</strong></p>
+              <a href="#" class="footer-map-link" target="_blank">Locate on the map</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Locations col 2 -->
+        <div class="col-lg-3 col-md-6">
+          <div class="row g-3">
+            <div class="col-12">
+              <p class="footer-address mt-2">Christianah Oyinade Ajoke House, beside First Bank, Arisekola Central Mosque, Opposite Jaiz bank, Idi Ape, Iwo road, Ibadan.<br /><strong>0906 281 9995</strong></p>
+              <a href="#" class="footer-map-link" target="_blank">Locate on the map</a>
+              <p class="footer-address mt-2">Haier Thermocool Building, opposite SAO filling station, Challenge, Ibadan, Oyo State.<br /><strong>0906 281 9992</strong></p>
+              <a href="#" class="footer-map-link" target="_blank">Locate on the map</a>
+            </div>
+            <div class="col-6">
+              <h6 class="footer-col-title">Osogbo</h6>
+              <p class="footer-address">Opposite Jaiz bank, Ogo-Oluwa, Osogbo<br /><strong>0906 281 9997</strong></p>
+              <a href="#" class="footer-map-link" target="_blank">Locate on the map</a>
+            </div>
+            <div class="col-6">
+              <h6 class="footer-col-title">Abuja</h6>
+              <p class="footer-address">Suite Banking Hall SF, Febson Mall, Wuse Zone 4, Abuja<br /><strong>090 628 20000</strong></p>
+              <a href="#" class="footer-map-link" target="_blank">Locate on the map</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Footer Bottom -->
+      <div class="footer-bottom">
+        <p>Copyright &copy; 2026 | SQI ICT Consultants | Powered by Edozzier</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ================================================================
+       BACK TO TOP BUTTON
+  ================================================================ -->
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+  <div class="git_footer">
+    <a href="https://github.com/Analyst-Foundry">By Analyst Foundry</a>
+  </div>
+
+  <!-- ================================================================
+       SCRIPTS — Bootstrap + custom
+  ================================================================ -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    (function () {
+      'use strict';
+
+      /* ---- FRAUD MODAL: auto-open after 800ms ---- */
+      const fraudModalEl = document.getElementById('fraudModal');
+      if (fraudModalEl) {
+        const fraudModal = new bootstrap.Modal(fraudModalEl, { keyboard: true });
+        setTimeout(() => fraudModal.show(), 800);
+      }
+
+      /* ---- NAVBAR: add shadow on scroll ---- */
+      const navbar = document.getElementById('sqiNavbar');
+      window.addEventListener('scroll', () => {
+        navbar.classList.toggle('scrolled', window.scrollY > 10);
+      }, { passive: true });
+
+      /* ---- DROPDOWN: rotate chevron ---- */
+      document.querySelectorAll('.sqi-dropdown').forEach(el => {
+        el.addEventListener('show.bs.dropdown', () => {
+          el.querySelector('.sqi-chevron')?.style.setProperty('transform', 'rotate(180deg)');
+        });
+        el.addEventListener('hide.bs.dropdown', () => {
+          el.querySelector('.sqi-chevron')?.style.setProperty('transform', 'rotate(0deg)');
+        });
+      });
+
+      /* ---- CLOSE MOBILE NAV ON LINK CLICK ---- */
+      const navCollapse = document.getElementById('navMenu');
+      document.querySelectorAll('#navMenu .sqi-dd-item').forEach(item => {
+        item.addEventListener('click', () => {
+          if (window.innerWidth < 992) {
+            bootstrap.Collapse.getInstance(navCollapse)?.hide();
+          }
+        });
+      });
+
+      /* ---- SCROLL REVEAL ---- */
+      const revealEls = document.querySelectorAll('.reveal');
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry, i) => {
+          if (entry.isIntersecting) {
+            // Stagger sibling cards
+            const siblings = Array.from(
+              entry.target.closest('.row')?.querySelectorAll('.reveal:not(.in-view)') || []
+            );
+            const idx = siblings.indexOf(entry.target);
+            setTimeout(() => {
+              entry.target.classList.add('in-view');
+            }, Math.min(idx * 90, 450));
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
+
+      revealEls.forEach(el => revealObserver.observe(el));
+
+      /* ---- BACK TO TOP ---- */
+      const btt = document.getElementById('backToTop');
+      window.addEventListener('scroll', () => {
+        btt.classList.toggle('visible', window.scrollY > 400);
+      }, { passive: true });
+      btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    })();
+  </script>
+
+</body>
+</html>

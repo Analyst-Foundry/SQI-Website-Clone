@@ -1,0 +1,1299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+  <title>Professional Certificate Program - Acquire In-Demand Tech skills.</title>
+  <meta name="description" content="At SQI College of ICT, we offer a wide range of professional Diploma Programmes cutting across Software Engineering, Graphics and Multimedia Technology, Network and Security among others." />
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <!-- Google Fonts: Open Sans -->
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ============================================================
+       CSS VARIABLES
+    ============================================================ */
+    :root {
+      --blue-primary: rgb(0,11,63);
+      --blue-dark:    rgb(9,3,38);
+      --blue-deeper:  rgb(86,195,249);
+      --blue-light:   rgb(46,163,242);
+      --blue-mid:     rgb(0,11,63);
+      --orange-primary: rgb(239,112,40);
+      --white:        #ffffff;
+      --off-white:    #f8f9fa;
+      --grey:         #f2f4f6;
+      --border:       #dee2e6;
+      --border-lt:    #e9ecef;
+      --text:         #212529;
+      --text-mid:     #495057;
+      --text-soft:    #6c757d;
+      --text-muted:   #adb5bd;
+      --dark-bg:      #1a1a1a;
+      --shadow-xs:    0 1px 4px rgba(0,0,0,.06);
+      --shadow-sm:    0 2px 12px rgba(0,0,0,.08);
+      --shadow-md:    0 6px 28px rgba(0,0,0,.13);
+      --shadow-lg:    0 12px 48px rgba(0,0,0,.18);
+      --radius:       8px;
+      --radius-lg:    14px;
+      --navbar-h:     72px;
+      --t:            .25s ease;
+    }
+
+    /* ============================================================
+       RESET & BASE
+    ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; }
+
+    body {
+      font-family: 'Open Sans', sans-serif;
+      font-size: 15px;
+      color: var(--text);
+      background: var(--white);
+      line-height: 1.75;
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; text-decoration: none; transition: color var(--t); }
+    a:hover { color: var(--blue-primary); }
+    img { max-width: 100%; display: block; }
+    ul  { list-style: none; padding: 0; margin: 0; }
+
+    /* ============================================================
+       FRAUD POPUP MODAL
+    ============================================================ */
+    .fraud-dialog  { max-width: 380px; }
+    .fraud-content {
+      border: none; border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg); overflow: hidden;
+    }
+    .fraud-body {
+      padding: 40px 32px 32px; text-align: center; position: relative;
+    }
+    .fraud-x {
+      position: absolute; top: 14px; right: 14px;
+      background: none; border: none; font-size: 22px; line-height: 1;
+      cursor: pointer; color: var(--text-soft); transition: color var(--t);
+    }
+    .fraud-x:hover { color: var(--text); }
+    .fraud-bell-img {
+      width: 64px; height: 64px; object-fit: contain;
+      margin: 0 auto 16px; display: block;
+    }
+    .fraud-body h5 { font-size: 18px; font-weight: 700; color: var(--text); margin-bottom: 14px; }
+    .fraud-body p  { font-size: 13.5px; color: var(--text-mid); line-height: 1.65; margin-bottom: 10px; }
+    .fraud-ok {
+      display: inline-block; margin-top: 14px;
+      padding: 10px 32px; background: var(--blue-primary); color: var(--white);
+      border: none; border-radius: var(--radius);
+      font-size: 14px; font-weight: 700; cursor: pointer;
+      transition: background var(--t);
+    }
+    .fraud-ok:hover { background: var(--blue-dark); }
+
+    /* ============================================================
+       STICKY NAVBAR
+    ============================================================ */
+  .sqi-navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: var(--white);
+      box-shadow: 0 2px 10px rgba(0,0,0,.10);
+      transition: box-shadow var(--transition);
+    }
+    .sqi-navbar.scrolled { box-shadow: 0 4px 20px rgba(0,0,0,.15); }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: var(--navbar-h);
+    }
+
+    /* Logo */
+    .nav-logo img {
+      height: 52px;
+      width: auto;
+      object-fit: contain;
+    }
+    .logo-fallback {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .logo-badge {
+      background: var(--blue);
+      color: var(--white);
+      font-weight: 800;
+      font-size: 14px;
+      padding: 6px 10px;
+      border-radius: 6px;
+      letter-spacing: 1px;
+    }
+    .logo-words { display: flex; flex-direction: column; }
+    .logo-words span { font-size: 14px; font-weight: 700; color: var(--blue-dark); }
+    .logo-words small { font-size: 10px; color: var(--text-soft); }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 6px;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--text);
+      border-radius: 2px;
+      transition: all .3s;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* Nav menu */
+    .nav-menu { display: flex; align-items: center; gap: 2px; }
+
+    .nav-item { position: relative; }
+    .nav-link {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      padding: 8px 13px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+      border-radius: var(--radius);
+      white-space: nowrap;
+      transition: color var(--transition), background var(--transition);
+    }
+    .nav-link:hover, .nav-link.active { color: var(--blue); background: var(--blue-light); }
+    .nav-link .chevron {
+      font-size: 10px;
+      transition: transform .25s;
+    }
+    .nav-item:hover .chevron { transform: rotate(180deg); }
+
+    /* Dropdown */
+    .dropdown {
+      display: none;
+      position: absolute;
+      top: calc(100% + 4px);
+      left: 0;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-md);
+      min-width: 250px;
+      padding: 6px 0;
+      animation: dropIn .2s ease;
+      z-index: 200;
+    }
+    @keyframes dropIn {
+      from { opacity: 0; transform: translateY(-8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .nav-item:hover .dropdown { display: block; }
+    .dropdown a {
+      display: block;
+      padding: 9px 18px;
+      font-size: 13.5px;
+      font-weight: 500;
+      color: var(--text);
+      border-left: 3px solid transparent;
+      transition: background var(--transition), color var(--transition), border-color var(--transition);
+    }
+    .dropdown a:hover {
+      background: var(--blue-light);
+      color: var(--blue);
+      border-left-color: var(--blue);
+    }
+
+    /* ============================================================
+       SHARED CTA BUTTON
+    ============================================================ */
+    .btn-apply {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 13px 32px;
+      background: var(--blue-primary); color: var(--white) !important;
+      border: none; border-radius: var(--radius);
+      font-size: 15px; font-weight: 700;
+      cursor: pointer;
+      transition: background var(--t), transform var(--t), box-shadow var(--t);
+      box-shadow: 0 4px 16px rgba(30,125,52,.3);
+    }
+    .btn-apply:hover {
+      background: var(--blue-dark); transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(30,125,52,.4);
+    }
+    .btn-apply-outline {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 12px 30px;
+      background: transparent; color: var(--white) !important;
+      border: 2px solid rgba(255,255,255,.65); border-radius: var(--radius);
+      font-size: 14px; font-weight: 700;
+      transition: background var(--t), border-color var(--t), transform var(--t);
+    }
+    .btn-apply-outline:hover {
+      background: rgba(255,255,255,.15); border-color: var(--white);
+      transform: translateY(-2px);
+    }
+    
+
+    /* ============================================================
+       HERO SECTION
+    ============================================================ */
+    .procert-hero {
+      background: linear-gradient(135deg, var(--blue-dark) 0%, var(--blue-primary) 55%, #2aad6a 100%);
+      padding: 88px 0 80px; position: relative; overflow: hidden;
+    }
+    .procert-hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
+      pointer-events: none;
+    }
+    .procert-hero .container { position: relative; z-index: 1; }
+
+    .hero-kicker {
+      font-size: 11px; font-weight: 700; letter-spacing: 3px;
+      text-transform: uppercase; color: rgba(255,255,255,.65); margin-bottom: 14px;
+    }
+    .hero-h1 {
+      font-size: clamp(24px, 4.5vw, 48px);
+      font-weight: 800; color: var(--white);
+      line-height: 1.15; margin-bottom: 22px; max-width: 740px;
+    }
+    .hero-body {
+      font-size: 15.5px; color: rgba(255,255,255,.85);
+      line-height: 1.8; margin-bottom: 36px; max-width: 680px;
+    }
+
+    /* ============================================================
+       COURSES LIST SECTION
+    ============================================================ */
+    .courses-list-section {
+      background: var(--off-white);
+      padding: 72px 0;
+    }
+    .courses-list-heading {
+      font-size: clamp(24px, 3.5vw, 38px);
+      font-weight: 800; color: var(--text);
+      margin-bottom: 48px; line-height: 1.2;
+    }
+    .courses-list-heading span {
+      display: block;
+      width: 48px; height: 4px;
+      background: var(--blue-primary); border-radius: 2px;
+      margin-top: 14px;
+    }
+
+    /* ============================================================
+       COURSE CARD
+    ============================================================ */
+    .course-card {
+      background: var(--white);
+      border: 1px solid var(--border-lt);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      height: 100%;
+      display: flex; flex-direction: column;
+      transition: transform var(--t), box-shadow var(--t), border-color var(--t);
+    }
+    .course-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--blue-primary);
+    }
+
+    /* Image */
+    .course-img {
+      width: 100%; height: 200px; overflow: hidden;
+      background: var(--grey); flex-shrink: 0;
+      position: relative;
+    }
+    .course-img img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform .45s ease;
+    }
+    .course-card:hover .course-img img { transform: scale(1.06); }
+
+    /* Coming soon badge */
+    .coming-soon-badge {
+      position: absolute; top: 12px; right: 12px;
+      background: rgba(255,255,255,.9);
+      color: var(--blue-dark); font-size: 11px; font-weight: 700;
+      padding: 4px 10px; border-radius: 100px;
+      letter-spacing: .8px; text-transform: uppercase;
+    }
+
+    /* Body */
+    .course-card-body {
+      padding: 20px 20px 22px; flex: 1; display: flex; flex-direction: column;
+    }
+    .course-card-title {
+      font-size: 14px; font-weight: 800;
+      color: var(--blue-dark); margin-bottom: 10px;
+      line-height: 1.3; text-transform: uppercase; letter-spacing: .3px;
+    }
+    .course-card-title a { color: var(--blue-dark); transition: color var(--t); }
+    .course-card-title a:hover { color: var(--blue-primary); }
+    .course-card-desc {
+      font-size: 13px; color: var(--text-soft);
+      line-height: 1.65; flex: 1;
+      /* Clamp to ~4 lines for uniform height */
+      display: -webkit-box;
+      -webkit-line-clamp: 5;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    /* ============================================================
+       APPLY NOW CTA BAND
+    ============================================================ */
+    .apply-cta-band {
+      background: var(--blue-light);
+      border-top: 3px solid var(--blue-primary);
+      border-bottom: 3px solid var(--blue-primary);
+      padding: 48px 0; text-align: center;
+    }
+
+    /* ============================================================
+       SQI ADVANTAGE SECTION
+    ============================================================ */
+    .advantage-section {
+      background: var(--blue-dark);
+      padding: 80px 0;
+      color: var(--white);
+    }
+    .advantage-eyebrow {
+      font-size: 11px; font-weight: 700; letter-spacing: 2.5px;
+      text-transform: uppercase; color: rgba(255,255,255,.55);
+      margin-bottom: 12px;
+    }
+    .advantage-title {
+      font-size: clamp(26px, 3.5vw, 40px);
+      font-weight: 800; color: var(--white);
+      margin-bottom: 52px; line-height: 1.2;
+    }
+
+    /* Feature grid — 2×3 */
+    .adv-feature {
+      padding: 26px 22px 24px;
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: var(--radius-lg);
+      height: 100%;
+      transition: background var(--t), transform var(--t), border-color var(--t);
+    }
+    .adv-feature:hover {
+      background: rgba(255,255,255,.12);
+      transform: translateY(-4px);
+      border-color: rgba(255,255,255,.22);
+    }
+    .adv-feature-icon {
+      width: 48px; height: 48px;
+      background: rgba(255,255,255,.12);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 14px;
+      transition: background var(--t);
+    }
+    .adv-feature:hover .adv-feature-icon { background: rgba(255,255,255,.2); }
+    .adv-feature-icon i { font-size: 20px; color: rgba(255,255,255,.9); }
+    .adv-feature h5 {
+      font-size: 15px; font-weight: 700; color: var(--white);
+      margin-bottom: 8px; line-height: 1.3;
+    }
+    .adv-feature p {
+      font-size: 13px; color: rgba(255,255,255,.7);
+      line-height: 1.65; margin: 0;
+    }
+
+    /* ============================================================
+       SCROLL REVEAL
+    ============================================================ */
+    .reveal {
+      opacity: 0; transform: translateY(28px);
+      transition: opacity .55s ease, transform .55s ease;
+    }
+    .reveal.in { opacity: 1; transform: none; }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+.sqi-footer {
+  background: #1a1a1a;
+  color: rgba(255,255,255,.72);
+  padding: 0;
+}
+
+.footer-top-row {
+  padding: 60px 0 40px;
+}
+
+/* Brand */
+.footer-brand h4 {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.footer-brand p {
+  font-size: 13.5px;
+  color: rgba(255,255,255,.65);
+  line-height: 1.65;
+}
+
+/* Socials */
+.footer-socials {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.footer-socials a {
+  width: 36px;
+  height: 36px;
+  background: rgba(255,255,255,.1);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255,255,255,.8);
+  font-size: 15px;
+  transition: background var(--transition), color var(--transition);
+}
+.footer-socials a:hover {
+  background: var(--blue-primary);
+  color: var(--white);
+}
+
+/* Emails */
+.footer-emails h6 {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: rgba(255,255,255,.5);
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.footer-emails ul li {
+  margin-bottom: 6px;
+}
+.footer-emails ul li a {
+  font-size: 13px;
+  color: rgb(86,195,249);
+  transition: color var(--transition);
+}
+.footer-emails ul li a:hover { color: var(--orange-primary); }
+
+/* Col titles */
+.footer-col-title {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: rgba(255,255,255,.5);
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+/* Quick links */
+.footer-links li {
+  margin-bottom: 8px;
+}
+.footer-links li a {
+  font-size: 13px;
+  color: rgba(255,255,255,.65);
+  transition: color var(--transition);
+}
+.footer-links li a:hover { color: var(--orange-primary); }
+
+/* Addresses */
+.footer-address {
+  font-size: 12px;
+  color: rgba(255,255,255,.6);
+  line-height: 1.6;
+  margin-bottom: 4px;
+}
+.footer-address strong { color: rgba(255,255,255,.85); }
+
+.footer-map-link {
+  font-size: 12px;
+  color: var(--orange-primary);
+  font-weight: 600;
+  transition: color var(--transition);
+}
+.footer-map-link:hover {
+  color: rgb(86,195,249);
+  text-decoration: underline;
+}
+
+/* Footer bottom */
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,.1);
+  padding: 18px 0;
+  text-align: center;
+}
+.footer-bottom p {
+  font-size: 13px;
+  color: rgba(255,255,255,.45);
+  margin: 0;
+}
+
+/* ================================================================
+   BACK TO TOP
+   ================================================================ */
+.back-to-top {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 999;
+  width: 42px;
+  height: 42px;
+  background: var(--blue-primary);
+  color: var(--white);
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(0,0,0,.25);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(12px);
+  transition: opacity 0.3s, transform 0.3s, background 0.2s;
+}
+.back-to-top.visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+.back-to-top:hover { background: var(--blue-dark); }
+
+.git_footer{
+    display: inline-flex;
+    justify-content: space-between;
+    height: 50px;
+    width: 100%;
+    border-top: 0px solid rgb(218, 220, 222);
+    align-items: center;
+    padding-left: 30px;
+    background-color: rgb(0, 0, 0);
+}
+
+.git_footer a{
+    text-decoration: none;
+    color: rgb(232, 17, 35);
+    font-size: 20px;
+    font-weight: 600;
+}
+
+    /* ============================================================
+       RESPONSIVE
+    ============================================================ */
+    @media (max-width: 991.98px) {
+      .sqi-nav-list { padding: 10px 0; gap: 0; }
+      .sqi-nav-link { border-radius: 0; }
+      .sqi-drop {
+        box-shadow: none; border: none; background: var(--off-white);
+        animation: none; margin-top: 0 !important; padding-left: 12px;
+      }
+      .procert-hero { padding: 64px 0 56px; }
+    }
+    @media (max-width: 767.98px) {
+      .procert-hero { padding: 48px 0 44px; }
+      .hero-h1 { font-size: 26px; }
+      .course-img { height: 170px; }
+      .btt { bottom: 16px; right: 16px; width: 38px; height: 38px; font-size: 14px; }
+    }
+    @media (max-width: 575.98px) {
+      .course-img { height: 155px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ================================================================
+       FRAUD WARNING POPUP
+  ================================================================ -->
+  <div class="modal fade" id="fraudModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered fraud-dialog">
+      <div class="modal-content fraud-content">
+        <div class="modal-body fraud-body">
+          <button class="fraud-x" data-bs-dismiss="modal" type="button">&times;</button>
+          <img
+            src="Images/red-bell.png"
+            alt="Alert" class="fraud-bell-img"
+            onerror="this.outerHTML='<span style=\'font-size:3rem;display:block;margin-bottom:14px;\'>🔔</span>'"
+          />
+          <h5>Please be advised!</h5>
+          <p>Do not make any payment for our courses or services to any account or platform other than corporate accounts provided by SQI College of ICT.</p>
+          <p>The College will not be held responsible for any loss or issue arising from payments made to unauthorised individuals or channels.</p>
+          <p><strong>Thank you for your cooperation.</strong></p>
+          <button class="fraud-ok" data-bs-dismiss="modal" type="button">OK, I understand</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================================================================
+       STICKY NAVBAR
+  ================================================================ -->
+  <nav class="sqi-navbar" id="sqiNavbar">
+    <div class="container">
+      <div class="nav-inner">
+
+        <!-- Logo -->
+        <a href="index.html" class="nav-logo">
+          <img src="Images/icon.jpg" alt="SQI College of ICT"
+            onerror="this.style.display='none';document.getElementById('logoFb').style.display='flex';" />
+          <div id="logoFb" class="logo-fallback" style="display:none;">
+            <span class="logo-badge">SQI</span>
+            <div class="logo-words">
+              <span>SQI College of ICT</span>
+              <small>Acquire In-Demand Tech Skills</small>
+            </div>
+          </div>
+        </a>
+
+        <!-- Hamburger -->
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+
+        <!-- Menu -->
+        <ul class="nav-menu" id="navMenu">
+
+          <li class="nav-item">
+            <a href="#" class="nav-link">About <i class="fas fa-chevron-down chevron"></i></a>
+            <ul class="dropdown">
+              <li><a href="story.html">Our Story</a></li>
+              <li><a href="team.html">Our Team</a></li>
+              <li><a href="campus.html">Campus Info</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a href="#" class="nav-link">Programmes <i class="fas fa-chevron-down chevron"></i></a>
+            <ul class="dropdown">
+              <li><a href="pre-nd.html">Pre-National Diploma</a></li>
+              <li><a href="nd.html">National Diploma</a></li>
+              <li><a href="procert.html">Professional Diploma Program</a></li>
+              <li><a href="epcp.html">Executive Professional Certificate Programme</a></li>
+              <li><a href="bsc.html">Bachelor Degree | LAUTECH PT</a></li>
+              <li><a href="post-utme.html">Post-UTME</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a href="#" class="nav-link">Admissions <i class="fas fa-chevron-down chevron"></i></a>
+            <ul class="dropdown">
+              <li><a href="afap.html">Apply for a Programme</a></li>
+              <li><a href="mos.html">Mode of Study</a></li>
+              <li><a href="tuition.html">Tuition</a></li>
+              <li><a href="https://drive.google.com/file/d/1w_itppr3K0MMy5Sdf8uFkCO7eCyAYiRf/view?usp=sharing">Student's Handbook</a></li>
+              <li><a href="faq.html">Frequently Asked Questions</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a href="#" class="nav-link">E-Portal <i class="fas fa-chevron-down chevron"></i></a>
+            <ul class="dropdown">
+              <li><a href="student.html">Student</a></li>
+              <li><a href="staff.html">Staff</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a href="scholarship.html" class="nav-link">SQI Scholarship</a>
+          </li>
+          <li class="nav-item">
+            <a href="news.html" class="nav-link">News</a>
+          </li>
+          <li class="nav-item">
+            <a href="contact.html" class="nav-link">Contact</a>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ================================================================
+       HERO
+  ================================================================ -->
+  <section class="procert-hero">
+    <div class="container">
+      <p class="hero-kicker">Professional Diploma Programme</p>
+      <h1 class="hero-h1">Advance your Career with dynamic professional courses from SQI</h1>
+      <p class="hero-body">AT SQI College of ICT, we offer a wide range of professional Diploma Programmes cutting across Software Engineering, Graphics and Multimedia Technology, Network and Security among others. These courses have been tailored to suit everyone and to equip the student with requisite knowledge and industry-related practical experience.</p>
+      <p class="hero-body">It is guaranteed that when a student completes any of our professional certificate courses, the student can confidently fit into his or her chosen field in the industry and excel. Our curriculum is ever flexible to accommodate new trends and technology and all our instructors are well equipped to deliver qualitative training to every student</p>
+      <a href="#" target="_blank" rel="noopener" class="btn-apply">
+        <i class="fas fa-pen-to-square" style="border-color: rgb(255, 255, 255);"></i> Apply Now
+      </a>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       COURSES LIST — 20 Cards
+  ================================================================ -->
+  <section class="courses-list-section" id="courses">
+    <div class="container">
+      <h2 class="courses-list-heading reveal">
+        List of Courses
+        <span></span>
+      </h2>
+
+      <div class="row g-4">
+
+        <!-- 1. Digital Workplace Proficiency -->
+        <div class="col-sm-6 col-lg-3">
+          <div class="course-card reveal">
+            <a href="#" target="_blank" class="course-img d-block">
+              <img src="Images/procert/1.jpg"
+                onerror="this.src='Images/procert/1.jpg'" />
+            </a>
+            <div class="course-card-body">
+              <h4 class="course-card-title"><a href="#" target="_blank">Digital Workplace Proficiency</a></h4>
+              <p class="course-card-desc">Digital workplace proficiency refers to an individual's ability to find, evaluate, and compose clear information through writing and other media on various digital platforms. This course is designed to prepare you for success in…</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. Software Engineering -->
+        <div class="col-sm-6 col-lg-3">
+          <div class="course-card reveal">
+            <a href="#" target="_blank" class="course-img d-block">
+              <img src="Images/procert/2.webp" alt="Software Engineering"
+                onerror="this.src='Images/procert/2.webp'" />
+            </a>
+            <div class="course-card-body">
+              <h4 class="course-card-title"><a href="#" target="_blank">Software Engineering</a></h4>
+              <p class="course-card-desc">Software engineering is a discipline that combines engineering and computer science concepts in the development and maintenance of reliable, usable, and dependable software and at SQI…</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. Product Management -->
+        <div class="col-sm-6 col-lg-3">
+          <div class="course-card reveal">
+            <a href="#" target="_blank" class="course-img d-block">
+              <img src="Images/procert/3.jpg" alt="Product Management"
+                onerror="this.src='Images/procert/3.jpg'" />
+            </a>
+            <div class="course-card-body">
+              <h4 class="course-card-title"><a href="#" target="_blank">Product Management</a></h4>
+              <p class="course-card-desc">As an aspiring PM, this course will teach you how to develop a product mindset, master relevant product management skills, and build a product of your own through user research, product methodology, prototyping…</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. Web Design -->
+        <div class="col-sm-6 col-lg-3">
+          <div class="course-card reveal">
+            <a href="#" target="_blank" class="course-img d-block">
+              <img src="Images/procert/4.jpg" alt="Web Design"
+                onerror="this.src='Images/procert/4.jpg'" />
+            </a>
+            <div class="course-card-body">
+              <h4 class="course-card-title"><a href="#" target="_blank">Web Design</a></h4>
+              <p class="course-card-desc">Web design refers to the design of websites that are displayed on the internet. Web designers are responsible for creating a website's layout and visual appeal, ensuring the site looks attractive and functional to users.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. Cyber Security -->
+        <div class="col-sm-6 col-lg-3">
+          <div class="course-card reveal">
+            <a href="#" target="_blank" class="course-img d-block">
+              <img src="Images/procert/5.jpg" alt="Cyber Security"
+                onerror="this.src='Images/procert/5.jpg'" />
+            </a>
+            <div class="course-card-body">
+              <h4 class="course-card-title"><a href="#" target="_blank">Cyber Security</a></h4>
+              <p class="course-card-desc">"To beat a hacker, you need to think like a hacker". The Cyber Security program is the most desired information security training program any information security professional will ever want to be in…</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6. Java Programming -->
+        <div class="col-sm-6 col-lg-3">
+          <div class="course-card reveal">
+            <a href="#" target="_blank" class="course-img d-block">
+              <img src="Images/procert/6.jpg" alt="Java Programming"
+                onerror="this.src='Images/procert/6.jpg'" />
+            </a>
+            <div class="course-card-body">
+              <h4 class="course-card-title"><a href="#" target="_blank">Java Programming</a></h4>
+              <p class="course-card-desc">Java is one of the most versatile and widely used programming languages in the world, and mastering it opens doors to countless opportunities in the fintech industry.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 7. CAD Applications -->
+        <div class="col-sm-6 col-lg-3">
+          <div class="course-card reveal">
+            <a href="#" target="_blank" class="course-img d-block">
+              <img src="Images/procert/7.jpg" alt="CAD Applications"
+                onerror="this.src='Images/procert/7.jpg'" />
+            </a>
+            <div class="course-card-body">
+              <h4 class="course-card-title"><a href="#" target="_blank">CAD Applications</a></h4>
+              <p class="course-card-desc">Computer-aided design (CAD) or Computer-aided design and drafting (CADD) is the use of computers (or workstations) to aid in the creation, modification, analysis…</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 8. UI/UX Product Design -->
+        <div class="col-sm-6 col-lg-3">
+          <div class="course-card reveal">
+            <a href="#" target="_blank" class="course-img d-block">
+              <img src="Images/procert/8.jpg" alt="UI/UX Product Design"
+                onerror="this.src='Images/procert/8.jpg'" />
+            </a>
+            <div class="course-card-body">
+              <h4 class="course-card-title"><a href="#" target="_blank">UI/UX (Product) Design</a></h4>
+              <p class="course-card-desc">The course focused on taking ideas and inspiration and transforming them into usable designs that make a big impression. The "UI" stands for "user interface." The user interface is the graphical layout…</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 9. Digital Video Production -->
+        <div class="col-sm-6 col-lg-3">
+          <div class="course-card reveal">
+            <a href="#" target="_blank" class="course-img d-block">
+              <img src="Images/procert/9.png" alt="Digital Video Production"
+                onerror="this.src='Images/procert/9.png'" />
+            </a>
+            <div class="course-card-body">
+              <h4 class="course-card-title"><a href="#" target="_blank">Digital Video Production</a></h4>
+              <p class="course-card-desc">Video Production is the process of producing video content for TV, home video or the internet. In a world that leverages multimedia to effectively communicate different messages to target audiences…</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 10. Graphics & Multimedia -->
+        <div class="col-sm-6 col-lg-3">
+          <div class="course-card reveal">
+            <a href="#" target="_blank" class="course-img d-block">
+              <img src="Images/procert/10.jpg" alt="Graphics and Multimedia"
+                onerror="this.src='Images/procert/10.jpg'" />
+            </a>
+            <div class="course-card-body">
+              <h4 class="course-card-title"><a href="#" target="_blank">Graphics &amp; Multimedia</a></h4>
+              <p class="course-card-desc">Graphics and multimedia technology includes interactive, computer-based applications that allow people to communicate ideas and information in a compelling manner through the use of powerful computer-based…</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 11. Digital Marketing -->
+        <div class="col-sm-6 col-lg-3">
+          <div class="course-card reveal">
+            <a href="#" target="_blank" class="course-img d-block">
+              <img src="Images/procert/11.jpg" alt="Digital Marketing"
+                onerror="this.src='Images/procert/11.jpg'" />
+            </a>
+            <div class="course-card-body">
+              <h4 class="course-card-title"><a href="#" target="_blank">Digital Marketing</a></h4>
+              <p class="course-card-desc">Digital marketing or Internet Marketing is the component of marketing that utilizes the internet and online-based digital technologies such as desktop computers, mobile phones and other digital media and platforms to promote…</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 12. Motion Graphics & Animation -->
+        <div class="col-sm-6 col-lg-3">
+          <div class="course-card reveal">
+            <a href="#" target="_blank" class="course-img d-block">
+              <img src="Images/procert/12.jpg" alt="Motion Graphics and Animation"
+                onerror="this.src='Images/procert/12.jpg'" />
+            </a>
+            <div class="course-card-body">
+              <h4 class="course-card-title"><a href="#" target="_blank">Motion Graphics &amp; Animation</a></h4>
+              <p class="course-card-desc">3D animation as the name explains is the process of generating three-dimensional (X,Y,Z) moving images in a digital environment. <strong>VFX</strong> stands for <strong>Visual Effects</strong>. Animation and VFX…</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 13. Data Science & Analysis -->
+        <div class="col-sm-6 col-lg-3">
+          <div class="course-card reveal">
+            <a href="#" target="_blank" class="course-img d-block">
+              <img src="Images/procert/13.jpg" alt="Data Science and Analysis"
+                onerror="this.src='Images/procert/13.jpg'" />
+            </a>
+            <div class="course-card-body">
+              <h4 class="course-card-title"><a href="#" target="_blank">Data Science &amp; Analysis</a></h4>
+              <p class="course-card-desc">Data Science is a blend of various tools, algorithms, and machine learning principles with the goal to discover hidden patterns from the raw data. It is primarily used to make decisions and predictions…</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 14. Robotics Engineering -->
+        <div class="col-sm-6 col-lg-3">
+          <div class="course-card reveal">
+            <a href="#" target="_blank" class="course-img d-block">
+              <img src="Images/procert/14.jpg" alt="Robotics Engineering"
+                onerror="this.src='Images/procert/14.jpg'" />
+            </a>
+            <div class="course-card-body">
+              <h4 class="course-card-title"><a href="#" target="_blank">Robotics Engineering</a></h4>
+              <p class="course-card-desc">Anything you have fantasized about as a child might be realized in the form of an automated system and synchronization with other devices that interact with a robot. You will learn robotics programming…</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 15. Artificial Intelligence -->
+        <div class="col-sm-6 col-lg-3">
+          <div class="course-card reveal">
+            <a href="#" target="_blank" class="course-img d-block">
+              <img src="Images/procert/15.jpg" alt="Artificial Intelligence"
+                onerror="this.src='Images/procert/15.jpg'" />
+            </a>
+            <div class="course-card-body">
+              <h4 class="course-card-title"><a href="#" target="_blank">Artificial Intelligence (AI)</a></h4>
+              <p class="course-card-desc">Artificial intelligence (AI) is used for everything from predicting what you will type to autonomous vehicle and more. AI is demonstrated when a task, formerly performed by a human and thought of as requiring the ability…</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 16. Networking -->
+        <div class="col-sm-6 col-lg-3">
+          <div class="course-card reveal">
+            <a href="#" target="_blank" class="course-img d-block">
+              <img src="Images/procert/16.jpg" alt="Networking"
+                onerror="this.src='Images/procert/16.jpg'" />
+            </a>
+            <div class="course-card-body">
+              <h4 class="course-card-title"><a href="#" target="_blank">Networking</a></h4>
+              <p class="course-card-desc">Computer Networking is the study of how computers can be connected together to share data and other resources. Network security consists of the policies and practices adopted to prevent and monitor unauthorized…</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 17. Accounting Applications -->
+        <div class="col-sm-6 col-lg-3">
+          <div class="course-card reveal">
+            <a href="#" target="_blank" class="course-img d-block">
+              <img src="Images/procert/17.jpg" alt="Accounting Applications"
+                onerror="this.src='Images/procert/17.jpg'" />
+            </a>
+            <div class="course-card-body">
+              <h4 class="course-card-title"><a href="#" target="_blank">Accounting Applications</a></h4>
+              <p class="course-card-desc">This course is designed to introduce learners to computerized accounting. The course is primarily for those who would like to understand more about the day-to-day inputting of their accounts on the computer…</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 18. Hardware Engineering -->
+        <div class="col-sm-6 col-lg-3">
+          <div class="course-card reveal">
+            <a href="#" target="_blank" class="course-img d-block">
+              <img src="Images/procert/18.jpg" alt="Hardware Engineering"
+                onerror="this.src='Images/procert/18.jpg'" />
+            </a>
+            <div class="course-card-body">
+              <h4 class="course-card-title"><a href="#" target="_blank">Hardware Engineering</a></h4>
+              <p class="course-card-desc">Computer engineering (CE) is a branch of engineering that integrates several fields of computer science and electronic engineering required to develop computer hardware and software…</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 19. DevOps -->
+        <div class="col-sm-6 col-lg-3">
+          <div class="course-card reveal">
+            <a href="#" target="_blank" class="course-img d-block">
+              <img src="Images/procert/19.jpg" alt="DevOps"
+                onerror="this.src='Images/procert/19.jpg'" />
+            </a>
+            <div class="course-card-body">
+              <h4 class="course-card-title"><a href="#" target="_blank">DevOps</a></h4>
+              <p class="course-card-desc">DevOps is the secret behind how apps like Netflix or Instagram update instantly without crashing. It is the bridge between creating software and delivering it to millions of users…</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 20. Server Administration — Coming Soon -->
+        <div class="col-sm-6 col-lg-3">
+          <div class="course-card reveal">
+            <div class="course-img" style="position:relative;">
+              <img src="Images/procert/20.jpg" alt="Server Administration"
+                onerror="this.src='Images/procert/20.jpg'" />
+              <span class="coming-soon-badge">Coming Soon</span>
+            </div>
+            <div class="course-card-body">
+              <h4 class="course-card-title">Server Administration</h4>
+              <p class="course-card-desc">Coming Soon — Stay tuned for updates on this exciting new course offering from SQI College of ICT.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       APPLY NOW CTA BAND
+  ================================================================ -->
+  <div class="apply-cta-band">
+    <div class="container reveal">
+      <a href="#" target="_blank" rel="noopener" class="btn-apply">
+        <i class="fas fa-pen-to-square"></i> Apply Now
+      </a>
+    </div>
+  </div>
+
+  <!-- ================================================================
+       SQI ADVANTAGE
+  ================================================================ -->
+  <section class="advantage-section">
+    <div class="container">
+      <p class="advantage-eyebrow reveal">Why study at SQI</p>
+      <h2 class="advantage-title reveal">SQI Advantage</h2>
+
+      <div class="row g-4">
+
+        <div class="col-sm-6 col-lg-4">
+          <div class="adv-feature reveal">
+            <div class="adv-feature-icon"><i class="fas fa-building-columns"></i></div>
+            <h5>Facilities and Lecturers</h5>
+            <p>World class facilities, seasoned lecturers and certified instructors</p>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-lg-4">
+          <div class="adv-feature reveal">
+            <div class="adv-feature-icon"><i class="fas fa-certificate"></i></div>
+            <h5>Acquire a tech skill</h5>
+            <p>Acquire in-demand professional skills and certificate alongside your Diploma program</p>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-lg-4">
+          <div class="adv-feature reveal">
+            <div class="adv-feature-icon"><i class="fas fa-briefcase"></i></div>
+            <h5>Job Opportunity</h5>
+            <p>78.5% of our students found secure employment within three months of graduation. Students leave from learning to getting job roles</p>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-lg-4">
+          <div class="adv-feature reveal">
+            <div class="adv-feature-icon"><i class="fas fa-graduation-cap"></i></div>
+            <h5>Conducive learning space</h5>
+            <p>Enjoy uninterrupted learning and practical experience at our campuses.</p>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-lg-4">
+          <div class="adv-feature reveal">
+            <div class="adv-feature-icon"><i class="fas fa-bolt"></i></div>
+            <h5>Learn the smarter and faster way</h5>
+            <p>Build real world projects that greatly enhance your portfolio and gives you a competitive edge.</p>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-lg-4">
+          <div class="adv-feature reveal">
+            <div class="adv-feature-icon"><i class="fas fa-laptop-code"></i></div>
+            <h5>Purely practical</h5>
+            <p>This course is practical, Hands-on learning. Practice and apply knowledge faster with real-world projects you can show off.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       FOOTER
+  ================================================================ -->
+  <footer class="sqi-footer">
+    <div class="container">
+      <div class="row g-5 footer-top-row">
+
+        <!-- Brand + Socials + Emails -->
+        <div class="col-lg-3 col-md-6">
+          <div class="footer-brand">
+            <h4>Hello, we're SQI College of ICT</h4>
+            <p>We provide and lead others in quality ICT education.</p>
+          </div>
+          <div class="footer-socials mt-3">
+            <a href="#" title="Follow on Facebook" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" title="Follow on X" target="_blank"><i class="fab fa-x-twitter"></i></a>
+            <a href="#" title="Follow on LinkedIn" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" title="Follow on Youtube" target="_blank"><i class="fab fa-youtube"></i></a>
+            <a href="#" title="Follow on Instagram" target="_blank"><i class="fab fa-instagram"></i></a>
+          </div>
+          <div class="footer-emails mt-4">
+            <h6>Send us a mail</h6>
+            <ul>
+              <li><a href="#">enquiry@sqi.edu.ng</a></li>
+              <li><a href="#">admissions@sqi.edu.ng</a></li>
+              <li><a href="#">examsandrecords@sqi.edu.ng</a></li>
+              <li><a href="#">rector@sqi.edu.ng</a></li>
+              <li><a href="#">partnerships@sqi.edu.ng</a></li>
+              <li><a href="#">internship@sqi.edu.ng</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="col-lg-2 col-md-6 col-sm-6">
+          <h6 class="footer-col-title">Quick Links</h6>
+          <ul class="footer-links">
+            <li><a href="#">Application Portal</a></li>
+            <li><a href="student.html">Student Portal</a></li>
+            <li><a href="procert.html">Professional Courses</a></li>
+            <li><a href="nd.html">ND Courses</a></li>
+            <li><a href="campus.html">Campus Info</a></li>
+            <li><a href="#">Accommodation</a></li>
+            <li><a href="scholarship.html">SQI Scholarship</a></li>
+            <li><a href="#">SQI Anthem</a></li>
+            <li><a href="#">Donate</a></li>
+          </ul>
+        </div>
+
+        <!-- Locations col 1 -->
+        <div class="col-lg-4 col-md-6">
+          <div class="row g-3">
+            <div class="col-6">
+              <h6 class="footer-col-title">Ogbomoso</h6>
+              <p class="footer-address">Old Ilorin Road, Opposite Yoaco Filling Station, Yoaco, Ogbomoso.<br /><strong>0906 281 9991, 0906 281 9993</strong></p>
+              <a href="#" class="footer-map-link" target="_blank">Locate on the map</a>
+              <h6 class="footer-col-title">Ibadan</h6>
+              <p class="footer-address">First Floor, H25 Heritage Mall, Opposite Central Bank of Nigeria, Dugbe, Ibadan.<br /><strong>0906 281 9994</strong></p>
+              <a href="#" class="footer-map-link" target="_blank">Locate on the map</a>
+            </div>
+            <div class="col-6">
+              <h6 class="footer-col-title">Lagos</h6>
+              <p class="footer-address">Suite 219, Opic Plaza, Mobolaji Bank Anthony Way, beside Sheraton Hotel, Ikeja, Lagos<br /><strong>0906 281 9999</strong></p>
+              <a href="#" class="footer-map-link" target="_blank">Locate on the map</a>
+              <h6 class="footer-col-title">Abeokuta</h6>
+              <p class="footer-address">First floor, OPIC Tower building, Okeilewo, Abeokuta.<br /><strong>0906 281 9996</strong></p>
+              <a href="#" class="footer-map-link" target="_blank">Locate on the map</a>
+            </div>
+            <div class="col-6">
+              <h6 class="footer-col-title">Virtual</h6>
+              <p class="footer-address">Available Globally Online.<br /><strong>0906 281 9992</strong></p>
+              <a href="#" class="footer-map-link" target="_blank">Locate on the map</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Locations col 2 -->
+        <div class="col-lg-3 col-md-6">
+          <div class="row g-3">
+            <div class="col-12">
+              <p class="footer-address mt-2">Christianah Oyinade Ajoke House, beside First Bank, Arisekola Central Mosque, Opposite Jaiz bank, Idi Ape, Iwo road, Ibadan.<br /><strong>0906 281 9995</strong></p>
+              <a href="#" class="footer-map-link" target="_blank">Locate on the map</a>
+              <p class="footer-address mt-2">Haier Thermocool Building, opposite SAO filling station, Challenge, Ibadan, Oyo State.<br /><strong>0906 281 9992</strong></p>
+              <a href="#" class="footer-map-link" target="_blank">Locate on the map</a>
+            </div>
+            <div class="col-6">
+              <h6 class="footer-col-title">Osogbo</h6>
+              <p class="footer-address">Opposite Jaiz bank, Ogo-Oluwa, Osogbo<br /><strong>0906 281 9997</strong></p>
+              <a href="#" class="footer-map-link" target="_blank">Locate on the map</a>
+            </div>
+            <div class="col-6">
+              <h6 class="footer-col-title">Abuja</h6>
+              <p class="footer-address">Suite Banking Hall SF, Febson Mall, Wuse Zone 4, Abuja<br /><strong>090 628 20000</strong></p>
+              <a href="#" class="footer-map-link" target="_blank">Locate on the map</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Footer Bottom -->
+      <div class="footer-bottom">
+        <p>Copyright &copy; 2026 | SQI ICT Consultants | Powered by Edozzier</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ================================================================
+       BACK TO TOP BUTTON
+  ================================================================ -->
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+  <div class="git_footer">
+    <a href="https://github.com/Analyst-Foundry">By Analyst Foundry</a>
+  </div>
+
+  <!-- ================================================================
+       SCRIPTS
+  ================================================================ -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    (function () {
+      'use strict';
+
+      /* ---- Fraud modal ---- */
+      const fraudEl = document.getElementById('fraudModal');
+      if (fraudEl) {
+        const fm = new bootstrap.Modal(fraudEl, { keyboard: true });
+        setTimeout(() => fm.show(), 800);
+      }
+
+      /* ---- Sticky navbar ---- */
+      const nav = document.getElementById('sqiNavbar');
+      const sn  = () => nav.classList.toggle('scrolled', window.scrollY > 10);
+      window.addEventListener('scroll', sn, { passive: true }); sn();
+
+      /* ---- Dropdown chevron ---- */
+      document.querySelectorAll('.sqi-dd').forEach(el => {
+        el.addEventListener('show.bs.dropdown', () => {
+          const c = el.querySelector('.sqi-chev'); if (c) c.style.transform = 'rotate(180deg)';
+        });
+        el.addEventListener('hide.bs.dropdown', () => {
+          const c = el.querySelector('.sqi-chev'); if (c) c.style.transform = 'rotate(0deg)';
+        });
+      });
+
+      /* ---- Close mobile nav on item click ---- */
+      const nc = document.getElementById('navmenu');
+      document.querySelectorAll('#navmenu .sqi-di').forEach(i => {
+        i.addEventListener('click', () => {
+          if (window.innerWidth < 992) bootstrap.Collapse.getInstance(nc)?.hide();
+        });
+      });
+
+      /* ---- Scroll reveal with stagger ---- */
+      const ro = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (!e.isIntersecting) return;
+          const row = e.target.closest('.row');
+          const siblings = Array.from((row || e.target.parentElement).querySelectorAll('.reveal:not(.in)'));
+          const idx = siblings.indexOf(e.target);
+          setTimeout(() => e.target.classList.add('in'), Math.min(idx * 80, 560));
+          ro.unobserve(e.target);
+        });
+      }, { threshold: 0.08, rootMargin: '0px 0px -24px 0px' });
+      document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+
+      /* ---- Back to top ---- */
+      const btt = document.getElementById('btt');
+      window.addEventListener('scroll', () => btt.classList.toggle('on', window.scrollY > 400), { passive: true });
+      btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    })();
+  </script>
+
+</body>
+</html>

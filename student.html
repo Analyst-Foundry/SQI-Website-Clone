@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+  <title>Student Portal – SQI College of ICT</title>
+  <meta name="description" content="SQI College of ICT Student Portal — Sign in to access your academic dashboard, results, timetable and more." />
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <!-- Google Fonts: Open Sans -->
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ============================================================
+       CSS VARIABLES
+    ============================================================ */
+    :root {
+      --blue-primary: rgb(0,11,63);
+      --blue-dark:    rgb(9,3,38);
+      --blue-mid:     rgb(0,11,63);
+      --blue-light:   rgb(46,163,242);
+      --blue-deeper:  rgb(86,195,249);
+      --white:        #ffffff;
+      --off-white:    #f8f9fa;
+      --grey-bg:      #f2f4f6;
+      --border:       #dee2e6;
+      --border-lt:    #e9ecef;
+      --text:         #212529;
+      --text-mid:     #495057;
+      --text-soft:    #6c757d;
+      --text-muted:   #adb5bd;
+      --dark-bg:      #1a1a1a;
+      --shadow-sm:    0 2px 12px rgba(0,0,0,.08);
+      --shadow-md:    0 6px 28px rgba(0,0,0,.12);
+      --shadow-lg:    0 16px 56px rgba(0,0,0,.18);
+      --radius:       10px;
+      --radius-lg:    16px;
+      --radius-xl:    24px;
+      --t:            .25s ease;
+    }
+
+    /* ============================================================
+       RESET & BASE
+    ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; }
+
+    html, body {
+      height: 100%;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 15px;
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    body {
+      background: var(--grey-bg);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    a { color: inherit; text-decoration: none; transition: color var(--t); }
+    img { max-width: 100%; display: block; }
+
+    /* ============================================================
+       FULL-SCREEN LAYOUT WRAPPER
+    ============================================================ */
+    .portal-wrapper {
+      display: flex;
+      min-height: 100vh;
+      flex: 1;
+    }
+
+    /* ============================================================
+       LEFT PANEL — BRANDING
+    ============================================================ */
+    .portal-left {
+      width: 45%;
+      background: linear-gradient(160deg, var(--blue-dark) 0%, var(--blue-primary) 50%, #2aad6a 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 48px 52px;
+      position: relative;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    /* Decorative circles */
+    .portal-left::before {
+      content: '';
+      position: absolute;
+      width: 480px; height: 480px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.05);
+      top: -180px; right: -160px;
+      pointer-events: none;
+    }
+    .portal-left::after {
+      content: '';
+      position: absolute;
+      width: 320px; height: 320px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.04);
+      bottom: -120px; left: -80px;
+      pointer-events: none;
+    }
+
+    /* Pattern overlay */
+    .portal-left-pattern {
+      position: absolute; inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
+      pointer-events: none;
+    }
+
+    /* Left top — logo area */
+    .portal-left-top { position: relative; z-index: 1; }
+
+    .portal-logo-wrap {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 40px;
+    }
+    .portal-logo-img {
+      height: 52px;
+      width: auto;
+      object-fit: contain;
+      border-radius: 8px;
+      background: rgba(255,255,255,.15);
+      padding: 4px 8px;
+    }
+    .portal-logo-txt {
+      display: flex; flex-direction: column;
+    }
+    .portal-logo-name {
+      font-size: 16px; font-weight: 800;
+      color: var(--white); line-height: 1.2;
+    }
+    .portal-logo-sub {
+      font-size: 11px; color: rgba(255,255,255,.7);
+      letter-spacing: .5px;
+    }
+
+    /* Left headline */
+    .portal-left-headline {
+      font-size: clamp(26px, 3.5vw, 40px);
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+    .portal-left-sub {
+      font-size: 15px;
+      color: rgba(255,255,255,.82);
+      line-height: 1.7;
+      margin-bottom: 40px;
+      max-width: 380px;
+    }
+
+    /* Feature list */
+    .portal-features {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .portal-feature {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .portal-feature-icon {
+      width: 40px; height: 40px;
+      background: rgba(255,255,255,.15);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      font-size: 18px; color: var(--white);
+      backdrop-filter: blur(4px);
+    }
+    .portal-feature-txt {
+      font-size: 14px; color: rgba(255,255,255,.9);
+      font-weight: 500; line-height: 1.3;
+    }
+
+    /* Illustration */
+    .portal-illustration {
+      position: relative; z-index: 1;
+      margin: 40px 0 0;
+      display: flex;
+      justify-content: center;
+    }
+    .portal-illustration svg {
+      width: 100%;
+      max-width: 320px;
+      opacity: .9;
+    }
+
+    /* Left bottom */
+    .portal-left-bottom {
+      position: relative; z-index: 1;
+      border-top: 1px solid rgba(255,255,255,.15);
+      padding-top: 24px;
+    }
+    .portal-left-bottom p {
+      font-size: 12px;
+      color: rgba(255,255,255,.55);
+      margin: 0;
+    }
+
+    /* ============================================================
+       RIGHT PANEL — LOGIN FORM
+    ============================================================ */
+    .portal-right {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 32px;
+      background: var(--white);
+      overflow-y: auto;
+    }
+
+    .login-card {
+      width: 100%;
+      max-width: 440px;
+    }
+
+    /* Portal badge */
+    .portal-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(30,125,52,.25);
+      border: 1px solid rgba(30,125,52,.35);
+      color: #6fcf88;
+      border-radius: 100px;
+      padding: 5px 14px;
+      font-size: 11px; font-weight: 700;
+      letter-spacing: 1px; text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+    .portal-badge i { font-size: 12px; }
+
+    /* Form heading */
+    .login-heading {
+      font-size: clamp(24px, 3.5vw, 34px);
+      font-weight: 800;
+      color: var(--text);
+      line-height: 1.2;
+      margin-bottom: 8px;
+      padding-top: 50px
+    }
+    .login-sub {
+      font-size: 14px;
+      color: var(--text-soft);
+      margin-bottom: 36px;
+      line-height: 1.6;
+    }
+
+    /* Form fields */
+    .form-label {
+      font-size: 13px; font-weight: 700;
+      color: var(--text-mid); margin-bottom: 7px;
+      display: block;
+    }
+
+    .input-group-custom {
+      position: relative;
+      margin-bottom: 22px;
+    }
+    .input-icon {
+      position: absolute;
+      left: 15px; top: 50%; transform: translateY(-50%);
+      color: var(--text-muted); font-size: 15px;
+      pointer-events: none; z-index: 5;
+    }
+    .form-input {
+      width: 100%;
+      padding: 13px 14px 13px 44px;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      font-family: 'Open Sans', sans-serif;
+      font-size: 14px;
+      color: var(--text);
+      background: var(--white);
+      outline: none;
+      transition: border-color var(--t), box-shadow var(--t), background var(--t);
+    }
+    .form-input::placeholder { color: var(--text-muted); }
+    .form-input:focus {
+      border-color: var(--blue-primary);
+      box-shadow: 0 0 0 3px rgba(30,125,52,.12);
+      background: var(--white);
+    }
+    .form-input.is-invalid {
+      border-color: #dc3545;
+      box-shadow: 0 0 0 3px rgba(220,53,69,.12);
+    }
+
+    /* Password toggle */
+    .pw-toggle {
+      position: absolute;
+      right: 14px; top: 50%; transform: translateY(-50%);
+      background: none; border: none; padding: 0;
+      color: var(--text-muted); font-size: 16px;
+      cursor: pointer; z-index: 5;
+      transition: color var(--t);
+      line-height: 1;
+    }
+    .pw-toggle:hover { color: var(--blue-primary); }
+
+    /* Password field (extra right padding for toggle) */
+    .form-input.has-toggle { padding-right: 44px; }
+
+    /* Options row */
+    .form-options {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    /* Custom checkbox */
+    .custom-check {
+      display: flex; align-items: center; gap: 9px; cursor: pointer;
+    }
+    .custom-check input[type="checkbox"] {
+      width: 17px; height: 17px;
+      border: 1.5px solid var(--border);
+      border-radius: 4px;
+      accent-color: var(--blue-primary);
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+    .custom-check span {
+      font-size: 13.5px; color: var(--text-mid); font-weight: 500;
+    }
+
+    .forgot-link {
+      font-size: 13.5px; font-weight: 600;
+      color: var(--blue-primary);
+      transition: color var(--t);
+    }
+    .forgot-link:hover { color: var(--blue-dark); text-decoration: underline; }
+
+    /* Submit button */
+    .btn-signin {
+      display: flex; align-items: center; justify-content: center; gap: 9px;
+      width: 100%;
+      padding: 14px;
+      background: var(--blue-primary);
+      color: var(--white);
+      border: none;
+      border-radius: var(--radius);
+      font-family: 'Open Sans', sans-serif;
+      font-size: 15px; font-weight: 700;
+      cursor: pointer;
+      transition: background var(--t), transform var(--t), box-shadow var(--t);
+      box-shadow: 0 4px 16px rgba(30,125,52,.3);
+      margin-bottom: 28px;
+    }
+    .btn-signin:hover {
+      background: var(--blue-dark);
+      transform: translateY(-1px);
+      box-shadow: 0 8px 24px rgba(30,125,52,.4);
+    }
+    .btn-signin:active {
+      transform: translateY(0);
+    }
+    .btn-signin .spinner {
+      width: 18px; height: 18px;
+      border: 2px solid rgba(255,255,255,.4);
+      border-top-color: var(--white);
+      border-radius: 50%;
+      display: none;
+      animation: spin .7s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .btn-signin.loading .btn-signin-text { display: none; }
+    .btn-signin.loading .spinner { display: block; }
+
+    /* Divider */
+    .divider {
+      display: flex; align-items: center; gap: 12px;
+      margin-bottom: 24px;
+    }
+    .divider::before, .divider::after {
+      content: ''; flex: 1;
+      height: 1px; background: var(--border);
+    }
+    .divider span {
+      font-size: 12px; color: var(--text-muted); font-weight: 600;
+      white-space: nowrap; letter-spacing: .5px;
+    }
+
+    /* Register link */
+    .register-link-row {
+      text-align: center;
+      font-size: 14px; color: var(--text-soft);
+    }
+    .register-link-row a {
+      color: var(--blue-primary); font-weight: 700;
+      transition: color var(--t);
+    }
+    .register-link-row a:hover { color: var(--blue-dark); text-decoration: underline; }
+
+    /* Alert error */
+    .form-alert {
+      display: none;
+      padding: 12px 16px;
+      border-radius: var(--radius);
+      font-size: 13.5px;
+      font-weight: 600;
+      margin-bottom: 20px;
+      align-items: center;
+      gap: 10px;
+    }
+    .form-alert.error {
+      display: flex;
+      background: #fff5f5;
+      border: 1px solid #ffc5c5;
+      color: #c53030;
+    }
+    .form-alert.success {
+      display: flex;
+      background: var(--blue-light);
+      border: 1px solid var(--blue-deeper);
+      color: var(--blue-dark);
+    }
+
+    /* Footer / powered-by strip */
+    .portal-footer-strip {
+      background: var(--off-white);
+      border-top: 1px solid var(--border-lt);
+      padding: 12px 32px;
+      text-align: center;
+      font-size: 12px;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+    .portal-footer-strip a { color: var(--blue-primary); font-weight: 600; }
+
+    .git_footer{
+      display: inline-flex;
+      justify-content: space-between;
+      height: 50px;
+      width: 100%;
+      border-top: 0px solid rgb(218, 220, 222);
+      align-items: center;
+      padding-left: 30px;
+      background-color: rgb(0, 0, 0);
+    }
+
+    .git_footer a{
+      text-decoration: none;
+      color: rgb(232, 17, 35);
+      font-size: 20px;
+      font-weight: 600;
+    }
+
+    /* ============================================================
+       DECORATIVE SVG ILLUSTRATION (coded, no external img)
+    ============================================================ */
+    .illus-svg { width: 100%; max-width: 300px; }
+
+    /* ============================================================
+       NOTIFICATION DOT ANIMATION
+    ============================================================ */
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: .7; transform: scale(1.15); }
+    }
+    .dot-pulse {
+      width: 8px; height: 8px;
+      background: #4caf50;
+      border-radius: 50%;
+      display: inline-block;
+      animation: pulse 2s ease infinite;
+      margin-right: 3px;
+    }
+
+    /* ============================================================
+       RESPONSIVE
+    ============================================================ */
+    @media (max-width: 991.98px) {
+      .portal-wrapper { flex-direction: column; }
+      .portal-left { width: 100%; padding: 36px 28px 32px; }
+      .portal-left-headline { font-size: 26px; }
+      .portal-illustration { display: none; }
+      .portal-right { padding: 36px 24px; }
+      .login-card { max-width: 480px; }
+    }
+
+    @media (max-width: 575.98px) {
+      .portal-left { padding: 28px 20px 24px; }
+      .portal-right { padding: 28px 16px; }
+      .login-heading { font-size: 24px; }
+      .portal-features { gap: 10px; }
+      .portal-feature-icon { width: 36px; height: 36px; font-size: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ================================================================
+       MAIN LAYOUT WRAPPER
+  ================================================================ -->
+  <div class="portal-wrapper">
+
+    <!-- ============================================================
+         LEFT PANEL — BRANDING
+    ============================================================ -->
+    <div class="portal-left">
+      <div class="portal-left-pattern"></div>
+
+      <!-- Top section -->
+      <div class="portal-left-top">
+
+        <!-- Logo -->
+        <div class="portal-logo-wrap">
+          <img
+            src="Images/icon.jpg"
+            alt="SQI College of ICT"
+            class="portal-logo-img"
+            onerror="this.style.display='none'; document.getElementById('logoFb').style.display='flex';"
+          />
+          <div id="logoFb" style="display:none; align-items:center; gap:10px;">
+            <div style="background:rgba(255,255,255,.2);color:#fff;font-weight:800;font-size:14px;padding:8px 12px;border-radius:8px;letter-spacing:1px;">SQI</div>
+          </div>
+          <div class="portal-logo-txt">
+            <span class="portal-logo-name">SQI College of ICT</span>
+            <span class="portal-logo-sub">Acquire In-Demand Tech Skills</span>
+          </div>
+        </div>
+
+        <!-- Badge -->
+        <span class="portal-badge">
+          <i class="fas fa-graduation-cap"></i> Student Access
+        </span>
+
+        <!-- Headline -->
+        <h1 class="portal-left-headline">Student Portal</h1>
+        <p class="portal-left-sub">Access your academic dashboard, results, timetable, payments and all student resources in one place.</p>
+
+        <!-- Features -->
+        <div class="portal-features">
+          <div class="portal-feature">
+            <div class="portal-feature-icon"><i class="fas fa-chart-line"></i></div>
+            <span class="portal-feature-txt">View academic results &amp; progress</span>
+          </div>
+          <div class="portal-feature">
+            <div class="portal-feature-icon"><i class="fas fa-calendar-alt"></i></div>
+            <span class="portal-feature-txt">Access timetable &amp; schedules</span>
+          </div>
+          <div class="portal-feature">
+            <div class="portal-feature-icon"><i class="fas fa-file-invoice"></i></div>
+            <span class="portal-feature-txt">Manage fee payments &amp; receipts</span>
+          </div>
+          <div class="portal-feature">
+            <div class="portal-feature-icon"><i class="fas fa-id-card"></i></div>
+            <span class="portal-feature-txt">Update personal profile &amp; documents</span>
+          </div>
+        </div>
+
+        <!-- SVG Illustration -->
+        <div class="portal-illustration">
+          <svg viewBox="0 0 400 260" fill="none" xmlns="http://www.w3.org/2000/svg" class="illus-svg">
+            <!-- Laptop body -->
+            <rect x="80" y="60" width="240" height="150" rx="10" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.3)" stroke-width="2"/>
+            <!-- Screen -->
+            <rect x="94" y="72" width="212" height="124" rx="6" fill="rgba(255,255,255,0.08)"/>
+            <!-- Screen content - header -->
+            <rect x="104" y="82" width="192" height="16" rx="4" fill="rgba(255,255,255,0.2)"/>
+            <!-- Menu items -->
+            <rect x="104" y="104" width="48" height="8" rx="3" fill="rgba(255,255,255,0.15)"/>
+            <rect x="158" y="104" width="36" height="8" rx="3" fill="rgba(255,255,255,0.15)"/>
+            <rect x="200" y="104" width="40" height="8" rx="3" fill="rgba(255,255,255,0.15)"/>
+            <!-- Stats cards -->
+            <rect x="104" y="118" width="56" height="38" rx="5" fill="rgba(255,255,255,0.18)"/>
+            <rect x="166" y="118" width="56" height="38" rx="5" fill="rgba(255,255,255,0.15)"/>
+            <rect x="228" y="118" width="68" height="38" rx="5" fill="rgba(255,255,255,0.12)"/>
+            <!-- Numbers in cards -->
+            <text x="118" y="132" font-family="Open Sans" font-size="10" fill="rgba(255,255,255,0.9)" font-weight="700">85%</text>
+            <text x="116" y="144" font-family="Open Sans" font-size="7" fill="rgba(255,255,255,0.6)">Results</text>
+            <text x="178" y="132" font-family="Open Sans" font-size="10" fill="rgba(255,255,255,0.9)" font-weight="700">4.2</text>
+            <text x="175" y="144" font-family="Open Sans" font-size="7" fill="rgba(255,255,255,0.6)">GPA</text>
+            <text x="238" y="132" font-family="Open Sans" font-size="10" fill="rgba(255,255,255,0.9)" font-weight="700">✓ Paid</text>
+            <text x="237" y="144" font-family="Open Sans" font-size="7" fill="rgba(255,255,255,0.6)">Tuition</text>
+            <!-- Chart bars -->
+            <rect x="110" y="172" width="10" height="22" rx="3" fill="rgba(255,255,255,0.25)"/>
+            <rect x="125" y="164" width="10" height="30" rx="3" fill="rgba(255,255,255,0.35)"/>
+            <rect x="140" y="168" width="10" height="26" rx="3" fill="rgba(255,255,255,0.25)"/>
+            <rect x="155" y="158" width="10" height="36" rx="3" fill="rgba(255,255,255,0.4)"/>
+            <rect x="170" y="165" width="10" height="29" rx="3" fill="rgba(255,255,255,0.3)"/>
+            <!-- Base of laptop -->
+            <path d="M70 212 Q70 218 80 218 H320 Q330 218 330 212 L318 210 H82 Z" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+            <!-- Phone on right -->
+            <rect x="310" y="80" width="60" height="110" rx="10" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.25)" stroke-width="2"/>
+            <rect x="316" y="92" width="48" height="86" rx="4" fill="rgba(255,255,255,0.08)"/>
+            <circle cx="340" cy="88" r="3" fill="rgba(255,255,255,0.3)"/>
+            <!-- Phone content -->
+            <rect x="320" y="96" width="40" height="8" rx="3" fill="rgba(255,255,255,0.2)"/>
+            <rect x="320" y="108" width="30" height="6" rx="2" fill="rgba(255,255,255,0.15)"/>
+            <rect x="320" y="118" width="40" height="24" rx="4" fill="rgba(255,255,255,0.15)"/>
+            <rect x="320" y="146" width="18" height="14" rx="3" fill="rgba(255,255,255,0.12)"/>
+            <rect x="342" y="146" width="18" height="14" rx="3" fill="rgba(255,255,255,0.12)"/>
+            <!-- Floating notification -->
+            <rect x="190" y="42" width="90" height="28" rx="8" fill="rgba(255,255,255,0.95)" filter="drop-shadow(0 4px 8px rgba(0,0,0,0.15))"/>
+            <circle cx="204" cy="56" r="5" fill="#1e7d34"/>
+            <text x="213" y="53" font-family="Open Sans" font-size="7" fill="#212529" font-weight="700">New Result!</text>
+            <text x="213" y="62" font-family="Open Sans" font-size="6" fill="#6c757d">Semester 2 posted</text>
+            <!-- Small floating card -->
+            <rect x="30" y="100" width="56" height="42" rx="8" fill="rgba(255,255,255,0.9)" filter="drop-shadow(0 4px 10px rgba(0,0,0,0.15))"/>
+            <text x="58" y="118" font-family="Open Sans" font-size="10" fill="#1e7d34" font-weight="800" text-anchor="middle">A</text>
+            <text x="58" y="130" font-family="Open Sans" font-size="6" fill="#6c757d" text-anchor="middle">Grade</text>
+            <text x="58" y="139" font-family="Open Sans" font-size="6" fill="#212529" font-weight="700" text-anchor="middle">ENG 201</text>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Bottom -->
+      <div class="portal-left-bottom">
+        <p><span class="dot-pulse"></span> Secure portal — your data is protected</p>
+      </div>
+    </div>
+
+    <!-- ============================================================
+         RIGHT PANEL — LOGIN FORM
+    ============================================================ -->
+    <div class="portal-right">
+      <div class="login-card">
+
+        <!-- Heading -->
+        <h2 class="login-heading">Welcome back!</h2>
+        <p class="login-sub">Sign in to your student account to continue your academic journey.</p>
+
+        <!-- Error alert (hidden by default) -->
+        <div class="form-alert error" id="formAlert" role="alert">
+          <i class="fas fa-exclamation-circle"></i>
+          <span id="alertMsg">Invalid email or password. Please try again.</span>
+        </div>
+
+        <!-- LOGIN FORM -->
+        <form id="loginForm" novalidate autocomplete="on">
+
+          <!-- Email / Matric No. -->
+          <div class="input-group-custom">
+            <label class="form-label" for="emailInput">Email Address / Matric Number</label>
+            <i class="fas fa-envelope input-icon"></i>
+            <input
+              type="email"
+              class="form-input"
+              id="emailInput"
+              name="email"
+              placeholder="Enter your email or matric number"
+              required
+              autocomplete="username"
+            />
+          </div>
+
+          <!-- Password -->
+          <div class="input-group-custom">
+            <label class="form-label" for="pwInput">Password</label>
+            <i class="fas fa-lock input-icon"></i>
+            <input
+              type="password"
+              class="form-input has-toggle"
+              id="pwInput"
+              name="password"
+              placeholder="Enter your password"
+              required
+              autocomplete="current-password"
+            />
+            <button type="button" class="pw-toggle" id="pwToggle" aria-label="Toggle password visibility">
+              <i class="fas fa-eye" id="pwIcon"></i>
+            </button>
+          </div>
+
+          <!-- Options row -->
+          <div class="form-options">
+            <label class="custom-check">
+              <input type="checkbox" id="rememberMe" name="remember" />
+              <span>Remember me</span>
+            </label>
+            <a href="student.html" class="forgot-link">
+              Forgot password?
+            </a>
+          </div>
+
+          <!-- Submit -->
+          <button type="submit" class="btn-signin" id="signInBtn">
+            <span class="btn-signin-text"><i class="fas fa-sign-in-alt"></i>&nbsp; Sign In</span>
+            <span class="spinner" id="btnSpinner"></span>
+          </button>
+
+        </form>
+
+        <!-- Divider -->
+        <div class="divider"><span>OR</span></div>
+
+        <!-- Register link -->
+        <p class="register-link-row mb-4">
+          New student? <a href="student.html" target="_blank" rel="noopener">Register here</a>
+        </p>
+
+        <!-- Help links -->
+        <div class="text-center" style="font-size:12.5px; color:var(--text-muted);">
+          <a href="contact.html" style="color:var(--blue-primary); font-weight:600;">Need help?</a>
+          &nbsp;·&nbsp;
+          <a href="index.html" style="color:var(--blue-primary); font-weight:600;">Back to SQI website</a>
+          &nbsp;·&nbsp;
+          <a href="student.html" style="color:var(--blue-primary); font-weight:600;">Apply for admission</a>
+        </div>
+
+      </div>
+    </div><!-- /portal-right -->
+
+  </div><!-- /portal-wrapper -->
+
+  <!-- Footer strip -->
+  <div class="portal-footer-strip">
+    <i class="fas fa-shield-halved" style="color:var(--blue-primary); font-size:13px;"></i>
+    <span>Powered by <a href="#" target="_blank" rel="noopener">Edossier</a> &nbsp;|&nbsp; &copy; 2026 SQI College of ICT. All rights reserved.</span>
+  </div>
+
+  <div class="git_footer">
+    <a href="https://github.com/Analyst-Foundry">By Analyst Foundry</a>
+  </div>
+
+  <!-- ================================================================
+       SCRIPTS
+  ================================================================ -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    (function () {
+      'use strict';
+
+      /* ---- Password show / hide ---- */
+      const pwInput  = document.getElementById('pwInput');
+      const pwToggle = document.getElementById('pwToggle');
+      const pwIcon   = document.getElementById('pwIcon');
+
+      if (pwToggle) {
+        pwToggle.addEventListener('click', function () {
+          const isPass = pwInput.type === 'password';
+          pwInput.type = isPass ? 'text' : 'password';
+          pwIcon.classList.toggle('fa-eye',      !isPass);
+          pwIcon.classList.toggle('fa-eye-slash', isPass);
+          pwInput.focus();
+        });
+      }
+
+      /* ---- Form submit (demo — shows loading then error) ---- */
+      const loginForm  = document.getElementById('loginForm');
+      const signInBtn  = document.getElementById('signInBtn');
+      const formAlert  = document.getElementById('formAlert');
+      const alertMsg   = document.getElementById('alertMsg');
+      const emailInput = document.getElementById('emailInput');
+
+      if (loginForm) {
+        loginForm.addEventListener('submit', function (e) {
+          e.preventDefault();
+
+          // Hide previous alert
+          formAlert.style.display = 'none';
+          formAlert.classList.remove('error', 'success');
+
+          // Basic client-side validation
+          const email = emailInput.value.trim();
+          const pw    = pwInput.value.trim();
+
+          let valid = true;
+          [emailInput, pwInput].forEach(el => el.classList.remove('is-invalid'));
+
+          if (!email) {
+            emailInput.classList.add('is-invalid');
+            valid = false;
+          }
+          if (!pw) {
+            pwInput.classList.add('is-invalid');
+            valid = false;
+          }
+
+          if (!valid) {
+            alertMsg.textContent = 'Please fill in all required fields.';
+            formAlert.classList.add('error');
+            formAlert.style.display = 'flex';
+            formAlert.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            return;
+          }
+
+          // Show loading
+          signInBtn.classList.add('loading');
+          signInBtn.disabled = true;
+
+          // Simulate auth (redirect to actual portal after 1.5s)
+          setTimeout(function () {
+            signInBtn.classList.remove('loading');
+            signInBtn.disabled = false;
+
+            // In production this would redirect; here we show a demo message
+            alertMsg.textContent = 'Redirecting to your dashboard…';
+            formAlert.classList.add('success');
+            formAlert.style.display = 'flex';
+
+            // After short delay, navigate to actual portal
+            setTimeout(function () {
+              window.location.href = 'student.html';
+            }, 1000);
+
+          }, 1500);
+        });
+
+        // Remove invalid class on input
+        [emailInput, pwInput].forEach(function (el) {
+          el.addEventListener('input', function () {
+            el.classList.remove('is-invalid');
+            formAlert.style.display = 'none';
+          });
+        });
+      }
+
+    })();
+  </script>
+
+</body>
+</html>

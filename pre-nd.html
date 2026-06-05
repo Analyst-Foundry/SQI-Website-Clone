@@ -1,0 +1,1302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+  <title>Pre-National Diploma - Acquire In-Demand Tech skills.</title>
+  <meta name="description" content="The Pre-National Diploma (Pre-ND) Programme at SQI College of ICT is a structured preparatory pathway for secondary school graduates." />
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <!-- Google Fonts: Open Sans -->
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ============================================================
+       CSS VARIABLES
+    ============================================================ */
+    :root {
+      --blue-primary: rgb(0,11,63);
+      --blue-dark:    rgb(9,3,38);
+      --blue-deeper:  rgb(86,195,249);
+      --blue-light:   rgb(46,163,242);
+      --blue-mid:     rgb(0,11,63);
+      --orange-primary: rgb(239,112,40);
+      --gold:          #f0a500;
+      --white:         #ffffff;
+      --off-white:     #f8f9fa;
+      --grey-bg:       #f2f4f6;
+      --border:        #dee2e6;
+      --border-light:  #e9ecef;
+      --text:          #212529;
+      --text-mid:      #495057;
+      --text-soft:     #6c757d;
+      --text-muted:    #adb5bd;
+      --dark-bg:       #1a1a1a;
+      --shadow-sm:     0 2px 10px rgba(0,0,0,.08);
+      --shadow-md:     0 6px 28px rgba(0,0,0,.12);
+      --shadow-lg:     0 12px 48px rgba(0,0,0,.18);
+      --radius:        8px;
+      --radius-lg:     14px;
+      --navbar-h:      72px;
+      --t:             .25s ease;
+    }
+
+    /* ============================================================
+       RESET & BASE
+    ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; }
+
+    body {
+      font-family: 'Open Sans', sans-serif;
+      font-size: 15px;
+      color: var(--text);
+      background: var(--white);
+      line-height: 1.75;
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; text-decoration: none; transition: color var(--t); }
+    a:hover { color: var(--blue-primary); }
+    img { max-width: 100%; display: block; }
+    ul  { list-style: none; padding: 0; margin: 0; }
+
+    /* ============================================================
+       FRAUD POPUP MODAL
+    ============================================================ */
+    .fraud-dialog  { max-width: 380px; }
+    .fraud-content {
+      border: none; border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg); overflow: hidden;
+    }
+    .fraud-body {
+      padding: 40px 32px 32px; text-align: center; position: relative;
+    }
+    .fraud-x {
+      position: absolute; top: 14px; right: 14px;
+      background: none; border: none;
+      font-size: 22px; line-height: 1;
+      cursor: pointer; color: var(--text-soft); transition: color var(--t);
+    }
+    .fraud-x:hover { color: var(--text); }
+    .fraud-bell {
+      width: 64px; height: 64px; object-fit: contain;
+      margin: 0 auto 16px; display: block;
+    }
+    .fraud-body h5 { font-size: 18px; font-weight: 700; color: var(--text); margin-bottom: 14px; }
+    .fraud-body p  { font-size: 13.5px; color: var(--text-mid); line-height: 1.65; margin-bottom: 10px; }
+    .fraud-ok {
+      display: inline-block; margin-top: 14px;
+      padding: 10px 32px; background: var(--blue-primary); color: var(--white);
+      border: none; border-radius: var(--radius);
+      font-size: 14px; font-weight: 700; cursor: pointer;
+      transition: background var(--t);
+    }
+    .fraud-ok:hover { background: var(--blue-dark); }
+
+    /* ============================================================
+       STICKY NAVBAR
+    ============================================================ */
+  .sqi-navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: var(--white);
+      box-shadow: 0 2px 10px rgba(0,0,0,.10);
+      transition: box-shadow var(--transition);
+    }
+    .sqi-navbar.scrolled { box-shadow: 0 4px 20px rgba(0,0,0,.15); }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: var(--navbar-h);
+    }
+
+    /* Logo */
+    .nav-logo img {
+      height: 52px;
+      width: auto;
+      object-fit: contain;
+    }
+    .logo-fallback {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .logo-badge {
+      background: var(--blue);
+      color: var(--white);
+      font-weight: 800;
+      font-size: 14px;
+      padding: 6px 10px;
+      border-radius: 6px;
+      letter-spacing: 1px;
+    }
+    .logo-words { display: flex; flex-direction: column; }
+    .logo-words span { font-size: 14px; font-weight: 700; color: var(--blue-dark); }
+    .logo-words small { font-size: 10px; color: var(--text-soft); }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 6px;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--text);
+      border-radius: 2px;
+      transition: all .3s;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* Nav menu */
+    .nav-menu { display: flex; align-items: center; gap: 2px; }
+
+    .nav-item { position: relative; }
+    .nav-link {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      padding: 8px 13px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+      border-radius: var(--radius);
+      white-space: nowrap;
+      transition: color var(--transition), background var(--transition);
+    }
+    .nav-link:hover, .nav-link.active { color: var(--blue); background: var(--blue-light); }
+    .nav-link .chevron {
+      font-size: 10px;
+      transition: transform .25s;
+    }
+    .nav-item:hover .chevron { transform: rotate(180deg); }
+
+    /* Dropdown */
+    .dropdown {
+      display: none;
+      position: absolute;
+      top: calc(100% + 4px);
+      left: 0;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-md);
+      min-width: 250px;
+      padding: 6px 0;
+      animation: dropIn .2s ease;
+      z-index: 200;
+    }
+    @keyframes dropIn {
+      from { opacity: 0; transform: translateY(-8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .nav-item:hover .dropdown { display: block; }
+    .dropdown a {
+      display: block;
+      padding: 9px 18px;
+      font-size: 13.5px;
+      font-weight: 500;
+      color: var(--text);
+      border-left: 3px solid transparent;
+      transition: background var(--transition), color var(--transition), border-color var(--transition);
+    }
+    .dropdown a:hover {
+      background: var(--blue-light);
+      color: var(--blue);
+      border-left-color: var(--blue);
+    }
+
+    /* ============================================================
+       SHARED BUTTON STYLES
+    ============================================================ */
+    .btn-blue {
+      display: inline-flex; align-items: center; gap: 7px;
+      padding: 12px 28px;
+      background: var(--blue-primary); color: var(--white) !important;
+      border: none; border-radius: var(--radius);
+      font-size: 14px; font-weight: 700; letter-spacing: .3px;
+      cursor: pointer;
+      transition: background var(--t), transform var(--t), box-shadow var(--t);
+      box-shadow: 0 3px 14px rgba(30,125,52,.28);
+    }
+    .btn-blue:hover {
+      background: var(--blue-dark); transform: translateY(-2px);
+      box-shadow: 0 7px 22px rgba(30,125,52,.38);
+    }
+    .btn-blue-outline {
+      display: inline-flex; align-items: center; gap: 7px;
+      padding: 11px 26px;
+      background: transparent; color: var(--blue-primary) !important;
+      border: 2px solid var(--blue-primary); border-radius: var(--radius);
+      font-size: 14px; font-weight: 700;
+      cursor: pointer;
+      transition: background var(--t), color var(--t), transform var(--t);
+    }
+    .btn-blue-outline:hover {
+      background: var(--blue-primary); color: var(--white) !important; transform: translateY(-2px);
+    }
+    .btn-whatsapp {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 12px 30px;
+      background: #25d366; color: var(--white) !important;
+      border: none; border-radius: var(--radius);
+      font-size: 14px; font-weight: 700;
+      transition: background var(--t), transform var(--t);
+      box-shadow: 0 3px 14px rgba(37,211,102,.3);
+    }
+    .btn-whatsapp:hover { background: #1aab54; transform: translateY(-2px); }
+
+    /* ============================================================
+       PAGE HERO BLOCK
+    ============================================================ */
+    .page-hero {
+      background: var(--blue-dark);
+      padding: 72px 0 64px;
+      position: relative;
+      overflow: hidden;
+    }
+    .page-hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
+      pointer-events: none;
+    }
+    .page-hero .container { position: relative; z-index: 1; }
+    .page-hero h1 {
+      font-size: clamp(24px, 4vw, 44px);
+      font-weight: 800; color: var(--white); line-height: 1.2;
+      margin-bottom: 22px;
+    }
+    .page-hero h1 span { color: #a8d8b0; }
+
+    /* ============================================================
+       CONTENT SECTIONS — alternating layout
+    ============================================================ */
+    .content-section {
+      padding: 72px 0;
+      border-bottom: 1px solid var(--border-light);
+    }
+    .content-section:nth-child(odd)  { background: var(--white); }
+    .content-section:nth-child(even) { background: var(--off-white); }
+
+    /* Section images */
+    .section-img-wrap {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+    }
+    .section-img-wrap img {
+      width: 100%; height: 100%;
+      object-fit: cover; display: block;
+      transition: transform .4s ease;
+    }
+    .section-img-wrap:hover img { transform: scale(1.03); }
+
+    /* Overline label */
+    .overline {
+      font-size: 11px; font-weight: 700; letter-spacing: 2.5px;
+      text-transform: uppercase; color: var(--blue-primary);
+      margin-bottom: 10px; display: block;
+    }
+
+    /* Section heading */
+    .s-heading {
+      font-size: clamp(20px, 3vw, 32px);
+      font-weight: 800; color: var(--text);
+      line-height: 1.25; margin-bottom: 18px;
+    }
+    .s-heading.light { color: var(--white); }
+
+    .s-body {
+      font-size: 15px; color: var(--text-mid);
+      line-height: 1.8; margin-bottom: 0;
+    }
+    .s-body strong { color: var(--text); font-weight: 700; }
+
+    /* Who can apply highlighted box */
+    .who-box {
+      background: var(--blue-light);
+      border-left: 4px solid var(--blue-primary);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      padding: 16px 20px;
+      margin-bottom: 20px;
+      font-size: 14.5px;
+      color: var(--text-mid);
+      line-height: 1.7;
+    }
+    .who-box strong { color: var(--blue-dark); }
+
+    /* ============================================================
+       PROGRAMME OPTIONS CARDS
+    ============================================================ */
+    .options-section {
+      background: var(--off-white);
+      padding: 72px 0;
+      border-bottom: 1px solid var(--border-light);
+    }
+    .options-heading {
+      font-size: clamp(20px, 3vw, 28px);
+      font-weight: 800; color: var(--text);
+      margin-bottom: 42px;
+    }
+    .prog-card {
+      background: var(--white);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      height: 100%;
+      display: flex; flex-direction: column;
+      transition: transform var(--t), box-shadow var(--t), border-color var(--t);
+    }
+    .prog-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--blue-primary);
+    }
+    .prog-card-img {
+      width: 100%; height: 200px; overflow: hidden;
+      background: var(--grey-bg);
+    }
+    .prog-card-img img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform .4s ease;
+    }
+    .prog-card:hover .prog-card-img img { transform: scale(1.05); }
+    .prog-card-body {
+      padding: 22px 22px 26px;
+      flex: 1; display: flex; flex-direction: column;
+    }
+    .prog-card-title {
+      font-size: 15px; font-weight: 800;
+      color: var(--blue-dark); margin-bottom: 10px;
+      line-height: 1.3;
+      text-transform: uppercase;
+      letter-spacing: .3px;
+    }
+    .prog-card-title a {
+      color: var(--blue-dark);
+      transition: color var(--t);
+    }
+    .prog-card-title a:hover { color: var(--blue-primary); }
+    .prog-card-desc {
+      font-size: 13.5px; color: var(--text-soft);
+      line-height: 1.65; flex: 1;
+    }
+
+    /* ============================================================
+       ADMISSION NOTICE — dark blue block
+    ============================================================ */
+    .admission-section {
+      background: var(--blue-dark);
+      padding: 72px 0;
+      color: var(--white);
+    }
+    .admission-section h2 {
+      font-size: clamp(20px, 3vw, 30px);
+      font-weight: 800; color: var(--white);
+      text-transform: uppercase; letter-spacing: .5px;
+      margin-bottom: 24px; line-height: 1.25;
+    }
+    .admission-section p {
+      font-size: 15px; color: rgba(255,255,255,.82);
+      line-height: 1.8; margin-bottom: 16px;
+    }
+
+    /* ============================================================
+       METHOD OF APPLICATION
+    ============================================================ */
+    .method-section {
+      background: var(--white);
+      padding: 72px 0;
+      border-bottom: 1px solid var(--border-light);
+    }
+    .method-section h2 {
+      font-size: clamp(20px, 3vw, 30px);
+      font-weight: 800; color: var(--text);
+      text-transform: uppercase; letter-spacing: .5px;
+      margin-bottom: 28px;
+    }
+    .method-section .window-note {
+      background: var(--blue-light);
+      border: 1px solid var(--blue-primary);
+      border-radius: var(--radius);
+      padding: 14px 18px;
+      font-size: 14px; font-weight: 600;
+      color: var(--blue-dark); margin-bottom: 24px;
+    }
+    .method-steps {
+      padding-left: 4px; margin-bottom: 36px;
+      counter-reset: step;
+    }
+    .method-steps li {
+      counter-increment: step;
+      font-size: 14.5px; color: var(--text-mid);
+      line-height: 1.7; padding: 10px 0 10px 40px;
+      position: relative; border-bottom: 1px solid var(--border-light);
+    }
+    .method-steps li:last-child { border-bottom: none; }
+    .method-steps li::before {
+      content: counter(step);
+      position: absolute; left: 0; top: 10px;
+      width: 26px; height: 26px;
+      background: var(--blue-primary); color: var(--white);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 12px; font-weight: 700;
+    }
+    .method-steps li strong { color: var(--text); font-weight: 700; }
+
+    /* Benefits */
+    .benefits-title {
+      font-size: 17px; font-weight: 800;
+      color: var(--text); margin-bottom: 18px;
+      margin-top: 32px;
+    }
+    .benefits-list li {
+      font-size: 14.5px; color: var(--text-mid);
+      line-height: 1.7; padding: 7px 0 7px 28px;
+      position: relative; border-bottom: 1px solid var(--border-light);
+    }
+    .benefits-list li:last-child { border-bottom: none; }
+    .benefits-list li::before {
+      content: '';
+      position: absolute; left: 0; top: 50%;
+      transform: translateY(-50%);
+      width: 8px; height: 8px;
+      background: var(--blue-primary); border-radius: 50%;
+    }
+
+    /* ============================================================
+       SUPPORT CTA BAND
+    ============================================================ */
+    .support-section {
+      background: var(--off-white);
+      padding: 60px 0;
+      text-align: center;
+      border-bottom: 1px solid var(--border-light);
+    }
+    .support-section h3 {
+      font-size: clamp(18px, 2.5vw, 26px);
+      font-weight: 800; color: var(--text); margin-bottom: 24px;
+    }
+
+    /* ============================================================
+       COURSE INFO PANEL  (image left + 3 info cards right)
+    ============================================================ */
+    .course-info-section {
+      background: var(--white);
+      padding: 72px 0;
+      border-bottom: 1px solid var(--border-light);
+    }
+    .course-info-img {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+      height: 100%;
+    }
+    .course-info-img img {
+      width: 100%; height: 100%;
+      min-height: 300px;
+      object-fit: cover; object-position: top center;
+    }
+    .info-cards { display: flex; flex-direction: column; gap: 20px; height: 100%; }
+    .info-card {
+      background: var(--off-white);
+      border: 1px solid var(--border-light);
+      border-left: 4px solid var(--blue-primary);
+      border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+      padding: 24px 24px 22px;
+      box-shadow: var(--shadow-sm);
+      transition: transform var(--t), box-shadow var(--t);
+      flex: 1;
+    }
+    .info-card:hover { transform: translateX(4px); box-shadow: var(--shadow-md); }
+    .info-card h5 {
+      font-size: 13px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 1.5px;
+      color: var(--blue-primary); margin-bottom: 10px;
+    }
+    .info-card p {
+      font-size: 14px; color: var(--text-mid); line-height: 1.7; margin: 0;
+    }
+    .info-card a { color: var(--blue-primary); font-weight: 600; transition: color var(--t); }
+    .info-card a:hover { color: var(--blue-dark); text-decoration: underline; }
+
+    /* ============================================================
+       SCROLL REVEAL
+    ============================================================ */
+    .reveal {
+      opacity: 0; transform: translateY(28px);
+      transition: opacity .55s ease, transform .55s ease;
+    }
+    .reveal.in { opacity: 1; transform: none; }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+.sqi-footer {
+  background: #1a1a1a;
+  color: rgba(255,255,255,.72);
+  padding: 0;
+}
+
+.footer-top-row {
+  padding: 60px 0 40px;
+}
+
+/* Brand */
+.footer-brand h4 {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.footer-brand p {
+  font-size: 13.5px;
+  color: rgba(255,255,255,.65);
+  line-height: 1.65;
+}
+
+/* Socials */
+.footer-socials {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.footer-socials a {
+  width: 36px;
+  height: 36px;
+  background: rgba(255,255,255,.1);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255,255,255,.8);
+  font-size: 15px;
+  transition: background var(--transition), color var(--transition);
+}
+.footer-socials a:hover {
+  background: var(--blue-primary);
+  color: var(--white);
+}
+
+/* Emails */
+.footer-emails h6 {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: rgba(255,255,255,.5);
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.footer-emails ul li {
+  margin-bottom: 6px;
+}
+.footer-emails ul li a {
+  font-size: 13px;
+  color: rgb(86,195,249);
+  transition: color var(--transition);
+}
+.footer-emails ul li a:hover { color: var(--orange-primary); }
+
+/* Col titles */
+.footer-col-title {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: rgba(255,255,255,.5);
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+/* Quick links */
+.footer-links li {
+  margin-bottom: 8px;
+}
+.footer-links li a {
+  font-size: 13px;
+  color: rgba(255,255,255,.65);
+  transition: color var(--transition);
+}
+.footer-links li a:hover { color: var(--orange-primary); }
+
+/* Addresses */
+.footer-address {
+  font-size: 12px;
+  color: rgba(255,255,255,.6);
+  line-height: 1.6;
+  margin-bottom: 4px;
+}
+.footer-address strong { color: rgba(255,255,255,.85); }
+
+.footer-map-link {
+  font-size: 12px;
+  color: var(--orange-primary);
+  font-weight: 600;
+  transition: color var(--transition);
+}
+.footer-map-link:hover {
+  color: rgb(86,195,249);
+  text-decoration: underline;
+}
+
+/* Footer bottom */
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,.1);
+  padding: 18px 0;
+  text-align: center;
+}
+.footer-bottom p {
+  font-size: 13px;
+  color: rgba(255,255,255,.45);
+  margin: 0;
+}
+
+/* ================================================================
+   BACK TO TOP
+   ================================================================ */
+.back-to-top {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 999;
+  width: 42px;
+  height: 42px;
+  background: var(--blue-primary);
+  color: var(--white);
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(0,0,0,.25);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(12px);
+  transition: opacity 0.3s, transform 0.3s, background 0.2s;
+}
+.back-to-top.visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+.back-to-top:hover { background: var(--blue-dark); }
+
+.git_footer{
+    display: inline-flex;
+    justify-content: space-between;
+    height: 50px;
+    width: 100%;
+    border-top: 0px solid rgb(218, 220, 222);
+    align-items: center;
+    padding-left: 30px;
+    background-color: rgb(0, 0, 0);
+}
+
+.git_footer a{
+    text-decoration: none;
+    color: rgb(232, 17, 35);
+    font-size: 20px;
+    font-weight: 600;
+}
+
+    /* ============================================================
+       RESPONSIVE
+    ============================================================ */
+    @media (max-width: 991.98px) {
+      .sqi-nav-list { padding: 10px 0; gap: 0; }
+      .sqi-nav-link { border-radius: 0; }
+      .sqi-drop {
+        box-shadow: none; border: none; background: var(--off-white);
+        animation: none; margin-top: 0 !important; padding-left: 12px;
+      }
+      .page-hero { padding: 52px 0 46px; }
+      .content-section { padding: 52px 0; }
+      .options-section { padding: 52px 0; }
+      .admission-section { padding: 52px 0; }
+      .method-section { padding: 52px 0; }
+      .course-info-section { padding: 52px 0; }
+      .course-info-img img { min-height: 240px; }
+    }
+
+    @media (max-width: 767.98px) {
+      .content-section { padding: 44px 0; }
+      .btt { bottom: 16px; right: 16px; width: 38px; height: 38px; font-size: 14px; }
+      /* Stack image below text on mobile for alternating layouts */
+      .img-first { order: 2; }
+      .text-last  { order: 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ================================================================
+       FRAUD WARNING POPUP
+  ================================================================ -->
+  <div class="modal fade" id="fraudModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered fraud-dialog">
+      <div class="modal-content fraud-content">
+        <div class="modal-body fraud-body">
+          <button class="fraud-x" data-bs-dismiss="modal" type="button">&times;</button>
+          <img
+            src="Images/red-bell.png"
+            alt="Alert" class="fraud-bell"
+            onerror="this.outerHTML='<span style=\'font-size:3rem;display:block;margin-bottom:14px;\'>🔔</span>'"
+          />
+          <h5>Please be advised!</h5>
+          <p>Do not make any payment for our courses or services to any account or platform other than corporate accounts provided by SQI College of ICT.</p>
+          <p>The College will not be held responsible for any loss or issue arising from payments made to unauthorised individuals or channels.</p>
+          <p><strong>Thank you for your cooperation.</strong></p>
+          <button class="fraud-ok" data-bs-dismiss="modal" type="button">OK, I understand</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================================================================
+       STICKY NAVBAR
+  ================================================================ -->
+  <nav class="sqi-navbar" id="sqiNavbar">
+    <div class="container">
+      <div class="nav-inner">
+
+        <!-- Logo -->
+        <a href="index.html" class="nav-logo">
+          <img src="Images/icon.jpg" alt="SQI College of ICT"
+            onerror="this.style.display='none';document.getElementById('logoFb').style.display='flex';" />
+          <div id="logoFb" class="logo-fallback" style="display:none;">
+            <span class="logo-badge">SQI</span>
+            <div class="logo-words">
+              <span>SQI College of ICT</span>
+              <small>Acquire In-Demand Tech Skills</small>
+            </div>
+          </div>
+        </a>
+
+        <!-- Hamburger -->
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+
+        <!-- Menu -->
+        <ul class="nav-menu" id="navMenu">
+
+          <li class="nav-item">
+            <a href="#" class="nav-link">About <i class="fas fa-chevron-down chevron"></i></a>
+            <ul class="dropdown">
+              <li><a href="story.html">Our Story</a></li>
+              <li><a href="team.html">Our Team</a></li>
+              <li><a href="campus.html">Campus Info</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a href="#" class="nav-link">Programmes <i class="fas fa-chevron-down chevron"></i></a>
+            <ul class="dropdown">
+              <li><a href="pre-nd.html">Pre-National Diploma</a></li>
+              <li><a href="nd.html">National Diploma</a></li>
+              <li><a href="procert.html">Professional Diploma Program</a></li>
+              <li><a href="epcp.html">Executive Professional Certificate Programme</a></li>
+              <li><a href="bsc.html">Bachelor Degree | LAUTECH PT</a></li>
+              <li><a href="post-utme.html">Post-UTME</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a href="#" class="nav-link">Admissions <i class="fas fa-chevron-down chevron"></i></a>
+            <ul class="dropdown">
+              <li><a href="afap.html">Apply for a Programme</a></li>
+              <li><a href="mos.html">Mode of Study</a></li>
+              <li><a href="tuition.html">Tuition</a></li>
+              <li><a href="https://drive.google.com/file/d/1w_itppr3K0MMy5Sdf8uFkCO7eCyAYiRf/view?usp=sharing">Student's Handbook</a></li>
+              <li><a href="faq.html">Frequently Asked Questions</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a href="#" class="nav-link">E-Portal <i class="fas fa-chevron-down chevron"></i></a>
+            <ul class="dropdown">
+              <li><a href="student.html">Student</a></li>
+              <li><a href="staff.html">Staff</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a href="scholarship.html" class="nav-link">SQI Scholarship</a>
+          </li>
+          <li class="nav-item">
+            <a href="news.html" class="nav-link">News</a>
+          </li>
+          <li class="nav-item">
+            <a href="contact.html" class="nav-link">Contact</a>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ================================================================
+       PAGE HERO
+  ================================================================ -->
+  <section class="page-hero">
+    <div class="container">
+      <h1>PRE – National Diploma<br /><span>(PRE-ND) Programme</span></h1>
+      <a href="#" class="btn-blue" target="_blank" rel="noopener">
+        <i class="fas fa-pen-to-square"></i> Apply Now!
+      </a>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       SECTION 1 — Who Can Apply + Image (text left, image right)
+  ================================================================ -->
+  <section class="content-section">
+    <div class="container">
+      <div class="row g-5 align-items-center">
+
+        <!-- Text -->
+        <div class="col-lg-6 reveal">
+          <div class="who-box">
+            <strong>Who can apply?</strong><br />
+            Secondary school graduate who has not yet met the minimum age requirement for National Diploma admission, students awaiting O'Level results, or requires additional academic preparation before advancing into higher education
+          </div>
+          <p class="s-body">The Pre-National Diploma (Pre-ND) Programme at SQI College of ICT is a structured preparatory pathway designed to bridge this gap. Through a focused full-time academic framework, the programme strengthens students' foundational knowledge, builds technical and digital competence, and prepares them for a smooth and confident transition into National Diploma (ND) studies and the demands of tertiary education.</p>
+        </div>
+
+        <!-- Image -->
+        <div class="col-lg-6 reveal">
+          <div class="section-img-wrap">
+            <img
+              src="Images/pre-nd/1.png"
+              alt="Pre-ND Programme"
+              onerror="this.closest('.section-img-wrap').style.background='linear-gradient(135deg,#1e7d34,#28a745)'; this.style.opacity='0';"
+            />
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       SECTION 2 — Image left, pathway text + CTA right
+  ================================================================ -->
+  <section class="content-section">
+    <div class="container">
+      <div class="row g-5 align-items-center">
+
+        <!-- Image (left on desktop) -->
+        <div class="col-lg-6 img-first reveal">
+          <div class="section-img-wrap">
+            <img
+              src="Images/pre-nd/2.png"
+              alt="Your pathway into tertiary education"
+              onerror="this.closest('.section-img-wrap').style.background='linear-gradient(135deg,#155724,#1e7d34)'; this.style.opacity='0';"
+            />
+          </div>
+        </div>
+
+        <!-- Text (right on desktop) -->
+        <div class="col-lg-6 text-last reveal">
+          <div class="who-box">
+            <strong>Who can apply?</strong><br />
+            Secondary school graduate who has not yet met the minimum age requirement for National Diploma admission, students awaiting O'Level results, or requires additional academic preparation before advancing into higher education
+          </div>
+          <h2 class="s-heading mt-4">Your pathway into tertiary education starts here.</h2>
+          <a href="#" class="btn-blue mt-2" target="_blank" rel="noopener">
+            <i class="fas fa-pen-to-square"></i> Apply Now!
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       AVAILABLE OPTIONS — 3 PROGRAMME CARDS
+  ================================================================ -->
+  <section class="options-section">
+    <div class="container">
+      <h3 class="options-heading reveal">Available Options in the PRE-ND Programmes</h3>
+      <div class="row g-4">
+
+        <!-- Computer Science -->
+        <div class="col-md-4">
+          <div class="prog-card reveal">
+            <div class="prog-card-img">
+              <a href="#" target="_blank">
+                <img
+                  src="Images/pre-nd/3.jpg"
+                  alt="Computer Science"
+                  onerror="this.src='Images/pre-nd/3.jpg'"
+                />
+              </a>
+            </div>
+            <div class="prog-card-body">
+              <h4 class="prog-card-title">
+                <a href="#" target="_blank">Computer Science</a>
+              </h4>
+              <p class="prog-card-desc">This programme provides students with a strong foundation in mathematics, basic computing concepts, and digital workplace proficiency, preparing them for National Diploma studies in computer science and related ICT fields.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Accountancy -->
+        <div class="col-md-4">
+          <div class="prog-card reveal">
+            <div class="prog-card-img">
+              <a href="#" target="_blank">
+                <img
+                  src="Images/pre-nd/4.png"
+                  alt="Accountancy with ICT"
+                  onerror="this.src='Images/pre-nd/4.png'"
+                />
+              </a>
+            </div>
+            <div class="prog-card-body">
+              <h4 class="prog-card-title">
+                <a href="#" target="_blank">Accountancy (With ICT)</a>
+              </h4>
+              <p class="prog-card-desc">Designed to prepare students for ND studies, this programme combines the foundational accounting knowledge with essential ICT skills and core subjects such as mathematics, commerce, and economics.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Business Administration -->
+        <div class="col-md-4">
+          <div class="prog-card reveal">
+            <div class="prog-card-img">
+              <img
+                src="Images/pre-nd/5.png"
+                alt="Business Administration with ICT"
+                onerror="this.src='Images/pre-nd/5.png'"
+              />
+            </div>
+            <div class="prog-card-body">
+              <h4 class="prog-card-title">Business Administration (With ICT)</h4>
+              <p class="prog-card-desc">This programme introduces core business and communication concepts alongside ICT-based learning, equipping students with the academic foundation required for National Diploma studies in business disciplines.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       ADMISSION NOTICE — dark blue band
+  ================================================================ -->
+  <section class="admission-section">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-10">
+          <h2 class="reveal">2026/2027 Admission Into Pre-National Diploma (PRE-ND) Programmes</h2>
+          <p class="reveal">Applications are hereby invited from suitably qualified candidates for admission into the Pre-National Diploma (Pre-ND) Programmes of SQI College of ICT for the 2026 Academic Year. The Pre-ND Programme is a structured preparatory pathway designed to support secondary school graduates who require additional academic grounding before progressing into National Diploma (ND) studies.</p>
+          <p class="reveal">The programme focuses on strengthening students' core academic subjects, improving technical competence, and developing essential digital and learning skills required for success in a tertiary academic environment. Through guided instruction, academic support, and ICT-based learning, candidates are adequately prepared for a smooth and successful transition into National Diploma programmes upon meeting the required progression standards.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       METHOD OF APPLICATION
+  ================================================================ -->
+  <section class="method-section">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-10">
+
+          <h2 class="reveal">Method of Application</h2>
+
+          <div class="window-note reveal">
+            <i class="fas fa-calendar-check me-2"></i>
+            The application window opens on <strong>January 5, 2026.</strong>
+          </div>
+
+          <ul class="method-steps reveal">
+            <li>Interested candidates are to obtain the Pre-ND application form at the cost of <strong>₦10,000</strong> at <a href="#" target="_blank" style="color:var(--blue-primary);font-weight:600;">sqi.edu.ng/admission</a>.</li>
+            <li>Payment Method is via the application portal.</li>
+            <li>Successful candidates are to pay an acceptance fee of <strong>₦20,000</strong>.</li>
+            <li>After payment, candidates are required to forward proof of payment to the Admissions Office via <strong>0906 281 9993</strong>. (The resumption is on <strong>February 23, 2026</strong>)</li>
+          </ul>
+
+          <p class="benefits-title reveal">Benefits of the Programme</p>
+          <ul class="benefits-list reveal">
+            <li>Equip students with the foundational knowledge required for the National Diploma Program.</li>
+            <li>Candidates receive priority admission on the merit list.</li>
+            <li>Improve candidates' academic performance, especially in core subjects.</li>
+            <li>Prepare candidates for the next JAMB and O-Level examination.</li>
+            <li>Access to digital workspace proficiency and early exposure to ICT-based skills.</li>
+            <li>Understand and settle into higher-level academic settings.</li>
+            <li>Prepare candidates for ND-admission, examinations, and assessments.</li>
+            <li>Develop candidates' soft skills for effective performance and growth in the modern tech world.</li>
+          </ul>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       SUPPORT CTA BAND
+  ================================================================ -->
+  <section class="support-section">
+    <div class="container">
+      <h3 class="reveal">For support contact the Directorate of Admissions</h3>
+      <a href="#" target="_blank" rel="noopener" class="btn-whatsapp reveal">
+        <i class="fab fa-whatsapp"></i> Reach Out
+      </a>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       COURSE INFO PANEL — image + 3 info cards
+  ================================================================ -->
+  <section class="course-info-section">
+    <div class="container">
+      <div class="row g-5 align-items-stretch">
+
+        <!-- Image -->
+        <div class="col-lg-5 reveal">
+          <div class="course-info-img">
+            <img
+              src="Images/pre-nd/6.jpg"
+              alt="SQI Students"
+              onerror="this.src='Images/pre-nd/6.jpg'"
+            />
+          </div>
+        </div>
+
+        <!-- Info cards -->
+        <div class="col-lg-7 reveal">
+          <div class="info-cards">
+
+            <div class="info-card">
+              <h5><i class="fas fa-clock me-2"></i>Duration of Course</h5>
+              <p>The program will run for <strong>8 months</strong>.</p>
+            </div>
+
+            <div class="info-card">
+              <h5><i class="fas fa-file-invoice me-2"></i>Application Fee</h5>
+              <p>Applicants seeking admission are required to pay a non-refundable application fee of <strong>₦10,000</strong> as part of the Pre-ND application process.</p>
+              <p class="mt-2">Click <a href="#" target="_blank">here to start your application</a></p>
+            </div>
+
+            <div class="info-card">
+              <h5><i class="fas fa-money-bill-wave me-2"></i>Tuition per Level</h5>
+              <p>The cost of taking the Pre-ND Programme at SQI College of ICT is <strong>₦300,000</strong> per level.</p>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       FOOTER
+  ================================================================ -->
+  <footer class="sqi-footer">
+    <div class="container">
+      <div class="row g-5 footer-top-row">
+
+        <!-- Brand + Socials + Emails -->
+        <div class="col-lg-3 col-md-6">
+          <div class="footer-brand">
+            <h4>Hello, we're SQI College of ICT</h4>
+            <p>We provide and lead others in quality ICT education.</p>
+          </div>
+          <div class="footer-socials mt-3">
+            <a href="#" title="Follow on Facebook" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" title="Follow on X" target="_blank"><i class="fab fa-x-twitter"></i></a>
+            <a href="#" title="Follow on LinkedIn" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" title="Follow on Youtube" target="_blank"><i class="fab fa-youtube"></i></a>
+            <a href="#" title="Follow on Instagram" target="_blank"><i class="fab fa-instagram"></i></a>
+          </div>
+          <div class="footer-emails mt-4">
+            <h6>Send us a mail</h6>
+            <ul>
+              <li><a href="#">enquiry@sqi.edu.ng</a></li>
+              <li><a href="#">admissions@sqi.edu.ng</a></li>
+              <li><a href="#">examsandrecords@sqi.edu.ng</a></li>
+              <li><a href="#">rector@sqi.edu.ng</a></li>
+              <li><a href="#">partnerships@sqi.edu.ng</a></li>
+              <li><a href="#">internship@sqi.edu.ng</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="col-lg-2 col-md-6 col-sm-6">
+          <h6 class="footer-col-title">Quick Links</h6>
+          <ul class="footer-links">
+            <li><a href="#">Application Portal</a></li>
+            <li><a href="student.html">Student Portal</a></li>
+            <li><a href="procert.html">Professional Courses</a></li>
+            <li><a href="nd.html">ND Courses</a></li>
+            <li><a href="campus.html">Campus Info</a></li>
+            <li><a href="#">Accommodation</a></li>
+            <li><a href="scholarship.html">SQI Scholarship</a></li>
+            <li><a href="#">SQI Anthem</a></li>
+            <li><a href="#">Donate</a></li>
+          </ul>
+        </div>
+
+        <!-- Locations col 1 -->
+        <div class="col-lg-4 col-md-6">
+          <div class="row g-3">
+            <div class="col-6">
+              <h6 class="footer-col-title">Ogbomoso</h6>
+              <p class="footer-address">Old Ilorin Road, Opposite Yoaco Filling Station, Yoaco, Ogbomoso.<br /><strong>0906 281 9991, 0906 281 9993</strong></p>
+              <a href="#" class="footer-map-link" target="_blank">Locate on the map</a>
+              <h6 class="footer-col-title">Ibadan</h6>
+              <p class="footer-address">First Floor, H25 Heritage Mall, Opposite Central Bank of Nigeria, Dugbe, Ibadan.<br /><strong>0906 281 9994</strong></p>
+              <a href="#" class="footer-map-link" target="_blank">Locate on the map</a>
+            </div>
+            <div class="col-6">
+              <h6 class="footer-col-title">Lagos</h6>
+              <p class="footer-address">Suite 219, Opic Plaza, Mobolaji Bank Anthony Way, beside Sheraton Hotel, Ikeja, Lagos<br /><strong>0906 281 9999</strong></p>
+              <a href="#" class="footer-map-link" target="_blank">Locate on the map</a>
+              <h6 class="footer-col-title">Abeokuta</h6>
+              <p class="footer-address">First floor, OPIC Tower building, Okeilewo, Abeokuta.<br /><strong>0906 281 9996</strong></p>
+              <a href="#" class="footer-map-link" target="_blank">Locate on the map</a>
+            </div>
+            <div class="col-6">
+              <h6 class="footer-col-title">Virtual</h6>
+              <p class="footer-address">Available Globally Online.<br /><strong>0906 281 9992</strong></p>
+              <a href="#" class="footer-map-link" target="_blank">Locate on the map</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Locations col 2 -->
+        <div class="col-lg-3 col-md-6">
+          <div class="row g-3">
+            <div class="col-12">
+              <p class="footer-address mt-2">Christianah Oyinade Ajoke House, beside First Bank, Arisekola Central Mosque, Opposite Jaiz bank, Idi Ape, Iwo road, Ibadan.<br /><strong>0906 281 9995</strong></p>
+              <a href="#" class="footer-map-link" target="_blank">Locate on the map</a>
+              <p class="footer-address mt-2">Haier Thermocool Building, opposite SAO filling station, Challenge, Ibadan, Oyo State.<br /><strong>0906 281 9992</strong></p>
+              <a href="#" class="footer-map-link" target="_blank">Locate on the map</a>
+            </div>
+            <div class="col-6">
+              <h6 class="footer-col-title">Osogbo</h6>
+              <p class="footer-address">Opposite Jaiz bank, Ogo-Oluwa, Osogbo<br /><strong>0906 281 9997</strong></p>
+              <a href="#" class="footer-map-link" target="_blank">Locate on the map</a>
+            </div>
+            <div class="col-6">
+              <h6 class="footer-col-title">Abuja</h6>
+              <p class="footer-address">Suite Banking Hall SF, Febson Mall, Wuse Zone 4, Abuja<br /><strong>090 628 20000</strong></p>
+              <a href="#" class="footer-map-link" target="_blank">Locate on the map</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Footer Bottom -->
+      <div class="footer-bottom">
+        <p>Copyright &copy; 2026 | SQI ICT Consultants | Powered by Edozzier</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ================================================================
+       BACK TO TOP BUTTON
+  ================================================================ -->
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+  <div class="git_footer">
+    <a href="https://github.com/Analyst-Foundry">By Analyst Foundry</a>
+  </div>
+
+  <!-- ================================================================
+       SCRIPTS
+  ================================================================ -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    (function () {
+      'use strict';
+
+      /* ---- Fraud modal: auto-open at 800ms ---- */
+      const fraudEl = document.getElementById('fraudModal');
+      if (fraudEl) {
+        const fm = new bootstrap.Modal(fraudEl, { keyboard: true });
+        setTimeout(() => fm.show(), 800);
+      }
+
+      /* ---- Sticky navbar shadow ---- */
+      const nav = document.getElementById('sqiNavbar');
+      const scrollNav = () => nav.classList.toggle('scrolled', window.scrollY > 10);
+      window.addEventListener('scroll', scrollNav, { passive: true });
+      scrollNav();
+
+      /* ---- Dropdown chevron rotation ---- */
+      document.querySelectorAll('.sqi-dd').forEach(el => {
+        el.addEventListener('show.bs.dropdown', () => {
+          const c = el.querySelector('.sqi-chev');
+          if (c) c.style.transform = 'rotate(180deg)';
+        });
+        el.addEventListener('hide.bs.dropdown', () => {
+          const c = el.querySelector('.sqi-chev');
+          if (c) c.style.transform = 'rotate(0deg)';
+        });
+      });
+
+      /* ---- Close mobile nav on item click ---- */
+      const navCol = document.getElementById('navmenu');
+      document.querySelectorAll('#navmenu .sqi-di').forEach(i => {
+        i.addEventListener('click', () => {
+          if (window.innerWidth < 992) bootstrap.Collapse.getInstance(navCol)?.hide();
+        });
+      });
+
+      /* ---- Scroll reveal ---- */
+      const revEls = document.querySelectorAll('.reveal');
+      const ro = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          // Stagger items in the same row
+          const siblings = Array.from(
+            (entry.target.closest('.row') || entry.target.parentElement)
+              .querySelectorAll('.reveal:not(.in)')
+          );
+          const idx = siblings.indexOf(entry.target);
+          setTimeout(() => entry.target.classList.add('in'), Math.min(idx * 100, 400));
+          ro.unobserve(entry.target);
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+      revEls.forEach(el => ro.observe(el));
+
+      /* ---- Back to top ---- */
+      const btt = document.getElementById('btt');
+      window.addEventListener('scroll', () => btt.classList.toggle('on', window.scrollY > 400), { passive: true });
+      btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    })();
+  </script>
+
+</body>
+</html>

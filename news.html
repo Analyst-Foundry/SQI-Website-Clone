@@ -1,0 +1,1082 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+  <title>Blog - Acquire In-Demand Tech skills.</title>
+  <meta name="description" content="Latest news, events and updates from SQI College of ICT." />
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <!-- Google Fonts: Open Sans -->
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ============================================================
+       CSS VARIABLES
+    ============================================================ */
+    :root {
+      --blue-primary: rgb(0,11,63);
+      --blue-dark:    rgb(9,3,38);
+      --blue-deeper:  rgb(86,195,249);
+      --blue-light:   rgb(46,163,242);
+      --blue-mid:     rgb(0,11,63);
+      --orange-primary: rgb(239,112,40);
+      --white:        #ffffff;
+      --off-white:    #f8f9fa;
+      --grey:         #f2f4f6;
+      --border:       #dee2e6;
+      --border-lt:    #e9ecef;
+      --text:         #212529;
+      --text-mid:     #495057;
+      --text-soft:    #6c757d;
+      --text-muted:   #adb5bd;
+      --dark-bg:      #1a1a1a;
+      --shadow-xs:    0 1px 4px rgba(0,0,0,.06);
+      --shadow-sm:    0 2px 12px rgba(0,0,0,.08);
+      --shadow-md:    0 6px 28px rgba(0,0,0,.13);
+      --shadow-lg:    0 12px 48px rgba(0,0,0,.18);
+      --radius:       8px;
+      --radius-lg:    14px;
+      --navbar-h:     72px;
+      --t:            .25s ease;
+    }
+
+    /* ============================================================
+       RESET & BASE
+    ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; }
+
+    body {
+      font-family: 'Open Sans', sans-serif;
+      font-size: 15px; color: var(--text);
+      background: var(--white); line-height: 1.75; overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; transition: color var(--t); }
+    a:hover { color: var(--blue-primary); }
+    img { max-width: 100%; display: block; }
+    ul { list-style: none; padding: 0; margin: 0; }
+
+    /* ============================================================
+       FRAUD POPUP MODAL
+    ============================================================ */
+    .fraud-dialog  { max-width: 380px; }
+    .fraud-content { border: none; border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); overflow: hidden; }
+    .fraud-body { padding: 40px 32px 32px; text-align: center; position: relative; }
+    .fraud-x { position: absolute; top: 14px; right: 14px; background: none; border: none; font-size: 22px; line-height: 1; cursor: pointer; color: var(--text-soft); transition: color var(--t); }
+    .fraud-x:hover { color: var(--text); }
+    .fraud-bell { width: 64px; height: 64px; object-fit: contain; margin: 0 auto 16px; display: block; }
+    .fraud-body h5 { font-size: 18px; font-weight: 700; color: var(--text); margin-bottom: 14px; }
+    .fraud-body p  { font-size: 13.5px; color: var(--text-mid); line-height: 1.65; margin-bottom: 10px; }
+    .fraud-ok { display: inline-block; margin-top: 14px; padding: 10px 32px; background: var(--blue-primary); color: var(--white); border: none; border-radius: var(--radius); font-size: 14px; font-weight: 700; cursor: pointer; transition: background var(--t); }
+    .fraud-ok:hover { background: var(--blue-dark); }
+
+    /* ============================================================
+       STICKY NAVBAR
+    ============================================================ */
+  .sqi-navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: var(--white);
+      box-shadow: 0 2px 10px rgba(0,0,0,.10);
+      transition: box-shadow var(--transition);
+    }
+    .sqi-navbar.scrolled { box-shadow: 0 4px 20px rgba(0,0,0,.15); }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: var(--navbar-h);
+    }
+
+    /* Logo */
+    .nav-logo img {
+      height: 52px;
+      width: auto;
+      object-fit: contain;
+    }
+    .logo-fallback {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .logo-badge {
+      background: var(--blue);
+      color: var(--white);
+      font-weight: 800;
+      font-size: 14px;
+      padding: 6px 10px;
+      border-radius: 6px;
+      letter-spacing: 1px;
+    }
+    .logo-words { display: flex; flex-direction: column; }
+    .logo-words span { font-size: 14px; font-weight: 700; color: var(--blue-dark); }
+    .logo-words small { font-size: 10px; color: var(--text-soft); }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 6px;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--text);
+      border-radius: 2px;
+      transition: all .3s;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* Nav menu */
+    .nav-menu { display: flex; align-items: center; gap: 2px; }
+
+    .nav-item { position: relative; }
+    .nav-link {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      padding: 8px 13px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+      border-radius: var(--radius);
+      white-space: nowrap;
+      transition: color var(--transition), background var(--transition);
+    }
+    .nav-link:hover, .nav-link.active { color: var(--blue); background: var(--blue-light); }
+    .nav-link .chevron {
+      font-size: 10px;
+      transition: transform .25s;
+    }
+    .nav-item:hover .chevron { transform: rotate(180deg); }
+
+    /* Dropdown */
+    .dropdown {
+      display: none;
+      position: absolute;
+      top: calc(100% + 4px);
+      left: 0;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-md);
+      min-width: 250px;
+      padding: 6px 0;
+      animation: dropIn .2s ease;
+      z-index: 200;
+    }
+    @keyframes dropIn {
+      from { opacity: 0; transform: translateY(-8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .nav-item:hover .dropdown { display: block; }
+    .dropdown a {
+      display: block;
+      padding: 9px 18px;
+      font-size: 13.5px;
+      font-weight: 500;
+      color: var(--text);
+      border-left: 3px solid transparent;
+      transition: background var(--transition), color var(--transition), border-color var(--transition);
+    }
+    .dropdown a:hover {
+      background: var(--blue-light);
+      color: var(--blue);
+      border-left-color: var(--blue);
+    }
+
+    /* ============================================================
+       PAGE TITLE BAND
+    ============================================================ */
+    .page-title-band {
+      background: var(--off-white);
+      border-bottom: 1px solid var(--border);
+      padding: 48px 0 36px;
+    }
+    .page-title-band h1 {
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 800; color: var(--text); margin: 0; line-height: 1.2;
+    }
+
+    /* ============================================================
+       CATEGORY BADGE
+    ============================================================ */
+    .cat-badge {
+      display: inline-block;
+      background: var(--blue-light);
+      color: var(--blue-dark);
+      font-size: 11px; font-weight: 700;
+      letter-spacing: 1px; text-transform: uppercase;
+      padding: 4px 12px; border-radius: 100px;
+      margin-bottom: 10px;
+      transition: background var(--t), color var(--t);
+    }
+    .cat-badge:hover { background: var(--blue-primary); color: var(--white); }
+
+    /* ============================================================
+       FEATURED POST SECTION (2-col split)
+    ============================================================ */
+    .featured-section {
+      background: var(--white);
+      padding: 56px 0 44px;
+      border-bottom: 1px solid var(--border-lt);
+    }
+
+    /* BIG featured card (left) */
+    .featured-card {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border-lt);
+      background: var(--white);
+      height: 100%;
+      display: flex; flex-direction: column;
+      transition: transform var(--t), box-shadow var(--t);
+    }
+    .featured-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+
+    .featured-img-wrap {
+      width: 100%; overflow: hidden;
+      flex-shrink: 0;
+    }
+    .featured-img-wrap img {
+      width: 100%; height: 340px;
+      object-fit: cover; object-position: center;
+      display: block;
+      transition: transform .45s ease;
+    }
+    .featured-card:hover .featured-img-wrap img { transform: scale(1.04); }
+
+    .featured-body {
+      padding: 24px 24px 26px;
+      flex: 1; display: flex; flex-direction: column;
+    }
+    .featured-title {
+      font-size: clamp(18px, 2.5vw, 24px);
+      font-weight: 800; color: var(--text); line-height: 1.3;
+      margin-bottom: 12px;
+    }
+    .featured-title a { color: var(--text); transition: color var(--t); }
+    .featured-title a:hover { color: var(--blue-primary); }
+    .featured-excerpt {
+      font-size: 14px; color: var(--text-soft); line-height: 1.7;
+      flex: 1;
+    }
+
+    /* SIDEBAR LIST cards (right) */
+    .sidebar-list {
+      display: flex; flex-direction: column; gap: 12px; height: 100%;
+    }
+    .sidebar-item {
+      display: flex; align-items: flex-start; gap: 14px;
+      background: var(--white);
+      border: 1px solid var(--border-lt);
+      border-radius: var(--radius);
+      padding: 14px;
+      box-shadow: var(--shadow-xs);
+      flex: 1;
+      transition: transform var(--t), box-shadow var(--t), border-color var(--t);
+    }
+    .sidebar-item:hover { transform: translateX(4px); box-shadow: var(--shadow-sm); border-color: var(--blue-primary); }
+    .sidebar-thumb {
+      width: 88px; height: 72px;
+      border-radius: var(--radius);
+      overflow: hidden; flex-shrink: 0;
+      background: var(--grey);
+    }
+    .sidebar-thumb img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform .4s;
+    }
+    .sidebar-item:hover .sidebar-thumb img { transform: scale(1.08); }
+    .sidebar-text { flex: 1; }
+    .sidebar-date {
+      font-size: 11px; font-weight: 600;
+      color: var(--text-muted); letter-spacing: .5px;
+      text-transform: uppercase; margin-bottom: 5px; display: block;
+    }
+    .sidebar-title {
+      font-size: 13.5px; font-weight: 700; color: var(--text);
+      line-height: 1.4; margin-bottom: 0;
+    }
+    .sidebar-title a { color: var(--text); transition: color var(--t); }
+    .sidebar-title a:hover { color: var(--blue-primary); }
+
+    /* ============================================================
+       BLOG GRID SECTION
+    ============================================================ */
+    .blog-grid-section {
+      background: var(--off-white);
+      padding: 56px 0 60px;
+    }
+
+    /* Grid card */
+    .blog-card {
+      background: var(--white);
+      border: 1px solid var(--border-lt);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      height: 100%;
+      display: flex; flex-direction: column;
+      transition: transform var(--t), box-shadow var(--t), border-color var(--t);
+    }
+    .blog-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); border-color: var(--blue-primary); }
+
+    .blog-card-img {
+      width: 100%; height: 200px; overflow: hidden; background: var(--grey);
+    }
+    .blog-card-img img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform .45s ease;
+    }
+    .blog-card:hover .blog-card-img img { transform: scale(1.06); }
+
+    .blog-card-body {
+      padding: 20px 20px 22px; flex: 1; display: flex; flex-direction: column;
+    }
+    .blog-date {
+      font-size: 11px; font-weight: 600;
+      color: var(--text-muted); letter-spacing: .5px;
+      text-transform: uppercase; margin-bottom: 8px; display: block;
+    }
+    .blog-card-title {
+      font-size: 15px; font-weight: 800; color: var(--text);
+      line-height: 1.4; margin-bottom: 10px; flex-shrink: 0;
+    }
+    .blog-card-title a { color: var(--text); transition: color var(--t); }
+    .blog-card-title a:hover { color: var(--blue-primary); }
+    .blog-excerpt {
+      font-size: 13px; color: var(--text-soft); line-height: 1.65;
+      flex: 1; margin-bottom: 16px;
+      /* Clamp to 3 lines */
+      display: -webkit-box; -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical; overflow: hidden;
+    }
+    .blog-read-more {
+      font-size: 13px; font-weight: 700; color: var(--blue-primary);
+      display: inline-flex; align-items: center; gap: 5px;
+      margin-top: auto;
+      transition: color var(--t), gap var(--t);
+    }
+    .blog-read-more:hover { color: var(--blue-dark); gap: 8px; }
+    .blog-read-more i { font-size: 11px; }
+
+    /* ============================================================
+       PAGINATION
+    ============================================================ */
+    .pagination-wrap {
+      display: flex; justify-content: center;
+      gap: 8px; margin-top: 48px; flex-wrap: wrap;
+    }
+    .page-link-btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 10px 22px;
+      border: 2px solid var(--blue-primary);
+      color: var(--blue-primary) !important;
+      border-radius: var(--radius);
+      font-size: 14px; font-weight: 700;
+      transition: background var(--t), color var(--t), transform var(--t);
+    }
+    .page-link-btn:hover {
+      background: var(--blue-primary); color: var(--white) !important;
+      transform: translateY(-1px);
+    }
+
+    /* ============================================================
+       SCROLL REVEAL
+    ============================================================ */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity .5s ease, transform .5s ease; }
+    .reveal.in { opacity: 1; transform: none; }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+.sqi-footer {
+  background: #1a1a1a;
+  color: rgba(255,255,255,.72);
+  padding: 0;
+}
+
+.footer-top-row {
+  padding: 60px 0 40px;
+}
+
+/* Brand */
+.footer-brand h4 {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.footer-brand p {
+  font-size: 13.5px;
+  color: rgba(255,255,255,.65);
+  line-height: 1.65;
+}
+
+/* Socials */
+.footer-socials {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.footer-socials a {
+  width: 36px;
+  height: 36px;
+  background: rgba(255,255,255,.1);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255,255,255,.8);
+  font-size: 15px;
+  transition: background var(--transition), color var(--transition);
+}
+.footer-socials a:hover {
+  background: var(--blue-primary);
+  color: var(--white);
+}
+
+/* Emails */
+.footer-emails h6 {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: rgba(255,255,255,.5);
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.footer-emails ul li {
+  margin-bottom: 6px;
+}
+.footer-emails ul li a {
+  font-size: 13px;
+  color: rgb(86,195,249);
+  transition: color var(--transition);
+}
+.footer-emails ul li a:hover { color: var(--orange-primary); }
+
+/* Col titles */
+.footer-col-title {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: rgba(255,255,255,.5);
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+/* Quick links */
+.footer-links li {
+  margin-bottom: 8px;
+}
+.footer-links li a {
+  font-size: 13px;
+  color: rgba(255,255,255,.65);
+  transition: color var(--transition);
+}
+.footer-links li a:hover { color: var(--orange-primary); }
+
+/* Addresses */
+.footer-address {
+  font-size: 12px;
+  color: rgba(255,255,255,.6);
+  line-height: 1.6;
+  margin-bottom: 4px;
+}
+.footer-address strong { color: rgba(255,255,255,.85); }
+
+.footer-map-link {
+  font-size: 12px;
+  color: var(--orange-primary);
+  font-weight: 600;
+  transition: color var(--transition);
+}
+.footer-map-link:hover {
+  color: rgb(86,195,249);
+  text-decoration: underline;
+}
+
+/* Footer bottom */
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,.1);
+  padding: 18px 0;
+  text-align: center;
+}
+.footer-bottom p {
+  font-size: 13px;
+  color: rgba(255,255,255,.45);
+  margin: 0;
+}
+
+/* ================================================================
+   BACK TO TOP
+   ================================================================ */
+.back-to-top {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 999;
+  width: 42px;
+  height: 42px;
+  background: var(--blue-primary);
+  color: var(--white);
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(0,0,0,.25);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(12px);
+  transition: opacity 0.3s, transform 0.3s, background 0.2s;
+}
+.back-to-top.visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+.back-to-top:hover { background: var(--blue-dark); }
+
+.git_footer{
+    display: inline-flex;
+    justify-content: space-between;
+    height: 50px;
+    width: 100%;
+    border-top: 0px solid rgb(218, 220, 222);
+    align-items: center;
+    padding-left: 30px;
+    background-color: rgb(0, 0, 0);
+}
+
+.git_footer a{
+    text-decoration: none;
+    color: rgb(232, 17, 35);
+    font-size: 20px;
+    font-weight: 600;
+}
+
+    /* ============================================================
+       RESPONSIVE
+    ============================================================ */
+    @media (max-width: 991.98px) {
+      .sqi-nav-list { padding: 10px 0; gap: 0; }
+      .sqi-nav-link { border-radius: 0; }
+      .sqi-drop { box-shadow: none; border: none; background: var(--off-white); animation: none; margin-top: 0 !important; padding-left: 12px; }
+      .featured-img-wrap img { height: 260px; }
+      .sidebar-list { gap: 10px; }
+    }
+    @media (max-width: 767.98px) {
+      .page-title-band { padding: 36px 0 28px; }
+      .featured-section { padding: 44px 0; }
+      .blog-grid-section { padding: 44px 0 52px; }
+      .featured-img-wrap img { height: 220px; }
+      .btt { bottom: 16px; right: 16px; width: 38px; height: 38px; font-size: 14px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ================================================================
+       FRAUD WARNING POPUP
+  ================================================================ -->
+  <div class="modal fade" id="fraudModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered fraud-dialog">
+      <div class="modal-content fraud-content">
+        <div class="modal-body fraud-body">
+          <button class="fraud-x" data-bs-dismiss="modal" type="button">&times;</button>
+          <img src="Images/red-bell.png" alt="Alert" class="fraud-bell"
+            onerror="this.outerHTML='<span style=\'font-size:3rem;display:block;margin-bottom:14px;\'>🔔</span>'" />
+          <h5>Please be advised!</h5>
+          <p>Do not make any payment for our courses or services to any account or platform other than corporate accounts provided by SQI College of ICT.</p>
+          <p>The College will not be held responsible for any loss or issue arising from payments made to unauthorised individuals or channels.</p>
+          <p><strong>Thank you for your cooperation.</strong></p>
+          <button class="fraud-ok" data-bs-dismiss="modal" type="button">OK, I understand</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================================================================
+       STICKY NAVBAR
+  ================================================================ -->
+  <nav class="sqi-navbar" id="sqiNavbar">
+    <div class="container">
+      <div class="nav-inner">
+
+        <!-- Logo -->
+        <a href="index.html" class="nav-logo">
+          <img src="Images/icon.jpg" alt="SQI College of ICT"
+            onerror="this.style.display='none';document.getElementById('logoFb').style.display='flex';" />
+          <div id="logoFb" class="logo-fallback" style="display:none;">
+            <span class="logo-badge">SQI</span>
+            <div class="logo-words">
+              <span>SQI College of ICT</span>
+              <small>Acquire In-Demand Tech Skills</small>
+            </div>
+          </div>
+        </a>
+
+        <!-- Hamburger -->
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+
+        <!-- Menu -->
+        <ul class="nav-menu" id="navMenu">
+
+          <li class="nav-item">
+            <a href="#" class="nav-link">About <i class="fas fa-chevron-down chevron"></i></a>
+            <ul class="dropdown">
+              <li><a href="story.html">Our Story</a></li>
+              <li><a href="team.html">Our Team</a></li>
+              <li><a href="campus.html">Campus Info</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a href="#" class="nav-link">Programmes <i class="fas fa-chevron-down chevron"></i></a>
+            <ul class="dropdown">
+              <li><a href="pre-nd.html">Pre-National Diploma</a></li>
+              <li><a href="nd.html">National Diploma</a></li>
+              <li><a href="procert.html">Professional Diploma Program</a></li>
+              <li><a href="epcp.html">Executive Professional Certificate Programme</a></li>
+              <li><a href="bsc.html">Bachelor Degree | LAUTECH PT</a></li>
+              <li><a href="post-utme.html">Post-UTME</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a href="#" class="nav-link">Admissions <i class="fas fa-chevron-down chevron"></i></a>
+            <ul class="dropdown">
+              <li><a href="afap.html">Apply for a Programme</a></li>
+              <li><a href="mos.html">Mode of Study</a></li>
+              <li><a href="tuition.html">Tuition</a></li>
+              <li><a href="https://drive.google.com/file/d/1w_itppr3K0MMy5Sdf8uFkCO7eCyAYiRf/view?usp=sharing">Student's Handbook</a></li>
+              <li><a href="faq.html">Frequently Asked Questions</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a href="#" class="nav-link">E-Portal <i class="fas fa-chevron-down chevron"></i></a>
+            <ul class="dropdown">
+              <li><a href="student.html">Student</a></li>
+              <li><a href="staff.html">Staff</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a href="scholarship.html" class="nav-link">SQI Scholarship</a>
+          </li>
+          <li class="nav-item">
+            <a href="news.html" class="nav-link">News</a>
+          </li>
+          <li class="nav-item">
+            <a href="contact.html" class="nav-link">Contact</a>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ================================================================
+       PAGE TITLE
+  ================================================================ -->
+  <div class="page-title-band">
+    <div class="container">
+      <h1>News</h1>
+    </div>
+  </div>
+
+  <!-- ================================================================
+       FEATURED + SIDEBAR SECTION
+  ================================================================ -->
+  <section class="featured-section">
+    <div class="container">
+      <div class="row g-4 align-items-stretch">
+
+        <!-- FEATURED CARD (large, left) -->
+        <div class="col-lg-7">
+          <div class="featured-card reveal">
+            <a href="#" class="featured-img-wrap">
+              <img src="Images/news/1.jpg"
+                alt="SQI College of ICT Partners with Ladoke Akintola University of Technology LAUTECH"
+                onerror="this.src='Images/news/1.jpg'" />
+            </a>
+            <div class="featured-body">
+              <a href="#" class="cat-badge">SQI News</a>
+              <h2 class="featured-title">
+                <a href="#">SQI College of ICT Partners with Ladoke Akintola University of Technology LAUTECH</a>
+              </h2>
+              <p class="featured-excerpt">SQI College of ICT is pleased to formally announce a strategic academic collaboration with Ladoke Akintola University of Technology (LAUTECH) for the support and coordination of selected LAUTECH Part-Time Degree Programmes. This collaboration will operate at: SQI…</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- SIDEBAR LIST (right) -->
+        <div class="col-lg-5">
+          <div class="sidebar-list h-100">
+
+            <!-- Sidebar Item 1 — same as featured -->
+            <div class="sidebar-item reveal">
+              <a href="#" class="sidebar-thumb">
+                <img src="Images/news/1.jpg"
+                  alt="LAUTECH Partnership"
+                  onerror="this.src='Images/news/1.jpg'" />
+              </a>
+              <div class="sidebar-text">
+                <span class="sidebar-date">Feb 13, 2026</span>
+                <h3 class="sidebar-title">
+                  <a href="#">SQI College of ICT Partners with Ladoke Akintola University of Technology LAUTECH</a>
+                </h3>
+              </div>
+            </div>
+
+            <!-- Sidebar Item 2 -->
+            <div class="sidebar-item reveal">
+              <a href="#" class="sidebar-thumb">
+                <img src="Images/news/2.jpg"
+                  alt="Convocation"
+                  onerror="this.src='Images/news/2.jpg'" />
+              </a>
+              <div class="sidebar-text">
+                <span class="sidebar-date">Nov 22, 2025</span>
+                <h3 class="sidebar-title">
+                  <a href="#">SQI College of ICT Holds First Convocation, Honours Pioneer Graduates</a>
+                </h3>
+              </div>
+            </div>
+
+            <!-- Sidebar Item 3 -->
+            <div class="sidebar-item reveal">
+              <a href="#" class="sidebar-thumb">
+                <img src="Images/news/3.jpg"
+                  alt="Matriculation"
+                  onerror="this.src='Images/news/3.jpg'" />
+              </a>
+              <div class="sidebar-text">
+                <span class="sidebar-date">May 5, 2025</span>
+                <h3 class="sidebar-title">
+                  <a href="#">Students embrace new opportunities with matriculation at SQI College of ICT</a>
+                </h3>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       BLOG GRID SECTION
+  ================================================================ -->
+  <section class="blog-grid-section">
+    <div class="container">
+      <div class="row g-4">
+
+        <!-- Card 1 -->
+        <div class="col-sm-6 col-lg-4">
+          <div class="blog-card reveal">
+            <a href="#" class="blog-card-img d-block">
+              <img src="Images/news/1.jpg"
+                alt="LAUTECH Partnership"
+                onerror="this.src='Images/news/1.jpg'" />
+            </a>
+            <div class="blog-card-body">
+              <a href="#" class="cat-badge">SQI News</a>
+              <h2 class="blog-card-title"><a href="#">SQI College of ICT Partners with Ladoke Akintola University of Technology LAUTECH</a></h2>
+              <p class="blog-excerpt">SQI College of ICT is pleased to formally announce a strategic academic collaboration with Ladoke Akintola University of Technology (LAUTECH) for the support and coordination of selected LAUTECH Part-Time Degree Programmes…</p>
+              <a href="#" class="blog-read-more">Read more <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="col-sm-6 col-lg-4">
+          <div class="blog-card reveal">
+            <a href="#" class="blog-card-img d-block">
+              <img src="Images/news/2.jpg"
+                alt="Convocation"
+                onerror="this.src='Images/news/2.jpg'" />
+            </a>
+            <div class="blog-card-body">
+              <a href="#" class="cat-badge">SQI News</a>
+              <h2 class="blog-card-title"><a href="#">SQI College of ICT Holds First Convocation, Honours Pioneer Graduates</a></h2>
+              <p class="blog-excerpt">SQI College of ICT, Ogbomoso, marked a landmark achievement on Saturday, 22nd November 2025, as the institution held its maiden Convocation Ceremony at its main campus along Old Ilorin Road, Ogbomoso…</p>
+              <a href="#" class="blog-read-more">Read more <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="col-sm-6 col-lg-4">
+          <div class="blog-card reveal">
+            <a href="#" class="blog-card-img d-block">
+              <img src="Images/news/3.jpg"
+                alt="Matriculation"
+                onerror="this.src='Images/news/3.jpg'" />
+            </a>
+            <div class="blog-card-body">
+              <a href="#" class="cat-badge">SQI News</a>
+              <h2 class="blog-card-title"><a href="#">Students embrace new opportunities with matriculation at SQI College of ICT</a></h2>
+              <p class="blog-excerpt">SQI College of ICT, Ogbomoso, on Saturday, May 3, 2025, held its 6th Matriculation Ceremony for the 2024/2025 academic session at its main campus along Old Ilorin Road, Ogbomoso…</p>
+              <a href="#" class="blog-read-more">Read more <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="col-sm-6 col-lg-4">
+          <div class="blog-card reveal">
+            <a href="#" class="blog-card-img d-block">
+              <img src="Images/news/7.svg"
+                alt="SQI News"
+                onerror="this.src='Images/news/7.svg'" />
+            </a>
+            <div class="blog-card-body">
+              <a href="#" class="cat-badge">SQI News</a>
+              <h2 class="blog-card-title"><a href="#">SQI College of ICT Celebrates Another Successful Academic Year</a></h2>
+              <p class="blog-excerpt">SQI College of ICT celebrated another milestone at the end of yet another successful academic session, recognising students and staff who showed exceptional dedication and performance throughout the year…</p>
+              <a href="#" class="blog-read-more">Read more <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="col-sm-6 col-lg-4">
+          <div class="blog-card reveal">
+            <a href="#" class="blog-card-img d-block">
+              <img src="Images/news/8.svg"
+                alt="Scholarship"
+                onerror="this.src='Images/news/8.svg'" />
+            </a>
+            <div class="blog-card-body">
+              <a href="#" class="cat-badge">SQI News</a>
+              <h2 class="blog-card-title"><a href="#">2024 SQI Annual Scholarship Programme Now Open</a></h2>
+              <p class="blog-excerpt">The annual SQI scholarship program is now open to applicants. This program allows passionate individuals to study any of our ICT courses at little or no cost through a structured test and assessment process…</p>
+              <a href="#" class="blog-read-more">Read more <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 6 -->
+        <div class="col-sm-6 col-lg-4">
+          <div class="blog-card reveal">
+            <a href="#" class="blog-card-img d-block">
+              <img src="Images/news/9.jpg"
+                alt="SQI Hub"
+                onerror="this.src='Images/news/9.jpg'" />
+            </a>
+            <div class="blog-card-body">
+              <a href="#" class="cat-badge">SQI News</a>
+              <h2 class="blog-card-title"><a href="#">SQI College of ICT Opens State-of-the-Art Innovation Hub</a></h2>
+              <p class="blog-excerpt">SQI College of ICT has opened a brand-new innovation hub designed to support student projects, start-up incubation, and collaborative research in the fields of software engineering and technology…</p>
+              <a href="#" class="blog-read-more">Read more <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /row -->
+
+      <!-- Pagination -->
+      <div class="pagination-wrap reveal">
+        <a href="#" class="page-link-btn">
+          <i class="fas fa-chevron-left"></i> Older Entries
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================================================================
+       FOOTER
+  ================================================================ -->
+  <footer class="sqi-footer">
+    <div class="container">
+      <div class="row g-5 footer-top-row">
+
+        <!-- Brand + Socials + Emails -->
+        <div class="col-lg-3 col-md-6">
+          <div class="footer-brand">
+            <h4>Hello, we're SQI College of ICT</h4>
+            <p>We provide and lead others in quality ICT education.</p>
+          </div>
+          <div class="footer-socials mt-3">
+            <a href="https://web.facebook.com/sqicict" title="Follow on Facebook" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://twitter.com/sqicict" title="Follow on X" target="_blank"><i class="fab fa-x-twitter"></i></a>
+            <a href="https://www.linkedin.com/company/sqicict/" title="Follow on LinkedIn" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://www.youtube.com/@sqistudios" title="Follow on Youtube" target="_blank"><i class="fab fa-youtube"></i></a>
+            <a href="https://www.instagram.com/sqicict/" title="Follow on Instagram" target="_blank"><i class="fab fa-instagram"></i></a>
+          </div>
+          <div class="footer-emails mt-4">
+            <h6>Send us a mail</h6>
+            <ul>
+              <li><a href="#">enquiry@sqi.edu.ng</a></li>
+              <li><a href="#">admissions@sqi.edu.ng</a></li>
+              <li><a href="#">examsandrecords@sqi.edu.ng</a></li>
+              <li><a href="#">rector@sqi.edu.ng</a></li>
+              <li><a href="#">partnerships@sqi.edu.ng</a></li>
+              <li><a href="#">internship@sqi.edu.ng</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="col-lg-2 col-md-6 col-sm-6">
+          <h6 class="footer-col-title">Quick Links</h6>
+          <ul class="footer-links">
+            <li><a href="#">Application Portal</a></li>
+            <li><a href="student.html">Student Portal</a></li>
+            <li><a href="procert.html">Professional Courses</a></li>
+            <li><a href="nd.html">ND Courses</a></li>
+            <li><a href="campus.html">Campus Info</a></li>
+            <li><a href="#">Accommodation</a></li>
+            <li><a href="scholarship.html">SQI Scholarship</a></li>
+            <li><a href="#">SQI Anthem</a></li>
+            <li><a href="#">Donate</a></li>
+          </ul>
+        </div>
+
+        <!-- Locations col 1 -->
+        <div class="col-lg-4 col-md-6">
+          <div class="row g-3">
+            <div class="col-6">
+              <h6 class="footer-col-title">Ogbomoso</h6>
+              <p class="footer-address">Old Ilorin Road, Opposite Yoaco Filling Station, Yoaco, Ogbomoso.<br /><strong>0906 281 9991, 0906 281 9993</strong></p>
+              <a href="#" class="footer-map-link" target="_blank">Locate on the map</a>
+              <h6 class="footer-col-title">Ibadan</h6>
+              <p class="footer-address">First Floor, H25 Heritage Mall, Opposite Central Bank of Nigeria, Dugbe, Ibadan.<br /><strong>0906 281 9994</strong></p>
+              <a href="#" class="footer-map-link" target="_blank">Locate on the map</a>
+            </div>
+            <div class="col-6">
+              <h6 class="footer-col-title">Lagos</h6>
+              <p class="footer-address">Suite 219, Opic Plaza, Mobolaji Bank Anthony Way, beside Sheraton Hotel, Ikeja, Lagos<br /><strong>0906 281 9999</strong></p>
+              <a href="#" class="footer-map-link" target="_blank">Locate on the map</a>
+              <h6 class="footer-col-title">Abeokuta</h6>
+              <p class="footer-address">First floor, OPIC Tower building, Okeilewo, Abeokuta.<br /><strong>0906 281 9996</strong></p>
+              <a href="#" class="footer-map-link" target="_blank">Locate on the map</a>
+            </div>
+            <div class="col-6">
+              <h6 class="footer-col-title">Virtual</h6>
+              <p class="footer-address">Available Globally Online.<br /><strong>0906 281 9992</strong></p>
+              <a href="#" class="footer-map-link" target="_blank">Locate on the map</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Locations col 2 -->
+        <div class="col-lg-3 col-md-6">
+          <div class="row g-3">
+            <div class="col-12">
+              <p class="footer-address mt-2">Christianah Oyinade Ajoke House, beside First Bank, Arisekola Central Mosque, Opposite Jaiz bank, Idi Ape, Iwo road, Ibadan.<br /><strong>0906 281 9995</strong></p>
+              <a href="#" class="footer-map-link" target="_blank">Locate on the map</a>
+              <p class="footer-address mt-2">Haier Thermocool Building, opposite SAO filling station, Challenge, Ibadan, Oyo State.<br /><strong>0906 281 9992</strong></p>
+              <a href="#" class="footer-map-link" target="_blank">Locate on the map</a>
+            </div>
+            <div class="col-6">
+              <h6 class="footer-col-title">Osogbo</h6>
+              <p class="footer-address">Opposite Jaiz bank, Ogo-Oluwa, Osogbo<br /><strong>0906 281 9997</strong></p>
+              <a href="#" class="footer-map-link" target="_blank">Locate on the map</a>
+            </div>
+            <div class="col-6">
+              <h6 class="footer-col-title">Abuja</h6>
+              <p class="footer-address">Suite Banking Hall SF, Febson Mall, Wuse Zone 4, Abuja<br /><strong>090 628 20000</strong></p>
+              <a href="#" class="footer-map-link" target="_blank">Locate on the map</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Footer Bottom -->
+      <div class="footer-bottom">
+        <p>Copyright &copy; 2026 | SQI ICT Consultants | Powered by Edozzier</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ================================================================
+       BACK TO TOP BUTTON
+  ================================================================ -->
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+  <div class="git_footer">
+    <a href="https://github.com/Analyst-Foundry">By Analyst Foundry</a>
+  </div>
+
+  <!-- ================================================================
+       SCRIPTS
+  ================================================================ -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    (function () {
+      'use strict';
+
+      /* Fraud modal */
+      const fraudEl = document.getElementById('fraudModal');
+      if (fraudEl) {
+        const fm = new bootstrap.Modal(fraudEl, { keyboard: true });
+        setTimeout(() => fm.show(), 800);
+      }
+
+      /* Sticky navbar */
+      const nav = document.getElementById('sqiNavbar');
+      const sn  = () => nav.classList.toggle('scrolled', window.scrollY > 10);
+      window.addEventListener('scroll', sn, { passive: true }); sn();
+
+      /* Dropdown chevron */
+      document.querySelectorAll('.sqi-dd').forEach(el => {
+        el.addEventListener('show.bs.dropdown', () => { const c = el.querySelector('.sqi-chev'); if (c) c.style.transform = 'rotate(180deg)'; });
+        el.addEventListener('hide.bs.dropdown', () => { const c = el.querySelector('.sqi-chev'); if (c) c.style.transform = 'rotate(0deg)'; });
+      });
+
+      /* Close mobile nav */
+      const nc = document.getElementById('navmenu');
+      document.querySelectorAll('#navmenu .sqi-di').forEach(i => {
+        i.addEventListener('click', () => { if (window.innerWidth < 992) bootstrap.Collapse.getInstance(nc)?.hide(); });
+      });
+
+      /* Scroll reveal */
+      const ro = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (!e.isIntersecting) return;
+          const row = e.target.closest('.row');
+          const siblings = Array.from((row || e.target.parentElement).querySelectorAll('.reveal:not(.in)'));
+          const idx = siblings.indexOf(e.target);
+          setTimeout(() => e.target.classList.add('in'), Math.min(idx * 90, 450));
+          ro.unobserve(e.target);
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -24px 0px' });
+      document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+
+      /* Back to top */
+      const btt = document.getElementById('btt');
+      window.addEventListener('scroll', () => btt.classList.toggle('on', window.scrollY > 400), { passive: true });
+      btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    })();
+  </script>
+</body>
+</html>

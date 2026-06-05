@@ -1,0 +1,1184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+  <title>Frequently Asked Questions - Acquire In-Demand Tech skills.</title>
+  <meta name="description" content="Frequently asked questions about SQI College of ICT programmes, scholarships, modes of study and more." />
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <!-- Google Fonts: Open Sans -->
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ============================================================
+       CSS VARIABLES
+    ============================================================ */
+    :root {
+      --blue-primary: rgb(0,11,63);
+      --blue-dark:    rgb(9,3,38);
+      --blue-deeper:  rgb(86,195,249);
+      --blue-light:   rgb(46,163,242);
+      --blue-mid:     rgb(0,11,63);
+      --orange-primary: rgb(239,112,40);
+      --white:        #ffffff;
+      --off-white:    #f8f9fa;
+      --grey:         #f2f4f6;
+      --border:       #dee2e6;
+      --border-lt:    #e9ecef;
+      --text:         #212529;
+      --text-mid:     #495057;
+      --text-soft:    #6c757d;
+      --text-muted:   #adb5bd;
+      --dark-bg:      #1a1a1a;
+      --shadow-xs:    0 1px 4px rgba(0,0,0,.06);
+      --shadow-sm:    0 2px 12px rgba(0,0,0,.08);
+      --shadow-md:    0 6px 28px rgba(0,0,0,.13);
+      --shadow-lg:    0 12px 48px rgba(0,0,0,.18);
+      --radius:       8px;
+      --radius-lg:    14px;
+      --navbar-h:     72px;
+      --t:            .25s ease;
+    }
+
+    /* ============================================================
+       RESET & BASE
+    ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; }
+
+    body {
+      font-family: 'Open Sans', sans-serif;
+      font-size: 15px;
+      color: var(--text);
+      background: var(--white);
+      line-height: 1.75;
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; text-decoration: none; transition: color var(--t); }
+    a:hover { color: var(--blue-primary); }
+    img { max-width: 100%; display: block; }
+    ul  { list-style: none; padding: 0; margin: 0; }
+
+    /* ============================================================
+       FRAUD POPUP MODAL
+    ============================================================ */
+    .fraud-dialog  { max-width: 380px; }
+    .fraud-content {
+      border: none; border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg); overflow: hidden;
+    }
+    .fraud-body {
+      padding: 40px 32px 32px; text-align: center; position: relative;
+    }
+    .fraud-x {
+      position: absolute; top: 14px; right: 14px;
+      background: none; border: none; font-size: 22px; line-height: 1;
+      cursor: pointer; color: var(--text-soft); transition: color var(--t);
+    }
+    .fraud-x:hover { color: var(--text); }
+    .fraud-bell-img {
+      width: 64px; height: 64px; object-fit: contain;
+      margin: 0 auto 16px; display: block;
+    }
+    .fraud-body h5 { font-size: 18px; font-weight: 700; color: var(--text); margin-bottom: 14px; }
+    .fraud-body p  { font-size: 13.5px; color: var(--text-mid); line-height: 1.65; margin-bottom: 10px; }
+    .fraud-ok {
+      display: inline-block; margin-top: 14px;
+      padding: 10px 32px; background: var(--blue-primary); color: var(--white);
+      border: none; border-radius: var(--radius);
+      font-size: 14px; font-weight: 700; cursor: pointer;
+      transition: background var(--t);
+    }
+    .fraud-ok:hover { background: var(--blue-dark); }
+
+    /* ============================================================
+       STICKY NAVBAR
+    ============================================================ */
+  .sqi-navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: var(--white);
+      box-shadow: 0 2px 10px rgba(0,0,0,.10);
+      transition: box-shadow var(--transition);
+    }
+    .sqi-navbar.scrolled { box-shadow: 0 4px 20px rgba(0,0,0,.15); }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: var(--navbar-h);
+    }
+
+    /* Logo */
+    .nav-logo img {
+      height: 52px;
+      width: auto;
+      object-fit: contain;
+    }
+    .logo-fallback {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .logo-badge {
+      background: var(--blue);
+      color: var(--white);
+      font-weight: 800;
+      font-size: 14px;
+      padding: 6px 10px;
+      border-radius: 6px;
+      letter-spacing: 1px;
+    }
+    .logo-words { display: flex; flex-direction: column; }
+    .logo-words span { font-size: 14px; font-weight: 700; color: var(--blue-dark); }
+    .logo-words small { font-size: 10px; color: var(--text-soft); }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 6px;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--text);
+      border-radius: 2px;
+      transition: all .3s;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* Nav menu */
+    .nav-menu { display: flex; align-items: center; gap: 2px; }
+
+    .nav-item { position: relative; }
+    .nav-link {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      padding: 8px 13px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+      border-radius: var(--radius);
+      white-space: nowrap;
+      transition: color var(--transition), background var(--transition);
+    }
+    .nav-link:hover, .nav-link.active { color: var(--blue); background: var(--blue-light); }
+    .nav-link .chevron {
+      font-size: 10px;
+      transition: transform .25s;
+    }
+    .nav-item:hover .chevron { transform: rotate(180deg); }
+
+    /* Dropdown */
+    .dropdown {
+      display: none;
+      position: absolute;
+      top: calc(100% + 4px);
+      left: 0;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-md);
+      min-width: 250px;
+      padding: 6px 0;
+      animation: dropIn .2s ease;
+      z-index: 200;
+    }
+    @keyframes dropIn {
+      from { opacity: 0; transform: translateY(-8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .nav-item:hover .dropdown { display: block; }
+    .dropdown a {
+      display: block;
+      padding: 9px 18px;
+      font-size: 13.5px;
+      font-weight: 500;
+      color: var(--text);
+      border-left: 3px solid transparent;
+      transition: background var(--transition), color var(--transition), border-color var(--transition);
+    }
+    .dropdown a:hover {
+      background: var(--blue-light);
+      color: var(--blue);
+      border-left-color: var(--blue);
+    }
+
+    /* ============================================================
+       PAGE HERO / HEADER
+    ============================================================ */
+    .page-hero {
+      background: linear-gradient(135deg, var(--blue-dark) 0%, var(--blue-primary) 55%, #2aad6a 100%);
+      padding: 80px 0 72px;
+      position: relative; overflow: hidden; text-align: center;
+    }
+    .page-hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
+      pointer-events: none;
+    }
+    .page-hero .container { position: relative; z-index: 1; }
+
+    .hero-eyebrow {
+      font-size: 11px; font-weight: 700; letter-spacing: 3px;
+      text-transform: uppercase; color: rgba(255,255,255,.6); margin-bottom: 12px;
+    }
+    .hero-h3 {
+      font-size: clamp(24px, 4vw, 40px);
+      font-weight: 800; color: var(--white);
+      text-transform: uppercase; letter-spacing: 1.5px;
+      line-height: 1.15; margin-bottom: 14px;
+    }
+    .hero-h4 {
+      font-size: clamp(14px, 2vw, 18px);
+      font-weight: 500; color: rgba(255,255,255,.82);
+      margin: 0;
+    }
+
+    /* ============================================================
+       FAQ MAIN CONTENT
+    ============================================================ */
+    .faq-main {
+      padding: 72px 0;
+      background: var(--white);
+    }
+
+    /* -------- Search / filter hint -------- */
+    .faq-search-bar {
+      position: relative; margin-bottom: 48px;
+    }
+    .faq-search-bar input {
+      width: 100%; padding: 14px 20px 14px 48px;
+      border: 2px solid var(--border); border-radius: var(--radius-lg);
+      font-family: 'Open Sans', sans-serif;
+      font-size: 15px; color: var(--text); outline: none;
+      transition: border-color var(--t), box-shadow var(--t);
+      box-shadow: var(--shadow-xs);
+    }
+    .faq-search-bar input:focus {
+      border-color: var(--blue-primary);
+      box-shadow: 0 0 0 3px rgba(30,125,52,.12);
+    }
+    .faq-search-bar input::placeholder { color: var(--text-muted); }
+    .faq-search-icon {
+      position: absolute; left: 16px; top: 50%; transform: translateY(-50%);
+      color: var(--text-muted); font-size: 16px; pointer-events: none;
+    }
+
+    /* -------- Category tabs -------- */
+    .faq-tabs {
+      display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 40px;
+    }
+    .faq-tab-btn {
+      padding: 7px 18px;
+      background: var(--off-white); color: var(--text-soft);
+      border: 1px solid var(--border); border-radius: 100px;
+      font-size: 13px; font-weight: 600; cursor: pointer;
+      transition: background var(--t), color var(--t), border-color var(--t);
+    }
+    .faq-tab-btn:hover, .faq-tab-btn.active {
+      background: var(--blue-primary); color: var(--white); border-color: var(--blue-primary);
+    }
+
+    /* -------- Bootstrap Accordion custom -------- */
+    .sqi-accordion { border-radius: var(--radius-lg); overflow: hidden; }
+
+    .sqi-accordion .accordion-item {
+      border: 1px solid var(--border) !important;
+      border-radius: 0 !important;
+      border-bottom: none !important;
+      background: var(--white);
+      transition: box-shadow var(--t);
+    }
+    .sqi-accordion .accordion-item:first-child {
+      border-radius: var(--radius) var(--radius) 0 0 !important;
+    }
+    .sqi-accordion .accordion-item:last-child {
+      border-bottom: 1px solid var(--border) !important;
+      border-radius: 0 0 var(--radius) var(--radius) !important;
+    }
+    .sqi-accordion .accordion-item.is-open {
+      box-shadow: var(--shadow-sm);
+    }
+
+    /* Question button */
+    .sqi-accordion .accordion-button {
+      font-family: 'Open Sans', sans-serif;
+      font-size: 15px; font-weight: 700;
+      color: var(--text); background: var(--white);
+      padding: 20px 24px; line-height: 1.45;
+      box-shadow: none !important;
+      gap: 12px;
+    }
+    .sqi-accordion .accordion-button:not(.collapsed) {
+      color: var(--blue-primary); background: var(--blue-light);
+    }
+
+    /* Custom +/- icon replacing Bootstrap chevron */
+    .sqi-accordion .accordion-button::after { display: none; }
+    .sqi-accordion .accordion-button .faq-icon {
+      flex-shrink: 0; width: 28px; height: 28px;
+      border-radius: 50%; background: var(--blue-light);
+      display: flex; align-items: center; justify-content: center;
+      margin-left: auto; transition: background var(--t), transform var(--t);
+    }
+    .sqi-accordion .accordion-button .faq-icon i {
+      font-size: 12px; color: var(--blue-primary); font-weight: 900;
+      transition: transform .3s;
+    }
+    .sqi-accordion .accordion-button:not(.collapsed) .faq-icon {
+      background: var(--blue-primary);
+    }
+    .sqi-accordion .accordion-button:not(.collapsed) .faq-icon i {
+      color: var(--white); transform: rotate(45deg);
+    }
+
+    /* Answer body */
+    .sqi-accordion .accordion-body {
+      font-size: 14.5px; color: var(--text-mid);
+      line-height: 1.8; padding: 16px 24px 22px;
+      background: var(--white);
+    }
+    .sqi-accordion .accordion-body p { margin-bottom: 10px; }
+    .sqi-accordion .accordion-body p:last-child { margin-bottom: 0; }
+    .sqi-accordion .accordion-body a {
+      color: var(--blue-primary); font-weight: 600;
+      transition: color var(--t);
+    }
+    .sqi-accordion .accordion-body a:hover { color: var(--blue-dark); text-decoration: underline; }
+
+    /* -------- CTA band below FAQs -------- */
+    .faq-cta-band {
+      background: var(--blue-light);
+      border: 1px solid var(--blue-primary);
+      border-radius: var(--radius-lg);
+      padding: 32px 28px;
+      margin-top: 48px;
+      text-align: center;
+    }
+    .faq-cta-band p {
+      font-size: 15px; color: var(--blue-dark); margin-bottom: 16px; font-weight: 600;
+    }
+    .faq-cta-band .btn-cta {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 11px 28px;
+      background: var(--blue-primary); color: var(--white) !important;
+      border: none; border-radius: var(--radius);
+      font-size: 14px; font-weight: 700; cursor: pointer;
+      transition: background var(--t), transform var(--t);
+    }
+    .faq-cta-band .btn-cta:hover {
+      background: var(--blue-dark); transform: translateY(-1px);
+    }
+
+    /* -------- Left sidebar category labels (desktop) -------- */
+    .faq-sidebar {
+      position: sticky; top: calc(var(--navbar-h) + 20px);
+    }
+    .faq-sidebar-title {
+      font-size: 11px; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--blue-primary); margin-bottom: 16px;
+    }
+    .faq-sidebar-list li {
+      margin-bottom: 6px;
+    }
+    .faq-sidebar-list a {
+      font-size: 13.5px; color: var(--text-mid); font-weight: 500;
+      padding: 6px 0; display: flex; align-items: center; gap: 8px;
+      transition: color var(--t);
+    }
+    .faq-sidebar-list a:hover { color: var(--blue-primary); }
+    .faq-sidebar-list a i { font-size: 12px; color: var(--blue-primary); }
+
+    .faq-contact-box {
+      background: var(--blue-dark);
+      border-radius: var(--radius-lg);
+      padding: 22px 20px;
+      margin-top: 28px;
+    }
+    .faq-contact-box h6 {
+      font-size: 13px; font-weight: 700; color: var(--white);
+      margin-bottom: 10px;
+    }
+    .faq-contact-box p {
+      font-size: 13px; color: rgba(255,255,255,.75); margin-bottom: 10px; line-height: 1.6;
+    }
+    .faq-contact-box a {
+      font-size: 13px; font-weight: 700; color: #a8d8b0;
+      display: flex; align-items: center; gap: 7px;
+      transition: color var(--t);
+    }
+    .faq-contact-box a:hover { color: var(--white); }
+
+    /* ============================================================
+       SCROLL REVEAL
+    ============================================================ */
+    .reveal {
+      opacity: 0; transform: translateY(24px);
+      transition: opacity .5s ease, transform .5s ease;
+    }
+    .reveal.in { opacity: 1; transform: none; }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+.sqi-footer {
+  background: #1a1a1a;
+  color: rgba(255,255,255,.72);
+  padding: 0;
+}
+
+.footer-top-row {
+  padding: 60px 0 40px;
+}
+
+/* Brand */
+.footer-brand h4 {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.footer-brand p {
+  font-size: 13.5px;
+  color: rgba(255,255,255,.65);
+  line-height: 1.65;
+}
+
+/* Socials */
+.footer-socials {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.footer-socials a {
+  width: 36px;
+  height: 36px;
+  background: rgba(255,255,255,.1);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255,255,255,.8);
+  font-size: 15px;
+  transition: background var(--transition), color var(--transition);
+}
+.footer-socials a:hover {
+  background: var(--blue-primary);
+  color: var(--white);
+}
+
+/* Emails */
+.footer-emails h6 {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: rgba(255,255,255,.5);
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.footer-emails ul li {
+  margin-bottom: 6px;
+}
+.footer-emails ul li a {
+  font-size: 13px;
+  color: rgb(86,195,249);
+  transition: color var(--transition);
+}
+.footer-emails ul li a:hover { color: var(--orange-primary); }
+
+/* Col titles */
+.footer-col-title {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: rgba(255,255,255,.5);
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+/* Quick links */
+.footer-links li {
+  margin-bottom: 8px;
+}
+.footer-links li a {
+  font-size: 13px;
+  color: rgba(255,255,255,.65);
+  transition: color var(--transition);
+}
+.footer-links li a:hover { color: var(--orange-primary); }
+
+/* Addresses */
+.footer-address {
+  font-size: 12px;
+  color: rgba(255,255,255,.6);
+  line-height: 1.6;
+  margin-bottom: 4px;
+}
+.footer-address strong { color: rgba(255,255,255,.85); }
+
+.footer-map-link {
+  font-size: 12px;
+  color: var(--orange-primary);
+  font-weight: 600;
+  transition: color var(--transition);
+}
+.footer-map-link:hover {
+  color: rgb(86,195,249);
+  text-decoration: underline;
+}
+
+/* Footer bottom */
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,.1);
+  padding: 18px 0;
+  text-align: center;
+}
+.footer-bottom p {
+  font-size: 13px;
+  color: rgba(255,255,255,.45);
+  margin: 0;
+}
+
+/* ================================================================
+   BACK TO TOP
+   ================================================================ */
+.back-to-top {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 999;
+  width: 42px;
+  height: 42px;
+  background: var(--blue-primary);
+  color: var(--white);
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(0,0,0,.25);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(12px);
+  transition: opacity 0.3s, transform 0.3s, background 0.2s;
+}
+.back-to-top.visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+.back-to-top:hover { background: var(--blue-dark); }
+
+.git_footer{
+    display: inline-flex;
+    justify-content: space-between;
+    height: 50px;
+    width: 100%;
+    border-top: 0px solid rgb(218, 220, 222);
+    align-items: center;
+    padding-left: 30px;
+    background-color: rgb(0, 0, 0);
+}
+
+.git_footer a{
+    text-decoration: none;
+    color: rgb(232, 17, 35);
+    font-size: 20px;
+    font-weight: 600;
+}
+
+    /* ============================================================
+       RESPONSIVE
+    ============================================================ */
+    @media (max-width: 991.98px) {
+      .sqi-nav-list { padding: 10px 0; gap: 0; }
+      .sqi-nav-link { border-radius: 0; }
+      .sqi-drop { box-shadow: none; border: none; background: var(--off-white); animation: none; margin-top: 0 !important; padding-left: 12px; }
+      .page-hero { padding: 60px 0 52px; }
+      .faq-main { padding: 52px 0; }
+      .faq-sidebar { position: static; }
+    }
+    @media (max-width: 767.98px) {
+      .page-hero { padding: 48px 0 42px; }
+      .faq-main { padding: 44px 0; }
+      .sqi-accordion .accordion-button { padding: 16px 18px; font-size: 14px; }
+      .sqi-accordion .accordion-body { padding: 14px 18px 18px; }
+      .btt { bottom: 16px; right: 16px; width: 38px; height: 38px; font-size: 14px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ================================================================
+       FRAUD WARNING POPUP
+  ================================================================ -->
+  <div class="modal fade" id="fraudModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered fraud-dialog">
+      <div class="modal-content fraud-content">
+        <div class="modal-body fraud-body">
+          <button class="fraud-x" data-bs-dismiss="modal" type="button">&times;</button>
+          <img
+            src="Images/red-bell.png"
+            alt="Alert" class="fraud-bell-img"
+            onerror="this.outerHTML='<span style=\'font-size:3rem;display:block;margin-bottom:14px;\'>🔔</span>'"
+          />
+          <h5>Please be advised!</h5>
+          <p>Do not make any payment for our courses or services to any account or platform other than corporate accounts provided by SQI College of ICT.</p>
+          <p>The College will not be held responsible for any loss or issue arising from payments made to unauthorised individuals or channels.</p>
+          <p><strong>Thank you for your cooperation.</strong></p>
+          <button class="fraud-ok" data-bs-dismiss="modal" type="button">OK, I understand</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================================================================
+       STICKY NAVBAR
+  ================================================================ -->
+  <nav class="sqi-navbar" id="sqiNavbar">
+    <div class="container">
+      <div class="nav-inner">
+
+        <!-- Logo -->
+        <a href="index.html" class="nav-logo">
+          <img src="Images/icon.jpg" alt="SQI College of ICT"
+            onerror="this.style.display='none';document.getElementById('logoFb').style.display='flex';" />
+          <div id="logoFb" class="logo-fallback" style="display:none;">
+            <span class="logo-badge">SQI</span>
+            <div class="logo-words">
+              <span>SQI College of ICT</span>
+              <small>Acquire In-Demand Tech Skills</small>
+            </div>
+          </div>
+        </a>
+
+        <!-- Hamburger -->
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+
+        <!-- Menu -->
+        <ul class="nav-menu" id="navMenu">
+
+          <li class="nav-item">
+            <a href="#" class="nav-link">About <i class="fas fa-chevron-down chevron"></i></a>
+            <ul class="dropdown">
+              <li><a href="story.html">Our Story</a></li>
+              <li><a href="team.html">Our Team</a></li>
+              <li><a href="campus.html">Campus Info</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a href="#" class="nav-link">Programmes <i class="fas fa-chevron-down chevron"></i></a>
+            <ul class="dropdown">
+              <li><a href="pre-nd.html">Pre-National Diploma</a></li>
+              <li><a href="nd.html">National Diploma</a></li>
+              <li><a href="procert.html">Professional Diploma Program</a></li>
+              <li><a href="epcp.html">Executive Professional Certificate Programme</a></li>
+              <li><a href="bsc.html">Bachelor Degree | LAUTECH PT</a></li>
+              <li><a href="post-utme.html">Post-UTME</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a href="#" class="nav-link">Admissions <i class="fas fa-chevron-down chevron"></i></a>
+            <ul class="dropdown">
+              <li><a href="afap.html">Apply for a Programme</a></li>
+              <li><a href="mos.html">Mode of Study</a></li>
+              <li><a href="tuition.html">Tuition</a></li>
+              <li><a href="https://drive.google.com/file/d/1w_itppr3K0MMy5Sdf8uFkCO7eCyAYiRf/view?usp=sharing">Student's Handbook</a></li>
+              <li><a href="faq.html">Frequently Asked Questions</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a href="#" class="nav-link">E-Portal <i class="fas fa-chevron-down chevron"></i></a>
+            <ul class="dropdown">
+              <li><a href="student.html">Student</a></li>
+              <li><a href="staff.html">Staff</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a href="scholarship.html" class="nav-link">SQI Scholarship</a>
+          </li>
+          <li class="nav-item">
+            <a href="news.html" class="nav-link">News</a>
+          </li>
+          <li class="nav-item">
+            <a href="contact.html" class="nav-link">Contact</a>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ================================================================
+       PAGE HERO
+  ================================================================ -->
+  <section class="page-hero">
+    <div class="container">
+      <p class="hero-eyebrow">SQI College of ICT</p>
+      <h3 class="hero-h3">FREQUENTLY ASKED QUESTIONS</h3>
+      <h4 class="hero-h4">What you need to know</h4>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       FAQ MAIN CONTENT
+  ================================================================ -->
+  <section class="faq-main">
+    <div class="container">
+      <div class="row g-5">
+
+        <!-- ==================== SIDEBAR (desktop) ==================== -->
+        <div class="col-lg-3 d-none d-lg-block">
+          <div class="faq-sidebar">
+            <p class="faq-sidebar-title">Question Categories</p>
+            <ul class="faq-sidebar-list">
+              <li><a href="#faq1"><i class="fas fa-chevron-right"></i> Programmes</a></li>
+              <li><a href="#faq2"><i class="fas fa-chevron-right"></i> Course Selection</a></li>
+              <li><a href="#faq3"><i class="fas fa-chevron-right"></i> Mode of Study</a></li>
+              <li><a href="#faq4"><i class="fas fa-chevron-right"></i> Combining Studies</a></li>
+              <li><a href="#faq5"><i class="fas fa-chevron-right"></i> Work & Study</a></li>
+              <li><a href="#faq6"><i class="fas fa-chevron-right"></i> Scholarships</a></li>
+              <li><a href="#faq7"><i class="fas fa-chevron-right"></i> How to Apply</a></li>
+              <li><a href="#faq8"><i class="fas fa-chevron-right"></i> Scholarship Dates</a></li>
+              <li><a href="#faq9"><i class="fas fa-chevron-right"></i> Requirements</a></li>
+            </ul>
+
+            <div class="faq-contact-box">
+              <h6>Still have questions?</h6>
+              <p>Our team is ready to help with any other questions you may have.</p>
+              <a href="https://wa.me/+2349062819992" target="_blank" rel="noopener">
+                <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- ==================== FAQ ACCORDION ==================== -->
+        <div class="col-lg-9">
+
+          <!-- Search bar -->
+          <div class="faq-search-bar reveal">
+            <i class="fas fa-search faq-search-icon"></i>
+            <input type="text" id="faqSearch" placeholder="Search questions…" autocomplete="off" />
+          </div>
+
+          <!-- Accordion -->
+          <div class="accordion sqi-accordion reveal" id="faqAccordion">
+
+            <!-- Q1 -->
+            <div class="accordion-item" id="faq1">
+              <h2 class="accordion-header">
+                <button class="accordion-button" type="button"
+                  data-bs-toggle="collapse" data-bs-target="#ans1"
+                  aria-expanded="true" aria-controls="ans1">
+                  What is the difference between the Professional Certificate Programme and National Diploma?
+                  <span class="faq-icon"><i class="fas fa-plus"></i></span>
+                </button>
+              </h2>
+              <div id="ans1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                  <p>The Professional Certificate Programme is a wide range of edge-cutting IT certification courses offered in SQI College of ICT to people who want to advance their career while The National Diploma (ND) offered at SQI College of ICT is an approved academic program of National Board for Technical Education (NBTE) an important organ under the Nigerian Federal Ministry of Education. The National Diploma programme provides access to Technical and Vocational education in Nigeria.</p>
+                  <p>When students complete academic studies, they are awarded the National Diploma which conforms with the standard National Diploma certificates awarded in polytechnics and mono-technics in Nigeria.</p>
+                  <p>Students who successfully complete the ND programme can use the Diploma certificate to seek admissions into the University through Direct Entry or for Higher National Diploma (HND).</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Q2 -->
+            <div class="accordion-item" id="faq2">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button"
+                  data-bs-toggle="collapse" data-bs-target="#ans2"
+                  aria-expanded="false" aria-controls="ans2">
+                  Which course is the best for me?
+                  <span class="faq-icon"><i class="fas fa-plus"></i></span>
+                </button>
+              </h2>
+              <div id="ans2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                  <p>There's no particular yardstick to tell which course could be best for you. You may likely view our course brochure to find a course that suits you.</p>
+                  <p>You may also visit any of our offices for counseling.</p>
+                  <p>Or <a href="https://wa.me/+2349062819992" target="_blank" rel="noopener">chat with us on WhatsApp</a></p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Q3 -->
+            <div class="accordion-item" id="faq3">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button"
+                  data-bs-toggle="collapse" data-bs-target="#ans3"
+                  aria-expanded="false" aria-controls="ans3">
+                  What if I don't have time to come to class?
+                  <span class="faq-icon"><i class="fas fa-plus"></i></span>
+                </button>
+              </h2>
+              <div id="ans3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                  <p>In case you have a strong passion for learning but you cannot afford to be physically present for classes for one reason or the other, you may consider joining either of our virtual classes or online tutorials.</p>
+                  <p><a href="mos.html" target="_blank" rel="noopener">Click here</a> to check out the options.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Q4 -->
+            <div class="accordion-item" id="faq4">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button"
+                  data-bs-toggle="collapse" data-bs-target="#ans4"
+                  aria-expanded="false" aria-controls="ans4">
+                  I'm a student, can I combine SQI training with my academics?
+                  <span class="faq-icon"><i class="fas fa-plus"></i></span>
+                </button>
+              </h2>
+              <div id="ans4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                  <p>Yes, you can combine your ICT training with your academic. Whether you are in the university or you're a secondary school student, our calendar and learning options are flexible and can be tailored to suit your way of life.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Q5 -->
+            <div class="accordion-item" id="faq5">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button"
+                  data-bs-toggle="collapse" data-bs-target="#ans5"
+                  aria-expanded="false" aria-controls="ans5">
+                  I have a job, can I combine my work with SQI training?
+                  <span class="faq-icon"><i class="fas fa-plus"></i></span>
+                </button>
+              </h2>
+              <div id="ans5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                  <p>Yes, you can work and learn ICT skills at SQI. Our learning options make it seamless to choose a plan of study that appeals to your personality or suits the nature of your work. Check out our learning options <a href="mos.html" target="_blank" rel="noopener">here</a>.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Q6 -->
+            <div class="accordion-item" id="faq6">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button"
+                  data-bs-toggle="collapse" data-bs-target="#ans6"
+                  aria-expanded="false" aria-controls="ans6">
+                  Tell me about SQI scholarships?
+                  <span class="faq-icon"><i class="fas fa-plus"></i></span>
+                </button>
+              </h2>
+              <div id="ans6" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                  <p>In 2011 SQI College of ICT, then known as SQI ICT Academy, launched a yearly scholarship program to open a wider window of opportunity to every promising individual who is passionate about acquiring an ICT skill, and today we have trained and certified over 4000 youths who currently hold important and viable positions in various organizations nationwide.</p>
+                  <p>The scholarship program is open to every individual between ages 13 to 45.</p>
+                  <p>This annual scholarship program gives everyone (i.e O-level, A-Level, School Leavers, Undergraduates, Employed Graduates, Unemployed Graduates etc.) an opportunity to take any of our ICT courses at little or no cost.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Q7 -->
+            <div class="accordion-item" id="faq7">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button"
+                  data-bs-toggle="collapse" data-bs-target="#ans7"
+                  aria-expanded="false" aria-controls="ans7">
+                  How can I apply for the scholarship?
+                  <span class="faq-icon"><i class="fas fa-plus"></i></span>
+                </button>
+              </h2>
+              <div id="ans7" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                  <p>To participate in our yearly scholarship program visit the <a href="scholarship.html" target="_blank" rel="noopener">scholarship</a> page on our website to get started.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Q8 -->
+            <div class="accordion-item" id="faq8">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button"
+                  data-bs-toggle="collapse" data-bs-target="#ans8"
+                  aria-expanded="false" aria-controls="ans8">
+                  When is the next SQI scholarship?
+                  <span class="faq-icon"><i class="fas fa-plus"></i></span>
+                </button>
+              </h2>
+              <div id="ans8" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                  <p>Kindly visit the <a href="scholarship.html" target="_blank" rel="noopener">scholarship</a> page on our website for the latest dates and information on our next scholarship program. Application windows open periodically each year.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Q9 -->
+            <div class="accordion-item" id="faq9">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button"
+                  data-bs-toggle="collapse" data-bs-target="#ans9"
+                  aria-expanded="false" aria-controls="ans9">
+                  What do I bring when coming for the scholarship test?
+                  <span class="faq-icon"><i class="fas fa-plus"></i></span>
+                </button>
+              </h2>
+              <div id="ans9" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                  <p>Details of what you need to bring when coming for the scholarship will be stated on the website. Kindly visit the <a href="scholarship.html" target="_blank" rel="noopener">scholarship page</a> for full requirements as the examination date approaches.</p>
+                </div>
+              </div>
+            </div>
+
+          </div><!-- /accordion -->
+
+          <!-- CTA band -->
+          <div class="faq-cta-band reveal">
+            <p>Didn't find what you were looking for? Our team is happy to help.</p>
+            <a href="https://wa.me/+2349062819992" target="_blank" rel="noopener" class="btn-cta me-2">
+              <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+            </a>
+            <a href="contact.html" class="btn-cta" style="background: var(--blue-dark); margin-top: 8px;">
+              <i class="fas fa-envelope"></i> Contact Us
+            </a>
+          </div>
+
+        </div><!-- /col-lg-9 -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       FOOTER
+  ================================================================ -->
+  <footer class="sqi-footer">
+    <div class="container">
+      <div class="row g-5 footer-top-row">
+
+        <!-- Brand + Socials + Emails -->
+        <div class="col-lg-3 col-md-6">
+          <div class="footer-brand">
+            <h4>Hello, we're SQI College of ICT</h4>
+            <p>We provide and lead others in quality ICT education.</p>
+          </div>
+          <div class="footer-socials mt-3">
+            <a href="#" title="Follow on Facebook" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" title="Follow on X" target="_blank"><i class="fab fa-x-twitter"></i></a>
+            <a href="#" title="Follow on LinkedIn" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" title="Follow on Youtube" target="_blank"><i class="fab fa-youtube"></i></a>
+            <a href="#" title="Follow on Instagram" target="_blank"><i class="fab fa-instagram"></i></a>
+          </div>
+          <div class="footer-emails mt-4">
+            <h6>Send us a mail</h6>
+            <ul>
+              <li><a href="#">enquiry@sqi.edu.ng</a></li>
+              <li><a href="#">admissions@sqi.edu.ng</a></li>
+              <li><a href="#">examsandrecords@sqi.edu.ng</a></li>
+              <li><a href="#">rector@sqi.edu.ng</a></li>
+              <li><a href="#">partnerships@sqi.edu.ng</a></li>
+              <li><a href="#">internship@sqi.edu.ng</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="col-lg-2 col-md-6 col-sm-6">
+          <h6 class="footer-col-title">Quick Links</h6>
+          <ul class="footer-links">
+            <li><a href="#">Application Portal</a></li>
+            <li><a href="student.html">Student Portal</a></li>
+            <li><a href="procert.html">Professional Courses</a></li>
+            <li><a href="nd.html">ND Courses</a></li>
+            <li><a href="campus.html">Campus Info</a></li>
+            <li><a href="#">Accommodation</a></li>
+            <li><a href="scholarship.html">SQI Scholarship</a></li>
+            <li><a href="#">SQI Anthem</a></li>
+            <li><a href="#">Donate</a></li>
+          </ul>
+        </div>
+
+        <!-- Locations col 1 -->
+        <div class="col-lg-4 col-md-6">
+          <div class="row g-3">
+            <div class="col-6">
+              <h6 class="footer-col-title">Ogbomoso</h6>
+              <p class="footer-address">Old Ilorin Road, Opposite Yoaco Filling Station, Yoaco, Ogbomoso.<br /><strong>0906 281 9991, 0906 281 9993</strong></p>
+              <a href="#" class="footer-map-link" target="_blank">Locate on the map</a>
+              <h6 class="footer-col-title">Ibadan</h6>
+              <p class="footer-address">First Floor, H25 Heritage Mall, Opposite Central Bank of Nigeria, Dugbe, Ibadan.<br /><strong>0906 281 9994</strong></p>
+              <a href="#" class="footer-map-link" target="_blank">Locate on the map</a>
+            </div>
+            <div class="col-6">
+              <h6 class="footer-col-title">Lagos</h6>
+              <p class="footer-address">Suite 219, Opic Plaza, Mobolaji Bank Anthony Way, beside Sheraton Hotel, Ikeja, Lagos<br /><strong>0906 281 9999</strong></p>
+              <a href="#" class="footer-map-link" target="_blank">Locate on the map</a>
+              <h6 class="footer-col-title">Abeokuta</h6>
+              <p class="footer-address">First floor, OPIC Tower building, Okeilewo, Abeokuta.<br /><strong>0906 281 9996</strong></p>
+              <a href="#" class="footer-map-link" target="_blank">Locate on the map</a>
+            </div>
+            <div class="col-6">
+              <h6 class="footer-col-title">Virtual</h6>
+              <p class="footer-address">Available Globally Online.<br /><strong>0906 281 9992</strong></p>
+              <a href="#" class="footer-map-link" target="_blank">Locate on the map</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Locations col 2 -->
+        <div class="col-lg-3 col-md-6">
+          <div class="row g-3">
+            <div class="col-12">
+              <p class="footer-address mt-2">Christianah Oyinade Ajoke House, beside First Bank, Arisekola Central Mosque, Opposite Jaiz bank, Idi Ape, Iwo road, Ibadan.<br /><strong>0906 281 9995</strong></p>
+              <a href="#" class="footer-map-link" target="_blank">Locate on the map</a>
+              <p class="footer-address mt-2">Haier Thermocool Building, opposite SAO filling station, Challenge, Ibadan, Oyo State.<br /><strong>0906 281 9992</strong></p>
+              <a href="#" class="footer-map-link" target="_blank">Locate on the map</a>
+            </div>
+            <div class="col-6">
+              <h6 class="footer-col-title">Osogbo</h6>
+              <p class="footer-address">Opposite Jaiz bank, Ogo-Oluwa, Osogbo<br /><strong>0906 281 9997</strong></p>
+              <a href="#" class="footer-map-link" target="_blank">Locate on the map</a>
+            </div>
+            <div class="col-6">
+              <h6 class="footer-col-title">Abuja</h6>
+              <p class="footer-address">Suite Banking Hall SF, Febson Mall, Wuse Zone 4, Abuja<br /><strong>090 628 20000</strong></p>
+              <a href="#" class="footer-map-link" target="_blank">Locate on the map</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Footer Bottom -->
+      <div class="footer-bottom">
+        <p>Copyright &copy; 2026 | SQI ICT Consultants | Powered by Edozzier</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ================================================================
+       BACK TO TOP BUTTON
+  ================================================================ -->
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+  <div class="git_footer">
+    <a href="https://github.com/Analyst-Foundry">By Analyst Foundry</a>
+  </div>
+
+  <!-- ================================================================
+       SCRIPTS
+  ================================================================ -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    (function () {
+      'use strict';
+
+      /* ---- Fraud modal ---- */
+      const fraudEl = document.getElementById('fraudModal');
+      if (fraudEl) {
+        const fm = new bootstrap.Modal(fraudEl, { keyboard: true });
+        setTimeout(() => fm.show(), 800);
+      }
+
+      /* ---- Sticky navbar shadow ---- */
+      const nav = document.getElementById('sqiNavbar');
+      const sn  = () => nav.classList.toggle('scrolled', window.scrollY > 10);
+      window.addEventListener('scroll', sn, { passive: true }); sn();
+
+      /* ---- Dropdown chevron ---- */
+      document.querySelectorAll('.sqi-dd').forEach(el => {
+        el.addEventListener('show.bs.dropdown', () => {
+          const c = el.querySelector('.sqi-chev'); if (c) c.style.transform = 'rotate(180deg)';
+        });
+        el.addEventListener('hide.bs.dropdown', () => {
+          const c = el.querySelector('.sqi-chev'); if (c) c.style.transform = 'rotate(0deg)';
+        });
+      });
+
+      /* ---- Close mobile nav ---- */
+      const nc = document.getElementById('navmenu');
+      document.querySelectorAll('#navmenu .sqi-di').forEach(i => {
+        i.addEventListener('click', () => {
+          if (window.innerWidth < 992) bootstrap.Collapse.getInstance(nc)?.hide();
+        });
+      });
+
+      /* ---- Accordion: add/remove is-open class + rotate icon ---- */
+      const accordionEl = document.getElementById('faqAccordion');
+      if (accordionEl) {
+        accordionEl.addEventListener('show.bs.collapse', function (e) {
+          const item = e.target.closest('.accordion-item');
+          if (item) item.classList.add('is-open');
+        });
+        accordionEl.addEventListener('hide.bs.collapse', function (e) {
+          const item = e.target.closest('.accordion-item');
+          if (item) item.classList.remove('is-open');
+        });
+        // Mark first item as open on load
+        const firstItem = accordionEl.querySelector('.accordion-item');
+        if (firstItem) firstItem.classList.add('is-open');
+      }
+
+      /* ---- FAQ Live Search ---- */
+      const searchInput = document.getElementById('faqSearch');
+      if (searchInput) {
+        searchInput.addEventListener('input', function () {
+          const query = this.value.trim().toLowerCase();
+          const items = document.querySelectorAll('#faqAccordion .accordion-item');
+
+          items.forEach(function (item) {
+            const questionText = item.querySelector('.accordion-button').textContent.toLowerCase();
+            const answerText   = item.querySelector('.accordion-body').textContent.toLowerCase();
+            const matches      = questionText.includes(query) || answerText.includes(query);
+            item.style.display = (query === '' || matches) ? '' : 'none';
+          });
+        });
+      }
+
+      /* ---- Scroll reveal ---- */
+      const ro = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (!e.isIntersecting) return;
+          const siblings = Array.from(
+            (e.target.closest('.row') || e.target.parentElement)
+              .querySelectorAll('.reveal:not(.in)')
+          );
+          const idx = siblings.indexOf(e.target);
+          setTimeout(() => e.target.classList.add('in'), Math.min(idx * 80, 320));
+          ro.unobserve(e.target);
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -24px 0px' });
+      document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+
+      /* ---- Back to top ---- */
+      const btt = document.getElementById('btt');
+      window.addEventListener('scroll', () => btt.classList.toggle('on', window.scrollY > 400), { passive: true });
+      btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    })();
+  </script>
+
+</body>
+</html>

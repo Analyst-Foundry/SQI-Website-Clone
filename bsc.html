@@ -1,0 +1,1173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+  <title>Bachelor Degree - Acquire In-Demand Tech skills.</title>
+  <meta name="description" content="Applications are invited from qualified candidates to the BSc Degree Programmes in the Directorate of Part-Time Programme of LAUTECH, Ogbomoso for the 2026/2027 Academic Session." />
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <!-- Google Fonts: Open Sans -->
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ============================================================
+       CSS VARIABLES
+    ============================================================ */
+    :root {
+      --blue-primary: rgb(0,11,63);
+      --blue-dark:    rgb(9,3,38);
+      --blue-deeper:  rgb(86,195,249);
+      --blue-light:   rgb(46,163,242);
+      --blue-mid:     rgb(0,11,63);
+      --orange-primary: rgb(239,112,40);
+      --white:        #ffffff;
+      --off-white:    #f8f9fa;
+      --grey:         #f2f4f6;
+      --border:       #dee2e6;
+      --border-lt:    #e9ecef;
+      --text:         #212529;
+      --text-mid:     #495057;
+      --text-soft:    #6c757d;
+      --text-muted:   #adb5bd;
+      --dark-bg:      #1a1a1a;
+      --shadow-xs:    0 1px 4px rgba(0,0,0,.06);
+      --shadow-sm:    0 2px 12px rgba(0,0,0,.08);
+      --shadow-md:    0 6px 28px rgba(0,0,0,.13);
+      --shadow-lg:    0 12px 48px rgba(0,0,0,.18);
+      --radius:       8px;
+      --radius-lg:    14px;
+      --navbar-h:     72px;
+      --t:            .25s ease;
+    }
+
+    /* ============================================================
+       RESET & BASE
+    ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; }
+
+    body {
+      font-family: 'Open Sans', sans-serif;
+      font-size: 15px;
+      color: var(--text);
+      background: var(--white);
+      line-height: 1.75;
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; text-decoration: none; transition: color var(--t); }
+    a:hover { color: var(--blue-primary); }
+    img { max-width: 100%; display: block; }
+    ul  { list-style: none; padding: 0; margin: 0; }
+
+    /* ============================================================
+       FRAUD POPUP MODAL
+    ============================================================ */
+    .fraud-dialog  { max-width: 380px; }
+    .fraud-content {
+      border: none; border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg); overflow: hidden;
+    }
+    .fraud-body {
+      padding: 40px 32px 32px; text-align: center; position: relative;
+    }
+    .fraud-x {
+      position: absolute; top: 14px; right: 14px;
+      background: none; border: none; font-size: 22px; line-height: 1;
+      cursor: pointer; color: var(--text-soft); transition: color var(--t);
+    }
+    .fraud-x:hover { color: var(--text); }
+    .fraud-bell-img {
+      width: 64px; height: 64px; object-fit: contain;
+      margin: 0 auto 16px; display: block;
+    }
+    .fraud-body h5 { font-size: 18px; font-weight: 700; color: var(--text); margin-bottom: 14px; }
+    .fraud-body p  { font-size: 13.5px; color: var(--text-mid); line-height: 1.65; margin-bottom: 10px; }
+    .fraud-ok {
+      display: inline-block; margin-top: 14px;
+      padding: 10px 32px; background: var(--blue-primary); color: var(--white);
+      border: none; border-radius: var(--radius);
+      font-size: 14px; font-weight: 700; cursor: pointer;
+      transition: background var(--t);
+    }
+    .fraud-ok:hover { background: var(--blue-dark); }
+
+    /* ============================================================
+       STICKY NAVBAR
+    ============================================================ */
+  .sqi-navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: var(--white);
+      box-shadow: 0 2px 10px rgba(0,0,0,.10);
+      transition: box-shadow var(--transition);
+    }
+    .sqi-navbar.scrolled { box-shadow: 0 4px 20px rgba(0,0,0,.15); }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: var(--navbar-h);
+    }
+
+    /* Logo */
+    .nav-logo img {
+      height: 52px;
+      width: auto;
+      object-fit: contain;
+    }
+    .logo-fallback {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .logo-badge {
+      background: var(--blue);
+      color: var(--white);
+      font-weight: 800;
+      font-size: 14px;
+      padding: 6px 10px;
+      border-radius: 6px;
+      letter-spacing: 1px;
+    }
+    .logo-words { display: flex; flex-direction: column; }
+    .logo-words span { font-size: 14px; font-weight: 700; color: var(--blue-dark); }
+    .logo-words small { font-size: 10px; color: var(--text-soft); }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 6px;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--text);
+      border-radius: 2px;
+      transition: all .3s;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* Nav menu */
+    .nav-menu { display: flex; align-items: center; gap: 2px; }
+
+    .nav-item { position: relative; }
+    .nav-link {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      padding: 8px 13px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+      border-radius: var(--radius);
+      white-space: nowrap;
+      transition: color var(--transition), background var(--transition);
+    }
+    .nav-link:hover, .nav-link.active { color: var(--blue); background: var(--blue-light); }
+    .nav-link .chevron {
+      font-size: 10px;
+      transition: transform .25s;
+    }
+    .nav-item:hover .chevron { transform: rotate(180deg); }
+
+    /* Dropdown */
+    .dropdown {
+      display: none;
+      position: absolute;
+      top: calc(100% + 4px);
+      left: 0;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-md);
+      min-width: 250px;
+      padding: 6px 0;
+      animation: dropIn .2s ease;
+      z-index: 200;
+    }
+    @keyframes dropIn {
+      from { opacity: 0; transform: translateY(-8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .nav-item:hover .dropdown { display: block; }
+    .dropdown a {
+      display: block;
+      padding: 9px 18px;
+      font-size: 13.5px;
+      font-weight: 500;
+      color: var(--text);
+      border-left: 3px solid transparent;
+      transition: background var(--transition), color var(--transition), border-color var(--transition);
+    }
+    .dropdown a:hover {
+      background: var(--blue-light);
+      color: var(--blue);
+      border-left-color: var(--blue);
+    }
+
+    /* ============================================================
+       SHARED BUTTONS
+    ============================================================ */
+    .btn-apply {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 13px 34px;
+      background: var(--blue-primary); color: var(--white) !important;
+      border: none; border-radius: var(--radius);
+      font-size: 15px; font-weight: 700; cursor: pointer;
+      transition: background var(--t), transform var(--t), box-shadow var(--t);
+      box-shadow: 0 4px 18px rgba(30,125,52,.3);
+    }
+    .btn-apply:hover {
+      background: var(--blue-dark); transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(30,125,52,.4);
+    }
+    .btn-apply-white {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 13px 34px;
+      background: var(--white); color: var(--blue-dark) !important;
+      border: none; border-radius: var(--radius);
+      font-size: 15px; font-weight: 700; cursor: pointer;
+      transition: background var(--t), transform var(--t);
+      box-shadow: 0 4px 20px rgba(0,0,0,.2);
+    }
+    .btn-apply-white:hover { background: var(--off-white); transform: translateY(-2px); }
+
+    /* ============================================================
+       HERO SECTION
+    ============================================================ */
+    .bsc-hero {
+      background: linear-gradient(135deg, var(--blue-dark) 0%, var(--blue-primary) 55%, #2aad6a 100%);
+      padding: 88px 0 80px;
+      position: relative; overflow: hidden;
+    }
+    .bsc-hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M50 50c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10c0 5.523-4.477 10-10 10s-10-4.477-10-10 4.477-10 10-10zM10 10c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10c0 5.523-4.477 10-10S4.477 15 10 10z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      pointer-events: none;
+    }
+    .bsc-hero .container { position: relative; z-index: 1; }
+
+    /* Partnership header */
+    .hero-partner-row {
+      display: flex; flex-wrap: wrap; align-items: center; gap: 16px;
+      margin-bottom: 24px;
+    }
+    .hero-partner-logo {
+      background: rgba(255,255,255,.12);
+      border: 1px solid rgba(255,255,255,.25);
+      border-radius: var(--radius);
+      padding: 10px 20px;
+      font-size: 14px; font-weight: 700; color: var(--white);
+      backdrop-filter: blur(4px);
+    }
+    .hero-partner-divider {
+      font-size: 13px; font-weight: 700;
+      color: rgba(255,255,255,.55);
+      text-transform: uppercase; letter-spacing: 1.5px;
+    }
+    .hero-partner-lautech {
+      background: rgba(255,255,255,.12);
+      border: 1px solid rgba(255,255,255,.25);
+      border-radius: var(--radius);
+      padding: 10px 20px;
+      font-size: 14px; font-weight: 700; color: var(--white);
+      backdrop-filter: blur(4px);
+      text-align: center;
+    }
+    .hero-partner-lautech small {
+      display: block; font-size: 10px; font-weight: 400;
+      opacity: .75; margin-top: 2px;
+    }
+
+    .hero-h1 {
+      font-size: clamp(20px, 3.5vw, 38px);
+      font-weight: 800; color: var(--white);
+      line-height: 1.3; margin-bottom: 28px; max-width: 800px;
+    }
+    .hero-h1 strong { color: #a8d8b0; }
+
+    /* ============================================================
+       PROGRAMME DETAILS — main content body
+    ============================================================ */
+    .programme-section {
+      background: var(--white);
+      padding: 72px 0;
+    }
+
+    /* Details label */
+    .details-label {
+      font-size: 11px; font-weight: 700; letter-spacing: 2.5px;
+      text-transform: uppercase; color: var(--blue-primary);
+      margin-bottom: 32px; display: block;
+    }
+
+    /* Programme block (A, B, C, D) */
+    .prog-block {
+      margin-bottom: 0;
+      border-bottom: 1px solid var(--border-lt);
+      padding-bottom: 56px;
+      padding-top: 56px;
+    }
+    .prog-block:first-of-type { padding-top: 0; }
+    .prog-block:last-of-type { border-bottom: none; padding-bottom: 0; }
+
+    .prog-block-header {
+      background: var(--blue-dark);
+      color: var(--white);
+      border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+      padding: 16px 24px;
+      margin-bottom: 0;
+    }
+    .prog-block-header h3 {
+      font-size: clamp(15px, 2vw, 19px);
+      font-weight: 800; color: var(--white); margin: 0; line-height: 1.3;
+    }
+    .prog-block-body {
+      background: var(--off-white);
+      border: 1px solid var(--border-lt);
+      border-top: none;
+      border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+      padding: 28px 28px 24px;
+    }
+
+    /* Degree list */
+    .degree-list {
+      margin-bottom: 24px; padding-left: 0;
+    }
+    .degree-list li {
+      font-size: 14.5px; color: var(--text-mid);
+      padding: 6px 0 6px 24px;
+      position: relative; line-height: 1.6;
+    }
+    .degree-list li::before {
+      content: '';
+      position: absolute; left: 0; top: 14px;
+      width: 7px; height: 7px;
+      background: var(--blue-primary); border-radius: 50%;
+    }
+    .degree-list li strong { color: var(--text); }
+
+    /* Requirement block */
+    .req-block {
+      background: var(--white);
+      border: 1px solid var(--border-lt);
+      border-left: 4px solid var(--blue-primary);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      padding: 20px 22px 18px;
+      margin-top: 20px;
+      box-shadow: var(--shadow-xs);
+    }
+    .req-block-title {
+      font-size: 12px; font-weight: 800;
+      text-transform: uppercase; letter-spacing: 1.5px;
+      color: var(--blue-dark); margin-bottom: 14px;
+    }
+    .req-text {
+      font-size: 14px; color: var(--text-mid);
+      line-height: 1.8; margin-bottom: 10px;
+    }
+    .req-text:last-child { margin-bottom: 0; }
+    .req-text strong { color: var(--text); }
+    .req-text a { color: var(--blue-primary); font-weight: 600; }
+
+    /* Ordered list inside requirements */
+    .req-ordered {
+      counter-reset: req;
+      padding-left: 0; margin-top: 8px;
+    }
+    .req-ordered li {
+      counter-increment: req;
+      font-size: 14px; color: var(--text-mid);
+      padding: 5px 0 5px 32px;
+      position: relative; line-height: 1.75;
+    }
+    .req-ordered li::before {
+      content: counter(req) '.';
+      position: absolute; left: 0; top: 5px;
+      font-weight: 700; color: var(--blue-primary); font-size: 13px;
+    }
+    .req-ordered li strong { color: var(--text); }
+
+    /* Bulleted list inside requirements */
+    .req-bullets { padding-left: 0; margin-top: 8px; }
+    .req-bullets li {
+      font-size: 14px; color: var(--text-mid);
+      padding: 4px 0 4px 22px;
+      position: relative; line-height: 1.75;
+    }
+    .req-bullets li::before {
+      content: '–';
+      position: absolute; left: 0; color: var(--blue-primary); font-weight: 700;
+    }
+
+    /* Sub-blocks (lettered lists a, b, c…) */
+    .req-alpha { padding-left: 0; margin-top: 8px; }
+    .req-alpha li {
+      font-size: 14px; color: var(--text-mid);
+      padding: 4px 0 4px 28px;
+      position: relative; line-height: 1.75;
+      list-style-type: none;
+    }
+    .req-alpha li::before {
+      content: attr(data-alpha) ')';
+      position: absolute; left: 0; font-weight: 700; color: var(--blue-dark);
+    }
+
+    /* Notice / info box */
+    .notice-box {
+      background: var(--blue-light);
+      border: 1px solid var(--blue-primary);
+      border-radius: var(--radius);
+      padding: 14px 18px;
+      font-size: 14px; color: var(--blue-dark);
+      margin-top: 18px; line-height: 1.7;
+    }
+    .notice-box strong { color: var(--blue-dark); font-weight: 800; }
+
+    /* Section sub-heading */
+    .sub-section-head {
+      font-size: 15px; font-weight: 800;
+      color: var(--blue-dark); margin-top: 24px; margin-bottom: 12px;
+      padding-bottom: 6px;
+      border-bottom: 2px solid var(--blue-light);
+    }
+
+    /* ============================================================
+       CTA BAND (mid-page + bottom)
+    ============================================================ */
+    .cta-band {
+      background: var(--blue-dark);
+      padding: 60px 0;
+      text-align: center;
+    }
+    .cta-band h2 {
+      font-size: clamp(20px, 3vw, 32px);
+      font-weight: 800; color: var(--white);
+      margin-bottom: 30px; line-height: 1.25;
+    }
+
+    /* ============================================================
+       SCROLL REVEAL
+    ============================================================ */
+    .reveal {
+      opacity: 0; transform: translateY(26px);
+      transition: opacity .55s ease, transform .55s ease;
+    }
+    .reveal.in { opacity: 1; transform: none; }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+.sqi-footer {
+  background: #1a1a1a;
+  color: rgba(255,255,255,.72);
+  padding: 0;
+}
+
+.footer-top-row {
+  padding: 60px 0 40px;
+}
+
+/* Brand */
+.footer-brand h4 {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.footer-brand p {
+  font-size: 13.5px;
+  color: rgba(255,255,255,.65);
+  line-height: 1.65;
+}
+
+/* Socials */
+.footer-socials {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.footer-socials a {
+  width: 36px;
+  height: 36px;
+  background: rgba(255,255,255,.1);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255,255,255,.8);
+  font-size: 15px;
+  transition: background var(--transition), color var(--transition);
+}
+.footer-socials a:hover {
+  background: var(--blue-primary);
+  color: var(--white);
+}
+
+/* Emails */
+.footer-emails h6 {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: rgba(255,255,255,.5);
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.footer-emails ul li {
+  margin-bottom: 6px;
+}
+.footer-emails ul li a {
+  font-size: 13px;
+  color: rgb(86,195,249);
+  transition: color var(--transition);
+}
+.footer-emails ul li a:hover { color: var(--orange-primary); }
+
+/* Col titles */
+.footer-col-title {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: rgba(255,255,255,.5);
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+/* Quick links */
+.footer-links li {
+  margin-bottom: 8px;
+}
+.footer-links li a {
+  font-size: 13px;
+  color: rgba(255,255,255,.65);
+  transition: color var(--transition);
+}
+.footer-links li a:hover { color: var(--orange-primary); }
+
+/* Addresses */
+.footer-address {
+  font-size: 12px;
+  color: rgba(255,255,255,.6);
+  line-height: 1.6;
+  margin-bottom: 4px;
+}
+.footer-address strong { color: rgba(255,255,255,.85); }
+
+.footer-map-link {
+  font-size: 12px;
+  color: var(--orange-primary);
+  font-weight: 600;
+  transition: color var(--transition);
+}
+.footer-map-link:hover {
+  color: rgb(86,195,249);
+  text-decoration: underline;
+}
+
+/* Footer bottom */
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,.1);
+  padding: 18px 0;
+  text-align: center;
+}
+.footer-bottom p {
+  font-size: 13px;
+  color: rgba(255,255,255,.45);
+  margin: 0;
+}
+
+/* ================================================================
+   BACK TO TOP
+   ================================================================ */
+.back-to-top {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 999;
+  width: 42px;
+  height: 42px;
+  background: var(--blue-primary);
+  color: var(--white);
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(0,0,0,.25);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(12px);
+  transition: opacity 0.3s, transform 0.3s, background 0.2s;
+}
+.back-to-top.visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+.back-to-top:hover { background: var(--blue-dark); }
+
+.git_footer{
+    display: inline-flex;
+    justify-content: space-between;
+    height: 50px;
+    width: 100%;
+    border-top: 0px solid rgb(218, 220, 222);
+    align-items: center;
+    padding-left: 30px;
+    background-color: rgb(0, 0, 0);
+}
+
+.git_footer a{
+    text-decoration: none;
+    color: rgb(232, 17, 35);
+    font-size: 20px;
+    font-weight: 600;
+}
+
+    /* ============================================================
+       RESPONSIVE
+    ============================================================ */
+    @media (max-width: 991.98px) {
+      .sqi-nav-list { padding: 10px 0; gap: 0; }
+      .sqi-nav-link { border-radius: 0; }
+      .sqi-drop { box-shadow: none; border: none; background: var(--off-white); animation: none; margin-top: 0 !important; padding-left: 12px; }
+      .bsc-hero { padding: 64px 0 56px; }
+      .programme-section { padding: 52px 0; }
+    }
+    @media (max-width: 767.98px) {
+      .bsc-hero { padding: 48px 0 44px; }
+      .hero-h1 { font-size: 20px; }
+      .hero-partner-row { gap: 10px; }
+      .prog-block-body { padding: 20px 16px; }
+      .req-block { padding: 16px 16px 14px; }
+      .btt { bottom: 16px; right: 16px; width: 38px; height: 38px; font-size: 14px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ================================================================
+       FRAUD WARNING POPUP
+  ================================================================ -->
+  <div class="modal fade" id="fraudModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered fraud-dialog">
+      <div class="modal-content fraud-content">
+        <div class="modal-body fraud-body">
+          <button class="fraud-x" data-bs-dismiss="modal" type="button">&times;</button>
+          <img
+            src="Images/red-bell.png"
+            alt="Alert" class="fraud-bell-img"
+            onerror="this.outerHTML='<span style=\'font-size:3rem;display:block;margin-bottom:14px;\'>🔔</span>'"
+          />
+          <h5>Please be advised!</h5>
+          <p>Do not make any payment for our courses or services to any account or platform other than corporate accounts provided by SQI College of ICT.</p>
+          <p>The College will not be held responsible for any loss or issue arising from payments made to unauthorised individuals or channels.</p>
+          <p><strong>Thank you for your cooperation.</strong></p>
+          <button class="fraud-ok" data-bs-dismiss="modal" type="button">OK, I understand</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================================================================
+       STICKY NAVBAR
+  ================================================================ -->
+  <nav class="sqi-navbar" id="sqiNavbar">
+    <div class="container">
+      <div class="nav-inner">
+
+        <!-- Logo -->
+        <a href="index.html" class="nav-logo">
+          <img src="Images/icon.jpg" alt="SQI College of ICT"
+            onerror="this.style.display='none';document.getElementById('logoFb').style.display='flex';" />
+          <div id="logoFb" class="logo-fallback" style="display:none;">
+            <span class="logo-badge">SQI</span>
+            <div class="logo-words">
+              <span>SQI College of ICT</span>
+              <small>Acquire In-Demand Tech Skills</small>
+            </div>
+          </div>
+        </a>
+
+        <!-- Hamburger -->
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+
+        <!-- Menu -->
+        <ul class="nav-menu" id="navMenu">
+
+          <li class="nav-item">
+            <a href="#" class="nav-link">About <i class="fas fa-chevron-down chevron"></i></a>
+            <ul class="dropdown">
+              <li><a href="story.html">Our Story</a></li>
+              <li><a href="team.html">Our Team</a></li>
+              <li><a href="campus.html">Campus Info</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a href="#" class="nav-link">Programmes <i class="fas fa-chevron-down chevron"></i></a>
+            <ul class="dropdown">
+              <li><a href="pre-nd.html">Pre-National Diploma</a></li>
+              <li><a href="nd.html">National Diploma</a></li>
+              <li><a href="procert.html">Professional Diploma Program</a></li>
+              <li><a href="epcp.html">Executive Professional Certificate Programme</a></li>
+              <li><a href="bsc.html">Bachelor Degree | LAUTECH PT</a></li>
+              <li><a href="post-utme.html">Post-UTME</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a href="#" class="nav-link">Admissions <i class="fas fa-chevron-down chevron"></i></a>
+            <ul class="dropdown">
+              <li><a href="afap.html">Apply for a Programme</a></li>
+              <li><a href="mos.html">Mode of Study</a></li>
+              <li><a href="tuition.html">Tuition</a></li>
+              <li><a href="https://drive.google.com/file/d/1w_itppr3K0MMy5Sdf8uFkCO7eCyAYiRf/view?usp=sharing">Student's Handbook</a></li>
+              <li><a href="faq.html">Frequently Asked Questions</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a href="#" class="nav-link">E-Portal <i class="fas fa-chevron-down chevron"></i></a>
+            <ul class="dropdown">
+              <li><a href="student.html">Student</a></li>
+              <li><a href="staff.html">Staff</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a href="scholarship.html" class="nav-link">SQI Scholarship</a>
+          </li>
+          <li class="nav-item">
+            <a href="news.html" class="nav-link">News</a>
+          </li>
+          <li class="nav-item">
+            <a href="contact.html" class="nav-link">Contact</a>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ================================================================
+       HERO SECTION
+  ================================================================ -->
+  <section class="bsc-hero">
+    <div class="container">
+
+      <!-- Partnership header -->
+      <div class="hero-partner-row">
+        <div class="hero-partner-logo">SQI College of ICT</div>
+        <span class="hero-partner-divider">in partnership with</span>
+        <div class="hero-partner-lautech">
+          Ladoke Akintola University of Technology (LAUTECH)
+          <small>Ogbomoso, Nigeria</small>
+        </div>
+      </div>
+
+      <!-- Main hero text -->
+      <h1 class="hero-h1">
+        Applications are hereby invited from qualified candidates to the Bachelor of Science
+        <strong>Degree Programmes</strong> in the Directorate of <strong>Part-Time</strong> Programme of Ladoke Akintola
+        University of Technology, Ogbomoso for the <strong>2026/2027 Academic Session.</strong>
+      </h1>
+
+      <a href="#" target="_blank" rel="noopener" class="btn-apply-white">
+        <i class="fas fa-pen-to-square"></i> Start Application
+      </a>
+
+    </div>
+  </section>
+
+  <!-- ================================================================
+       PROGRAMME DETAILS — Main Content
+  ================================================================ -->
+  <section class="programme-section">
+    <div class="container">
+
+      <span class="details-label reveal">Program Details</span>
+
+      <!-- ==================== BADGE ==================== -->
+      <div class="text-center mb-5 reveal">
+        <span style="display:inline-block; background:var(--blue-dark); color:#fff; font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:2px; padding:10px 28px; border-radius:var(--radius);">
+          Bachelor Degree Programmes
+        </span>
+      </div>
+
+      <!-- ==================== SECTION A ==================== -->
+      <div class="prog-block reveal">
+        <div class="prog-block-header">
+          <h3>(A) FIVE (5) – YEAR DURATION (100 Level Entry Point)</h3>
+        </div>
+        <div class="prog-block-body">
+
+          <ul class="degree-list">
+            <li>(i) B.Sc. Computer Science</li>
+            <li>(ii) B.Sc. Cyber Security</li>
+            <li>(iii) B.Sc. Information Systems</li>
+            <li>(iv) B.Sc. Accounting</li>
+            <li>(v) B.Sc. Business Administration</li>
+          </ul>
+
+          <div class="req-block">
+            <p class="req-block-title">Admission Requirements A(i) – (iii)</p>
+            <p class="req-text">Applicants must possess at least five (5) credit passes in <strong>SSCE/GCE/NECO/NABTEB</strong> at not more than two sittings and the subjects must include English Language, Mathematics, Physics, Chemistry, Biology/Agric Science/Technical Drawing/Economics or any other Social Science subject, as applicable.</p>
+          </div>
+
+          <div class="req-block">
+            <p class="req-block-title">Admission Requirements for A(iv) – (v)</p>
+            <p class="req-text">Applicants must possess at least five (5) credit passes in <strong>SSCE/GCE/NECO/NABTEB</strong> at not more than two sittings and the subjects must include English Language, Mathematics, Physics, Chemistry, Biology/Agric Science/Technical Drawing/Economics or any other Social Science subject, as applicable.</p>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ==================== SECTION B ==================== -->
+      <div class="prog-block reveal">
+        <div class="prog-block-header">
+          <h3>(B) FOUR (4) – YEAR DURATION (200 Level Entry Point)</h3>
+        </div>
+        <div class="prog-block-body">
+
+          <ul class="degree-list">
+            <li>(i) B.Sc. Computer Science</li>
+            <li>(ii) B.Sc. Cyber Security</li>
+            <li>(iii) B.Sc. Information Systems</li>
+            <li>(iv) B.Sc. Accounting</li>
+            <li>(v) B.Sc. Business Administration</li>
+          </ul>
+
+          <div class="req-block">
+            <p class="req-block-title">Admission Requirements for B(i) – (iv)</p>
+            <p class="req-text">Applicants must possess at least five (5) credit passes in <strong>SSCE/GCE/NECO/NABTEB</strong> at not more than two sittings as stated in A (iv–xv). In addition to the O' Level requirements, applicants must have any of the following depending on the programme applied for:</p>
+            <ul class="req-alpha">
+              <li data-alpha="a">Good passes at Advanced Level of GCE (WAEC) (or its equivalent) in Mathematics, Physics; and any other subjects from the following: Chemistry, Biology, Economics, Computer Studies, Geography or any other social science subject.</li>
+              <li data-alpha="b">National Diploma with Lower Credit in Computer Science or Computer Engineering/Technology and University Diploma of LAUTECH or any other relevant discipline from a recognised Polytechnic;</li>
+              <li data-alpha="c">Passes in Intermediate Level of Computer Professionals (Registration) Council of Nigeria or any other recognised Professional Bodies;</li>
+              <li data-alpha="d">Third Class Degree in a Science-based discipline may also be considered for admission.</li>
+              <li data-alpha="e">National Diploma with Lower Credit in Science Laboratory Technology and other related <em>science-based</em> courses (Upper Credit); or NCE in Physics/Biology/Chemistry/Integrated Science/Health Education (Not lower than Credit) is acceptable.</li>
+            </ul>
+          </div>
+
+          <div class="req-block">
+            <p class="req-block-title">For Cyber Security and Information Systems</p>
+            <p class="req-text">Candidates may be eligible for admission to 200 level if they have any of the following in addition to University Admission requirements:</p>
+            <ul class="req-bullets">
+              <li>Five (5) Credit pass at not more than two sittings which must include English Language, Mathematics, Physics and any one of Chemistry, Biology, Agricultural Science, Economics or Geography at Senior Secondary Certificate or its equivalent.</li>
+              <li>Two A' level Subjects including Mathematics, Physics or Chemistry with minimum of Credit passes.</li>
+              <li>At least Upper Credit Pass in National Diploma (ND) in Computer Science from a recognized Polytechnic or its equivalent.</li>
+              <li>National Certificate of Education (NCE) with at least credit pass both in Computer Science/Mathematics; Computer Science/Physics or Mathematics/Physics.</li>
+            </ul>
+          </div>
+
+          <div class="req-block">
+            <p class="req-block-title">Admission Requirements for B(v)</p>
+            <p class="req-text">While requirements stated in <strong>A (i) – (v)</strong> are applicable, applicants opting for B (i) – (iv) must in addition possess any of the following:</p>
+            <ol class="req-ordered">
+              <li>Good passes in at least two relevant A' Level subjects.</li>
+              <li>National Diploma (or its equivalent) from any recognized Polytechnic, or LAUTECH Sub-Professional Diploma with a minimum of Upper Credit in relevant courses such as Accountancy, Banking and Finance, Business Management or Business Administration, Marketing, Purchasing and Supply.</li>
+              <li>Higher National Diploma (or its equivalent) from a recognized Polytechnic or LAUTECH Full Professional Diploma with a minimum of Lower Credit in relevant courses as listed in (b) above.</li>
+              <li>National Diploma with Upper Credit or its equivalent in Environmental Management, Engineering, Transport &amp; Management Sciences.</li>
+            </ol>
+          </div>
+
+          <div class="req-block mt-3">
+            <p class="req-block-title">Inter / Intra School Admission</p>
+            <p class="req-text">This type of admission is into the 200 level. Candidates from recognized and reputable institutions may be allowed to transfer to 200 levels provided they meet the relevant minimum admission requirements of the university as stated earlier and subject to satisfactory report not related to any disciplinary action from the destination university. Intra university candidates are required to fulfil university, faculty and departmental courses specifications for 100 level students.</p>
+            <p class="req-text">However, candidates transferring within the university are expected to have passed all their 100 level courses before they can be considered (i.e. no Course Still Outstanding (CSO). They are also expected to meet the departmental requirements of such prevailing academic session.</p>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ==================== SECTION C ==================== -->
+      <div class="prog-block reveal">
+        <div class="prog-block-header">
+          <h3>(C) THREE (3) – YEAR DURATION (300 Level Entry Point)</h3>
+        </div>
+        <div class="prog-block-body">
+
+          <ul class="degree-list">
+            <li>(i) B.Sc. Cyber Security</li>
+            <li>(ii) B.Sc. Business Administration</li>
+          </ul>
+
+          <div class="req-block">
+            <p class="req-block-title">Admission Requirements for C(i)</p>
+            <p class="req-text">In addition to the O' level requirements stated under A (i) – (ii), applicants must possess any of:</p>
+            <ul class="req-bullets">
+              <li>HND or its equivalent from a recognized Polytechnic or LAUTECH Full Professional Diploma in relevant disciplines with minimum of Lower Credit. B.Sc. with pass in relevant discipline may be considered for Business Administration.</li>
+              <li>At least Upper Credit Pass in Higher National Diploma (HND) in Cyber Security from recognized University or its equivalents (for Cyber Security).</li>
+            </ul>
+          </div>
+
+          <div class="sub-section-head">Cyber Security — Additional Requirements</div>
+          <div class="req-block">
+            <p class="req-text">A candidate may be eligible for admission to 300 level if they have the following requirements in addition to University Admission requirements:</p>
+            <ul class="req-bullets">
+              <li>Five (5) Credit passes at not more than two sittings which must include English Language, Mathematics, Physics and any two of Chemistry, Biology or Agricultural Science, Economics and Geography.</li>
+              <li>At least Upper Credit Pass in Higher National Diploma (HND) in Cyber Security from a recognized polytechnic or its equivalent.</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ==================== SECTION D ==================== -->
+      <div class="prog-block reveal">
+        <div class="prog-block-header">
+          <h3>(D) Top-Up / Conversion Programme — Two (2) Years (Six Semesters)</h3>
+        </div>
+        <div class="prog-block-body">
+
+          <ul class="degree-list">
+            <li>1. B.Sc. Accounting</li>
+            <li>2. B.Sc. Computer Science</li>
+            <li>3. B.Sc. Business Administration</li>
+          </ul>
+
+          <!-- Accounting -->
+          <div class="sub-section-head">B.Sc. Accounting — Admission Requirements</div>
+          <div class="req-block">
+            <p class="req-text">Applicants must possess five (5) O' Level Credit passes in <strong>SSCE/NECO/GCE/NABTEB</strong> at not more than two (2) sittings in English Language, Mathematics and Economics and any two of Financial Accounting, Marketing, Commerce or any other related subjects. Applicants with English Language, Mathematics and Economics with any two of science subjects may also be admitted.</p>
+            <p class="req-text">In addition to O' Level requirements, applicants must have any of the following:</p>
+            <ol class="req-ordered">
+              <li>HND or its equivalent from a recognized Polytechnic or LAUTECH Full Professional Diploma in relevant disciplines with minimum of Lower Credit.</li>
+              <li>Applicants with relevant professional qualifications such as ACA, CIBN, ANAN, CII, CITN, CIMARK without HND may be considered as professional candidates.</li>
+            </ol>
+          </div>
+
+          <!-- Computer Science -->
+          <div class="sub-section-head">B.Sc. Computer Science — Admission Requirements</div>
+          <div class="req-block">
+            <p class="req-text">Applicants must satisfy the following admission requirements:</p>
+            <ol class="req-ordered">
+              <li>A minimum of five (5) credit passes in <strong>SSCE/GCE/NECO/NABTEB</strong> at not more than two (2) sittings in English Language, Mathematics, Physics and any two relevant science subjects.</li>
+              <li>In addition to satisfying the required O' Level subjects, applicants must possess HND in any of Computer Science, Computer Engineering, Electrical and Electronics, Physics Electronics, Statistics, Pure and Applied Mathematics, Cyber Security, Information Science, Information Technology, Software Engineering with at least lower credit from NBTE licensed Polytechnics <strong>OR</strong> CPN Certificate.</li>
+            </ol>
+          </div>
+
+          <!-- Business Administration -->
+          <div class="sub-section-head">B.Sc. Business Administration — Admission Requirements</div>
+          <div class="req-block">
+            <p class="req-text">Applicants must possess five (5) O' Level Credit passes in <strong>SSCE/NECO/GCE/NABTEB</strong> at not more than two (2) sittings in English Language, Mathematics, Economics and any other two subjects.</p>
+            <p class="req-text">In addition to O' Level requirements, applicants should possess at least one of the following:</p>
+            <ol class="req-ordered">
+              <li>HND or its equivalent in a relevant discipline with a minimum of Lower Credit.</li>
+              <li>B.Sc. with a Third Class in a relevant discipline.</li>
+            </ol>
+            <div class="notice-box mt-3">
+              Candidates with relevant professional qualifications (obtained through examination) from certified professional bodies such as <strong>NIM, CIPM, CIA, CIMARK, ICSAN,</strong> without HND may be considered for admission.
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Bottom CTA -->
+      <div class="text-center mt-5 pt-3 reveal">
+        <a href="#" target="_blank" rel="noopener" class="btn-apply">
+          <i class="fas fa-pen-to-square"></i> Start Application
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================================================================
+       FOOTER
+  ================================================================ -->
+  <footer class="sqi-footer">
+    <div class="container">
+      <div class="row g-5 footer-top-row">
+
+        <!-- Brand + Socials + Emails -->
+        <div class="col-lg-3 col-md-6">
+          <div class="footer-brand">
+            <h4>Hello, we're SQI College of ICT</h4>
+            <p>We provide and lead others in quality ICT education.</p>
+          </div>
+          <div class="footer-socials mt-3">
+            <a href="#" title="Follow on Facebook" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" title="Follow on X" target="_blank"><i class="fab fa-x-twitter"></i></a>
+            <a href="#" title="Follow on LinkedIn" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" title="Follow on Youtube" target="_blank"><i class="fab fa-youtube"></i></a>
+            <a href="#" title="Follow on Instagram" target="_blank"><i class="fab fa-instagram"></i></a>
+          </div>
+          <div class="footer-emails mt-4">
+            <h6>Send us a mail</h6>
+            <ul>
+              <li><a href="#">enquiry@sqi.edu.ng</a></li>
+              <li><a href="#">admissions@sqi.edu.ng</a></li>
+              <li><a href="#">examsandrecords@sqi.edu.ng</a></li>
+              <li><a href="#">rector@sqi.edu.ng</a></li>
+              <li><a href="#">partnerships@sqi.edu.ng</a></li>
+              <li><a href="#">internship@sqi.edu.ng</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="col-lg-2 col-md-6 col-sm-6">
+          <h6 class="footer-col-title">Quick Links</h6>
+          <ul class="footer-links">
+            <li><a href="#">Application Portal</a></li>
+            <li><a href="student.html">Student Portal</a></li>
+            <li><a href="procert.html">Professional Courses</a></li>
+            <li><a href="nd.html">ND Courses</a></li>
+            <li><a href="campus.html">Campus Info</a></li>
+            <li><a href="#">Accommodation</a></li>
+            <li><a href="scholarship.html">SQI Scholarship</a></li>
+            <li><a href="#">SQI Anthem</a></li>
+            <li><a href="#">Donate</a></li>
+          </ul>
+        </div>
+
+        <!-- Locations col 1 -->
+        <div class="col-lg-4 col-md-6">
+          <div class="row g-3">
+            <div class="col-6">
+              <h6 class="footer-col-title">Ogbomoso</h6>
+              <p class="footer-address">Old Ilorin Road, Opposite Yoaco Filling Station, Yoaco, Ogbomoso.<br /><strong>0906 281 9991, 0906 281 9993</strong></p>
+              <a href="#" class="footer-map-link" target="_blank">Locate on the map</a>
+              <h6 class="footer-col-title">Ibadan</h6>
+              <p class="footer-address">First Floor, H25 Heritage Mall, Opposite Central Bank of Nigeria, Dugbe, Ibadan.<br /><strong>0906 281 9994</strong></p>
+              <a href="#" class="footer-map-link" target="_blank">Locate on the map</a>
+            </div>
+            <div class="col-6">
+              <h6 class="footer-col-title">Lagos</h6>
+              <p class="footer-address">Suite 219, Opic Plaza, Mobolaji Bank Anthony Way, beside Sheraton Hotel, Ikeja, Lagos<br /><strong>0906 281 9999</strong></p>
+              <a href="#" class="footer-map-link" target="_blank">Locate on the map</a>
+              <h6 class="footer-col-title">Abeokuta</h6>
+              <p class="footer-address">First floor, OPIC Tower building, Okeilewo, Abeokuta.<br /><strong>0906 281 9996</strong></p>
+              <a href="#" class="footer-map-link" target="_blank">Locate on the map</a>
+            </div>
+            <div class="col-6">
+              <h6 class="footer-col-title">Virtual</h6>
+              <p class="footer-address">Available Globally Online.<br /><strong>0906 281 9992</strong></p>
+              <a href="#" class="footer-map-link" target="_blank">Locate on the map</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Locations col 2 -->
+        <div class="col-lg-3 col-md-6">
+          <div class="row g-3">
+            <div class="col-12">
+              <p class="footer-address mt-2">Christianah Oyinade Ajoke House, beside First Bank, Arisekola Central Mosque, Opposite Jaiz bank, Idi Ape, Iwo road, Ibadan.<br /><strong>0906 281 9995</strong></p>
+              <a href="#" class="footer-map-link" target="_blank">Locate on the map</a>
+              <p class="footer-address mt-2">Haier Thermocool Building, opposite SAO filling station, Challenge, Ibadan, Oyo State.<br /><strong>0906 281 9992</strong></p>
+              <a href="#" class="footer-map-link" target="_blank">Locate on the map</a>
+            </div>
+            <div class="col-6">
+              <h6 class="footer-col-title">Osogbo</h6>
+              <p class="footer-address">Opposite Jaiz bank, Ogo-Oluwa, Osogbo<br /><strong>0906 281 9997</strong></p>
+              <a href="#" class="footer-map-link" target="_blank">Locate on the map</a>
+            </div>
+            <div class="col-6">
+              <h6 class="footer-col-title">Abuja</h6>
+              <p class="footer-address">Suite Banking Hall SF, Febson Mall, Wuse Zone 4, Abuja<br /><strong>090 628 20000</strong></p>
+              <a href="#" class="footer-map-link" target="_blank">Locate on the map</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Footer Bottom -->
+      <div class="footer-bottom">
+        <p>Copyright &copy; 2026 | SQI ICT Consultants | Powered by Edozzier</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ================================================================
+       BACK TO TOP BUTTON
+  ================================================================ -->
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+  <div class="git_footer">
+    <a href="https://github.com/Analyst-Foundry">By Analyst Foundry</a>
+  </div>
+
+  <!-- ================================================================
+       SCRIPTS
+  ================================================================ -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    (function () {
+      'use strict';
+
+      /* ---- Fraud modal ---- */
+      const fraudEl = document.getElementById('fraudModal');
+      if (fraudEl) {
+        const fm = new bootstrap.Modal(fraudEl, { keyboard: true });
+        setTimeout(() => fm.show(), 800);
+      }
+
+      /* ---- Sticky navbar ---- */
+      const nav = document.getElementById('sqiNavbar');
+      const sn  = () => nav.classList.toggle('scrolled', window.scrollY > 10);
+      window.addEventListener('scroll', sn, { passive: true }); sn();
+
+      /* ---- Dropdown chevron ---- */
+      document.querySelectorAll('.sqi-dd').forEach(el => {
+        el.addEventListener('show.bs.dropdown', () => {
+          const c = el.querySelector('.sqi-chev'); if (c) c.style.transform = 'rotate(180deg)';
+        });
+        el.addEventListener('hide.bs.dropdown', () => {
+          const c = el.querySelector('.sqi-chev'); if (c) c.style.transform = 'rotate(0deg)';
+        });
+      });
+
+      /* ---- Close mobile nav ---- */
+      const nc = document.getElementById('navmenu');
+      document.querySelectorAll('#navmenu .sqi-di').forEach(i => {
+        i.addEventListener('click', () => {
+          if (window.innerWidth < 992) bootstrap.Collapse.getInstance(nc)?.hide();
+        });
+      });
+
+      /* ---- Scroll reveal ---- */
+      const ro = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (!e.isIntersecting) return;
+          e.target.classList.add('in');
+          ro.unobserve(e.target);
+        });
+      }, { threshold: 0.08, rootMargin: '0px 0px -24px 0px' });
+      document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+
+      /* ---- Back to top ---- */
+      const btt = document.getElementById('btt');
+      window.addEventListener('scroll', () => btt.classList.toggle('on', window.scrollY > 400), { passive: true });
+      btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    })();
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+  <title>Home - Study at SQI... Succeed Anywhere!!!</title>
+  <meta name="description" content="Secure a rewarding career in Web/App development, Data Science & Analysis, UI/UX Product design, Robotics, Digital Marketing and more..." />
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <!-- Swiper CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ================================================================
+       FRAUD WARNING POPUP MODAL
+  ================================================================ -->
+  <div class="modal fade" id="fraudModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-sm fraud-modal-dialog">
+      <div class="modal-content fraud-modal-content">
+        <div class="modal-body fraud-modal-body">
+          <button type="button" class="btn-close fraud-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <div class="fraud-bell">
+            <a href="index.html">
+              <img src="Images/red-bell.png" alt="Alert Bell"
+              onerror="this.outerHTML='<span style=\'font-size:3rem;\'>🔔</span>'" />
+            </a>
+          </div>
+          <h5>Please be advised!</h5>
+          <p>Do not make any payment for our courses or services to any account or platform other than corporate accounts provided by SQI College of ICT.</p>
+          <p>The College will not be held responsible for any loss or issue arising from payments made to unauthorised individuals or channels.</p>
+          <p><strong>Thank you for your cooperation.</strong></p>
+          <a href="#" class="btn-close-modal" data-bs-dismiss="modal">OK, I understand</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================================================================
+       STICKY NAVBAR
+  ================================================================ -->
+
+  <nav class="sqi-navbar" id="sqiNavbar">
+    <div class="container">
+      <div class="nav-inner">
+
+        <!-- Logo -->
+        <a href="index.html" class="nav-logo">
+          <img src="Images/icon.jpg" alt="SQI College of ICT"
+            onerror="this.style.display='none';document.getElementById('logoFb').style.display='flex';" />
+          <div id="logoFb" class="logo-fallback" style="display:none;">
+            <span class="logo-badge">SQI</span>
+            <div class="logo-words">
+              <span>SQI College of ICT</span>
+              <small>Acquire In-Demand Tech Skills</small>
+            </div>
+          </div>
+        </a>
+
+        <!-- Hamburger -->
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+
+        <!-- Menu -->
+        <ul class="nav-menu" id="navMenu">
+
+          <li class="nav-item">
+            <a href="#" class="nav-link">About <i class="fas fa-chevron-down chevron"></i></a>
+            <ul class="dropdown">
+              <li><a href="story.html">Our Story</a></li>
+              <li><a href="team.html">Our Team</a></li>
+              <li><a href="campus.html">Campus Info</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a href="#" class="nav-link">Programmes <i class="fas fa-chevron-down chevron"></i></a>
+            <ul class="dropdown">
+              <li><a href="pre-nd.html">Pre-National Diploma</a></li>
+              <li><a href="nd.html">National Diploma</a></li>
+              <li><a href="procert.html">Professional Diploma Program</a></li>
+              <li><a href="epcp.html">Executive Professional Certificate Programme</a></li>
+              <li><a href="bsc.html">Bachelor Degree | LAUTECH PT</a></li>
+              <li><a href="post-utme.html">Post-UTME</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a href="#" class="nav-link">Admissions <i class="fas fa-chevron-down chevron"></i></a>
+            <ul class="dropdown">
+              <li><a href="afap.html">Apply for a Programme</a></li>
+              <li><a href="mos.html">Mode of Study</a></li>
+              <li><a href="tuition.html">Tuition</a></li>
+              <li><a href="https://drive.google.com/file/d/1w_itppr3K0MMy5Sdf8uFkCO7eCyAYiRf/view?usp=sharing">Student's Handbook</a></li>
+              <li><a href="faq.html">Frequently Asked Questions</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a href="#" class="nav-link">E-Portal <i class="fas fa-chevron-down chevron"></i></a>
+            <ul class="dropdown">
+              <li><a href="student.html">Student</a></li>
+              <li><a href="staff.html">Staff</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a href="scholarship.html" class="nav-link">SQI Scholarship</a>
+          </li>
+          <li class="nav-item">
+            <a href="news.html" class="nav-link">News</a>
+          </li>
+          <li class="nav-item">
+            <a href="contact.html" class="nav-link">Contact</a>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+  </nav>
+  
+  <!-- ================================================================
+       HERO SECTION
+  ================================================================ -->
+  <section class="hero-section">
+    <div class="container">
+      <div class="row align-items-center hero-row">
+        <div class="col-lg-6 hero-text-col">
+          <h1 class="hero-heading">Study to become a <span>global talent</span></h1>
+          <p class="hero-sub">Learn new tech skills using a world-class curriculum from top industry experts in an accredited institution.</p>
+          <a href="#" class="btn sqi-btn-primary hero-cta">Start Now</a>
+        </div>
+        <div class="col-lg-6 hero-img-col">
+          <img src="Images/1 Home/2 bg-header-sqi-1-480x472.png" alt="SQI students" class="hero-img" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       START HERE – 3 PROGRAMME CARDS
+  ================================================================ -->
+  <section class="start-here-section">
+    <div class="container">
+      <h2 class="section-title text-center">Start here. Change the world.</h2>
+      <div class="row g-4 mt-2">
+
+        <div class="col-md-4">
+          <div class="prog-card h-100">
+            <div class="prog-card-img">
+              <img src="Images/1 Home/3 college.jpg" alt="National Diploma" />
+            </div>
+            <div class="prog-card-body">
+              <h3>National Diploma (ND)</h3>
+              <p>The National Diploma (ND) offered at SQI College of ICT is a 2 year approved academic program of the National Board for Technical Education (NBTE) and approved by the Federal Ministry of Education</p>
+              <a href="nd.html" class="btn sqi-btn-outline mt-auto">Learn More</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="prog-card h-100">
+            <div class="prog-card-img">
+              <img src="Images/1 Home/4 prof.jpg" alt="Professional Diploma" />
+            </div>
+            <div class="prog-card-body">
+              <h3>Professional Diploma Certificate</h3>
+              <p>The Professional Certificate Program is 1 year practical training with wide range of edge-cutting IT certification courses offered in SQI College of ICT to people who want to advance their career.</p>
+              <a href="procert.html" class="btn sqi-btn-outline mt-auto">Learn More</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="prog-card h-100">
+            <div class="prog-card-img">
+              <img src="Images/1 Home/5 certificate.jpg" alt="Certificate Program" />
+            </div>
+            <div class="prog-card-body">
+              <h3>Certificate Program</h3>
+              <p>The Certificate Program is a short-term training, 2 weeks to 6 months with a wide range of edge-cutting IT certification courses offered in SQI College of ICT to people who want to advance their careers.</p>
+              <a href="procert.html" class="btn sqi-btn-outline mt-auto">Learn More</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       PROGRAMME COMPARISON TABLE
+  ================================================================ -->
+  <section class="compare-section">
+    <div class="container">
+      <div class="row g-0 compare-grid">
+
+        <!-- ND -->
+        <div class="col-md-4">
+          <div class="compare-col">
+            <div class="compare-header">NATIONAL DIPLOMA COURSES</div>
+            <ul class="compare-list">
+              <li><strong>Duration:</strong> 2 Years</li>
+              <li><strong>Certificate:</strong> Both National Diploma and Professional Diploma.</li>
+              <li><strong>Skills:</strong> Academic Institution recognized skills and In-demand professional skills.</li>
+              <li><strong>Entry Requirements:</strong> 120 min in JAMB, 5 Credits in O-Level and Your passion</li>
+              <li><strong>Required Hardware:</strong> (usually Laptop)</li>
+              <li><strong>Direct Entry:</strong> Yes (Any University)</li>
+              <li><strong>Transcript &amp; Internship:</strong> Yes</li>
+              <li><strong>Access to Alumni Network and Opportunities:</strong> Yes.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Pro Dip -->
+        <div class="col-md-4">
+          <div class="compare-col">
+            <div class="compare-header">PROFESSIONAL DIPLOMA COURSES</div>
+            <ul class="compare-list">
+              <li><strong>Duration:</strong> 12 Months Courses</li>
+              <li><strong>Certificate:</strong> Professional Diploma</li>
+              <li><strong>Skills:</strong> In-demand professional skills</li>
+              <li><strong>Entry Requirements:</strong> Your passion</li>
+              <li><strong>Required Hardware:</strong> (usually Laptop)</li>
+              <li><strong>Transcript &amp; Internship:</strong> Yes.</li>
+              <li><strong>Access to Alumni Network and Opportunities:</strong> Yes.</li>
+              <li><strong>Access to Credit Unit for Universities</strong></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Certificate -->
+        <div class="col-md-4">
+          <div class="compare-col">
+            <div class="compare-header">CERTIFICATE PROGRAM</div>
+            <ul class="compare-list">
+              <li><strong>Duration:</strong> 2 weeks to 10 months</li>
+              <li><strong>Certificate:</strong> Certificate Program</li>
+              <li><strong>Skills:</strong> In-demand professional skills</li>
+              <li><strong>Entry Requirements:</strong> Your passion</li>
+              <li><strong>Required Hardware:</strong> (usually Laptop)</li>
+              <li><strong>Transcript &amp; Internship:</strong> No</li>
+              <li><strong>Access to Alumni Network and Opportunities:</strong> Yes.</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       TOP COURSES
+  ================================================================ -->
+  <section class="courses-section">
+    <div class="container">
+      <div class="courses-top d-flex flex-wrap align-items-center justify-content-between mb-4">
+        <div>
+          <h2 class="section-title mb-1">Our Top Courses</h2>
+          <p class="section-sub mb-0">Take a look at some of our popular courses</p>
+        </div>
+        <a href="procert.html" class="btn sqi-btn-outline mt-3 mt-md-0">View all Courses</a>
+      </div>
+
+      <div class="row g-4">
+
+        <div class="col-sm-6 col-lg-3">
+          <div class="course-card h-100">
+            <div class="course-img">
+              <img src="Images/1 Home/6 software-engineering-630x330-1.webp" alt="Software Engineering" />
+            </div>
+            <div class="course-body">
+              <h4>Software Engineering (with Ai)</h4>
+              <p>Software Engineering is one of the most in-demand jobs across the globe today. Software Engineers are also known as programmers, developers or coders. They are the ones behind all the apps and software you use today either on your ….</p>
+              <a href="#" class="btn sqi-btn-sm-blue">Learn More</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-lg-3">
+          <div class="course-card h-100">
+            <div class="course-img">
+              <img src="Images/1 Home/7 DATA-SQI-480x320.jpg" alt="Data Science" />
+            </div>
+            <div class="course-body">
+              <h4>Data Science &amp; Analysis (With Ai)</h4>
+              <p>The eruption of data is transforming individuals and businesses. Companies either big or small are now expecting their business decisions to be based on data-led insight. Data specialists have a tremendous impact on…</p>
+              <a href="#" class="btn sqi-btn-sm-blue">Learn More</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-lg-3">
+          <div class="course-card h-100">
+            <div class="course-img">
+              <img src="Images/1 Home/8 product.jpg" alt="UI/UX Design" />
+            </div>
+            <div class="course-body">
+              <h4>UI/UX – Product Design (With Ai)</h4>
+              <p>More than ever before individuals and businesses are relying on digital products and services. Making an intuitive digital product design is even more important at this time as it…</p>
+              <a href="#" class="btn sqi-btn-sm-blue">Learn More</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-lg-3">
+          <div class="course-card h-100">
+            <div class="course-img">
+              <img src="Images/1 Home/9 digital-literacy-480x320.jpg" alt="Digital Literacy" />
+            </div>
+            <div class="course-body">
+              <h4>Digital Workplace Proficiency (With Ai)</h4>
+              <p>This course is designed to prepare you for success in a modern world full of computers—not only the traditional computers such as desktop and notebook PCs but also computers that you interact with in other places too…</p>
+              <a href="#" class="btn sqi-btn-sm-blue">Learn More</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       ALUMNI COMPANIES TICKER
+  ================================================================ -->
+  <section class="alumni-section">
+    <div class="container">
+      <h2 class="section-title text-center mb-5">Our alumni work at world-class companies around the world including</h2>
+    </div>
+    <div class="logos-outer">
+      <div class="logos-track">
+        <img src="Images/1 Home/10 google.png" alt="Google" />
+        <img src="Images/1 Home/13 Interswitch.png" alt="Interswitch" />
+        <img src="Images/1 Home/16 Andela-log-landscape-blue-400px.png" alt="Andela" />
+        <img src="Images/1 Home/19 Microsoft_logo.png" alt="Microsoft" />
+        <img src="Images/1 Home/11 Paystack.png" alt="Paystack" />
+        <img src="Images/1 Home/14 brewery.png" alt="Brewery" />
+        <img src="Images/1 Home/17 Wema-Bank-Logo.png" alt="Wema Bank" />
+        <img src="Images/1 Home/20 clan-logo.png" alt="Clan" />
+        <img src="Images/1 Home/12 edozzier.png" alt="Edozzier" />
+        <img src="Images/1 Home/15 moneymie.png" alt="Moneymie" />
+        <img src="Images/1 Home/18 Nigerian_Army.png" alt="Nigerian Army" />
+        <img src="Images/1 Home/21 aella-credit.png" alt="Aella Credit" />
+        <!-- Duplicate for seamless loop -->
+        <img src="Images/1 Home/10 google.png" alt="Google" />
+        <img src="Images/1 Home/13 Interswitch.png" alt="Interswitch" />
+        <img src="Images/1 Home/16 Andela-log-landscape-blue-400px.png" alt="Andela" />
+        <img src="Images/1 Home/19 Microsoft_logo.png" alt="Microsoft" />
+        <img src="Images/1 Home/11 Paystack.png" alt="Paystack" />
+        <img src="Images/1 Home/14 brewery.png" alt="Brewery" />
+        <img src="Images/1 Home/17 Wema-Bank-Logo.png" alt="Wema Bank" />
+        <img src="Images/1 Home/20 clan-logo.png" alt="Clan" />
+        <img src="Images/1 Home/12 edozzier.png" alt="Edozzier" />
+        <img src="Images/1 Home/15 moneymie.png" alt="Moneymie" />
+        <img src="Images/1 Home/18 Nigerian_Army.png" alt="Nigerian Army" />
+        <img src="Images/1 Home/21 aella-credit.png" alt="Aella Credit" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       CAMPUS TOUR (YouTube + Text)
+  ================================================================ -->
+  <section class="tour-section">
+    <div class="container">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-6">
+          <div class="tour-video-wrap">
+            <iframe
+              src="https://www.youtube.com/embed/HgC6bjMbqpw?feature=oembed"
+              title="SQI Campus Tour"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen></iframe>
+          </div>
+        </div>
+        <div class="col-lg-6 tour-text-col">
+          <h2 class="section-title"><strong>Take a Tour</strong></h2>
+          <p>Our campus is a living centre for innovation and creativity for sustainability. We love showing students our campus and allowing them to see, hear and feel the excitement that comes with being part of the Central community which is an atmosphere that is open-minded, always exciting, and filled with academic excellence.</p>
+          <a href="afap.html" class="btn sqi-btn-primary mt-3">Apply Now</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       TESTIMONIALS / GOOGLE REVIEWS
+  ================================================================ -->
+  <section class="testimonials-section">
+    <div class="container">
+      <div class="text-center mb-5">
+        <h2 class="section-title">Testimonials</h2>
+        <p class="section-sub">Read what our current students and alumni have to say about their SQI experience.</p>
+      </div>
+
+      <!-- Google Rating Summary -->
+      <div class="google-rating-box mb-5">
+        <div class="google-rating-inner">
+          <img src="Images/1 Home/40 sqi ict.jpg"
+            alt="SQI Ibadan" class="google-place-img"
+            onerror="this.style.display='none'" />
+          <div class="google-rating-text">
+            <a href="#" class="google-place-name" target="_blank">SQI College of ICT IBADAN</a>
+            <div class="stars-row">
+              <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+              <span class="rating-num">4.9</span>
+            </div>
+            <p class="review-count">Based on 84 reviews</p>
+            <p class="powered-google">powered by <strong>Google</strong></p>
+            <a href="#" class="review-us-btn" target="_blank">review us on <i class="fab fa-google"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Testimonial Swiper -->
+      <div class="swiper testimonial-swiper">
+        <div class="swiper-wrapper">
+
+          <div class="swiper-slide">
+            <div class="review-card">
+              <div class="review-header">
+                <img src="Images/1 Home/35 unnamed.png" alt="Omolola" class="reviewer-img" onerror="this.src='Images/1 Home/35 unnamed.png'" />
+                <div>
+                  <a href="#" class="reviewer-name" target="_blank">Omolola Omolabake</a>
+                  <div class="review-stars">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                  </div>
+                  <span class="review-date">19:32 29 Dec 21</span>
+                </div>
+              </div>
+              <p class="review-text">Coming to SQI has made me believe that life has more to offer. Talking about being experienced in ICT rapidly, SQI deserves uncountable recommendations. Thank u SQI for making me believe more in myself, thanks for bringing out some qualities that I'll never think of years to come in my life. My heart is full of gratitude</p>
+            </div>
+          </div>
+
+          <div class="swiper-slide">
+            <div class="review-card">
+              <div class="review-header">
+                <img src="https://lh3.googleusercontent.com/a/AATXAJyhHGfdEPBWzRVvTv7g8b0iufmapKrkg2joeRQB=s128-c0x00000000-cc-rp-mo" alt="Cherish" class="reviewer-img" onerror="this.src='https://ui-avatars.com/api/?name=Cherish&background=1e7d34&color=fff'" />
+                <div>
+                  <a href="#" class="reviewer-name" target="_blank">Cherish Ordia</a>
+                  <div class="review-stars">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                  </div>
+                  <span class="review-date">21:35 08 Aug 21</span>
+                </div>
+              </div>
+              <p class="review-text">It is a great place to learn. It is a condusive environment filled with loving and patient teachers, a wonderful and admirable manager and supportive and cheerful students. For the past month I've been here, it's been great.</p>
+            </div>
+          </div>
+
+          <div class="swiper-slide">
+            <div class="review-card">
+              <div class="review-header">
+                <img src="Images/1 Home/37 unnamed (1).png" alt="Oladimeji" class="reviewer-img" onerror="this.src='Images/1 Home/37 unnamed (1).png'" />
+                <div>
+                  <a href="#" class="reviewer-name" target="_blank">Oladimeji Sodeeq</a>
+                  <div class="review-stars">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                  </div>
+                  <span class="review-date">13:48 05 Aug 21</span>
+                </div>
+              </div>
+              <p class="review-text">It's an awesome place to learn. It has a serene environment, the tutors are friendly and very explanatory. I really love the place.</p>
+            </div>
+          </div>
+
+          <div class="swiper-slide">
+            <div class="review-card">
+              <div class="review-header">
+                <img src="Images/1 Home/38 unnamed (2).png" alt="Oluwaseyi" class="reviewer-img" onerror="this.src='Images/1 Home/38 unnamed (2).png'" />
+                <div>
+                  <a href="#" class="reviewer-name" target="_blank">Oluwaseyi Odekomaya</a>
+                  <div class="review-stars">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                  </div>
+                  <span class="review-date">11:35 05 Aug 21</span>
+                </div>
+              </div>
+              <p class="review-text">I've compared other platforms to this one to be honest and they don't measure up. The platforms that give a comparable level of quality cost a lot more and don't even offer a guarantee of access to real world project and situations... Another aspect that I noticed is that instructors at SQI College of ICT are actually interested in ensuring their students understand what they are learning. ENROLL WITH SQI AND YOU WILL BE PROUD YOU DID.</p>
+            </div>
+          </div>
+
+          <div class="swiper-slide">
+            <div class="review-card">
+              <div class="review-header">
+                <img src="Images/1 Home/39 unnamed (3).png" alt="Emmanuel" class="reviewer-img" onerror="this.src='Images/1 Home/39 unnamed (3).png'" />
+                <div>
+                  <a href="#" class="reviewer-name" target="_blank">Emmanuel Toluwanimi</a>
+                  <div class="review-stars">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                  </div>
+                  <span class="review-date">17:01 18 May 21</span>
+                </div>
+              </div>
+              <p class="review-text">SQI is one of the things I'm thankful for in my life. I've spent six months in SQI and I can say it's one of the best moments in my life. The tutors don't just teach, they mentor students. They make coding fun and understandable for learners. ENROLL WITH SQI AND YOU WILL BE PROUD YOU DID.</p>
+            </div>
+          </div>
+
+        </div>
+        <div class="swiper-pagination testimonial-pagination"></div>
+        <div class="swiper-button-prev testimonial-prev"></div>
+        <div class="swiper-button-next testimonial-next"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       WHY STUDY AT SQI
+  ================================================================ -->
+  <section class="why-section">
+    <div class="container">
+      <h2 class="section-title text-center mb-5">Why study at SQI?</h2>
+      <div class="row g-4">
+
+        <div class="col-sm-6 col-lg-3">
+          <div class="why-card text-center">
+            <div class="why-icon"><i class="fas fa-laptop-code"></i></div>
+            <h4>Project Based Learning</h4>
+            <p>Our courses are practical, hands-on learning. Practice and apply knowledge with real world projects that contribute largely to your portfolio.</p>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-lg-3">
+          <div class="why-card text-center">
+            <div class="why-icon"><i class="fas fa-chalkboard-teacher"></i></div>
+            <h4>Expert Instructors</h4>
+            <p>Get to interact with different mentors and draw from their loads of experience.</p>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-lg-3">
+          <div class="why-card text-center">
+            <div class="why-icon"><i class="fas fa-video"></i></div>
+            <h4>Physical &amp; Virtual Class</h4>
+            <p>You can now choose physical class experience or online classroom and learn from anywhere in the world.</p>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-lg-3">
+          <div class="why-card text-center">
+            <div class="why-icon"><i class="fas fa-users"></i></div>
+            <h4>Free access to our hub and community</h4>
+            <p>You will have access to our fully functional hub for co-working and working on projects, assignments and even begin a start-up.</p>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-lg-3">
+          <div class="why-card text-center">
+            <div class="why-icon"><i class="fas fa-certificate"></i></div>
+            <h4>Certification</h4>
+            <p>Be certified by an accredited and globally recognized institution. SQI got its accreditation in Sept 2021 from the NBTE, Nigeria.</p>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-lg-3">
+          <div class="why-card text-center">
+            <div class="why-icon"><i class="fas fa-handshake"></i></div>
+            <h4>Alumni Support</h4>
+            <p>Our students have access to alumni who currently work at top tech organizations in the world such as Google, Microsoft, Interswitch etc.</p>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-lg-3">
+          <div class="why-card text-center">
+            <div class="why-icon"><i class="fas fa-briefcase"></i></div>
+            <h4>Job Opportunity</h4>
+            <p>78.5% of our students found secure employment within three months of graduation. Students leave from learning to getting job roles.</p>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-lg-3">
+          <div class="why-card text-center">
+            <div class="why-icon"><i class="fas fa-book-open"></i></div>
+            <h4>Access to study materials</h4>
+            <p>Students have access to prerecorded videos and resources they can make use of to further solidify their knowledge.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       FAQ ACCORDION
+  ================================================================ -->
+  <section class="faq-section">
+    <div class="container">
+      <div class="row align-items-start g-5">
+        <div class="col-lg-4 faq-left">
+          <p class="faq-label">FAQ</p>
+          <h2 class="section-title">Frequently Asked Questions</h2>
+          <a href="contact.html" class="btn sqi-btn-primary mt-3">Contact Us</a>
+        </div>
+        <div class="col-lg-8">
+          <div class="accordion sqi-accordion" id="faqAccordion">
+
+            <div class="accordion-item sqi-accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button sqi-accordion-btn" type="button"
+                  data-bs-toggle="collapse" data-bs-target="#faq1" aria-expanded="true">
+                  How do I get into the college
+                </button>
+              </h2>
+              <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                <div class="accordion-body sqi-accordion-body">
+                  We currently have 3 modes of study at SQI College of ICT, the National Diploma, Professional Diploma Certificate, and Ordinary Professional Certificate Program. You can join us by applying through any of the modes of study.
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item sqi-accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button sqi-accordion-btn collapsed" type="button"
+                  data-bs-toggle="collapse" data-bs-target="#faq2" aria-expanded="false">
+                  How much is the tuition?
+                </button>
+              </h2>
+              <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                <div class="accordion-body sqi-accordion-body">
+                  This depends on the type of course you are applying for and the duration—whether it's a National Diploma, Professional Diploma, or a short-term professional program.
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item sqi-accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button sqi-accordion-btn collapsed" type="button"
+                  data-bs-toggle="collapse" data-bs-target="#faq3" aria-expanded="false">
+                  Are your classes physical or virtual
+                </button>
+              </h2>
+              <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                <div class="accordion-body sqi-accordion-body">
+                  Lectures at SQI College of ICT can either be physical, virtual or blended. You can decide to go for anyone that meets your demand.
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item sqi-accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button sqi-accordion-btn collapsed" type="button"
+                  data-bs-toggle="collapse" data-bs-target="#faq4" aria-expanded="false">
+                  Will I get a job after my training?
+                </button>
+              </h2>
+              <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                <div class="accordion-body sqi-accordion-body">
+                  78.5% of our students found secure employment within three months of graduation. Students graduate from class to land job roles immediately.
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       CTA BANNER – READY TO GET STARTED
+  ================================================================ -->
+  <section class="cta-section">
+    <div class="container text-center">
+      <p class="cta-label">It's time for you to take your tech career to the next level</p>
+      <h2>Ready to Get Started?</h2>
+      <p class="cta-sub">We provide and lead others in quality education, service, industry, and character as well as discipline.</p>
+      <p class="cta-campuses">Join any of our Campuses:<br />
+        <strong>Lagos • Abuja • Ibadan • Abeokuta • Ogbomosho • Osogbo • Virtual</strong>
+      </p>
+      <a href="afap.html" class="btn sqi-btn-primary mt-3">Join Us Today</a>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       LATEST NEWS
+  ================================================================ -->
+  <section class="news-section">
+    <div class="container">
+      <div class="d-flex flex-wrap align-items-center justify-content-between mb-4">
+        <h2 class="section-title mb-0">Latest News</h2>
+        <a href="news.html" class="btn sqi-btn-outline mt-2 mt-md-0">Read More</a>
+      </div>
+      <div class="row g-4">
+
+        <div class="col-md-4">
+          <div class="news-card h-100">
+            <a href="#" class="news-img-link">
+              <img src="Images/1 Home/41.jpg" alt="LAUTECH Partnership" />
+            </a>
+            <div class="news-body">
+              <span class="news-date">Feb 13, 2026</span>
+              <h5><a href="#">SQI College of ICT Partners with Ladoke Akintola University of Technology LAUTECH</a></h5>
+              <p>SQI College of ICT is pleased to formally announce a strategic academic collaboration with Ladoke Akintola University of Technology (LAUTECH) for the support and coordination of selected LAUTECH Part-Time Degree Programmes…</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="news-card h-100">
+            <a href="#" class="news-img-link">
+              <img src="Images/1 Home/42.jpg" alt="Convocation" />
+            </a>
+            <div class="news-body">
+              <span class="news-date">Nov 22, 2025</span>
+              <h5><a href="#">SQI College of ICT Holds First Convocation, Honours Pioneer Graduates</a></h5>
+              <p>SQI College of ICT, Ogbomoso, marked a landmark achievement on Saturday, 22nd November 2025, as the institution held its maiden Convocation Ceremony at its main campus along Old Ilorin Road, Ogbomoso…</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="news-card h-100">
+            <a href="#" class="news-img-link">
+              <img src="Images/1 Home/43.jpg" alt="Matriculation" />
+            </a>
+            <div class="news-body">
+              <span class="news-date">May 5, 2025</span>
+              <h5><a href="#">Students embrace new opportunities with matriculation at SQI College of ICT</a></h5>
+              <p>SQI College of ICT, Ogbomoso, on Saturday, May 3, 2025, held its 6th Matriculation Ceremony for the 2024/2025 academic session…</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       FOOTER
+  ================================================================ -->
+  <footer class="sqi-footer">
+    <div class="container">
+      <div class="row g-5 footer-top-row">
+
+        <!-- Brand + Socials + Emails -->
+        <div class="col-lg-3 col-md-6">
+          <div class="footer-brand">
+            <h4>Hello, we're SQI College of ICT</h4>
+            <p>We provide and lead others in quality ICT education.</p>
+          </div>
+          <div class="footer-socials mt-3">
+            <a href="#" title="Follow on Facebook" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" title="Follow on X" target="_blank"><i class="fab fa-x-twitter"></i></a>
+            <a href="#" title="Follow on LinkedIn" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" title="Follow on Youtube" target="_blank"><i class="fab fa-youtube"></i></a>
+            <a href="#" title="Follow on Instagram" target="_blank"><i class="fab fa-instagram"></i></a>
+          </div>
+          <div class="footer-emails mt-4">
+            <h6>Send us a mail</h6>
+            <ul>
+              <li><a href="#">enquiry@sqi.edu.ng</a></li>
+              <li><a href="#">admissions@sqi.edu.ng</a></li>
+              <li><a href="#">examsandrecords@sqi.edu.ng</a></li>
+              <li><a href="#">rector@sqi.edu.ng</a></li>
+              <li><a href="#">partnerships@sqi.edu.ng</a></li>
+              <li><a href="#">internship@sqi.edu.ng</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="col-lg-2 col-md-6 col-sm-6">
+          <h6 class="footer-col-title">Quick Links</h6>
+          <ul class="footer-links">
+            <li><a href="#">Application Portal</a></li>
+            <li><a href="student.html">Student Portal</a></li>
+            <li><a href="procert.html">Professional Courses</a></li>
+            <li><a href="nd.html">ND Courses</a></li>
+            <li><a href="campus.html">Campus Info</a></li>
+            <li><a href="#">Accommodation</a></li>
+            <li><a href="scholarship.html">SQI Scholarship</a></li>
+            <li><a href="#">SQI Anthem</a></li>
+            <li><a href="#">Donate</a></li>
+          </ul>
+        </div>
+
+        <!-- Locations col 1 -->
+        <div class="col-lg-4 col-md-6">
+          <div class="row g-3">
+            <div class="col-6">
+              <h6 class="footer-col-title">Ogbomoso</h6>
+              <p class="footer-address">Old Ilorin Road, Opposite Yoaco Filling Station, Yoaco, Ogbomoso.<br /><strong>0906 281 9991, 0906 281 9993</strong></p>
+              <a href="#" class="footer-map-link" target="_blank">Locate on the map</a>
+              <h6 class="footer-col-title">Ibadan</h6>
+              <p class="footer-address">First Floor, H25 Heritage Mall, Opposite Central Bank of Nigeria, Dugbe, Ibadan.<br /><strong>0906 281 9994</strong></p>
+              <a href="#" class="footer-map-link" target="_blank">Locate on the map</a>
+            </div>
+            <div class="col-6">
+              <h6 class="footer-col-title">Lagos</h6>
+              <p class="footer-address">Suite 219, Opic Plaza, Mobolaji Bank Anthony Way, beside Sheraton Hotel, Ikeja, Lagos<br /><strong>0906 281 9999</strong></p>
+              <a href="#" class="footer-map-link" target="_blank">Locate on the map</a>
+              <h6 class="footer-col-title">Abeokuta</h6>
+              <p class="footer-address">First floor, OPIC Tower building, Okeilewo, Abeokuta.<br /><strong>0906 281 9996</strong></p>
+              <a href="#" class="footer-map-link" target="_blank">Locate on the map</a>
+            </div>
+            <div class="col-6">
+              <h6 class="footer-col-title">Virtual</h6>
+              <p class="footer-address">Available Globally Online.<br /><strong>0906 281 9992</strong></p>
+              <a href="#" class="footer-map-link" target="_blank">Locate on the map</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Locations col 2 -->
+        <div class="col-lg-3 col-md-6">
+          <div class="row g-3">
+            <div class="col-12">
+              <p class="footer-address mt-2">Christianah Oyinade Ajoke House, beside First Bank, Arisekola Central Mosque, Opposite Jaiz bank, Idi Ape, Iwo road, Ibadan.<br /><strong>0906 281 9995</strong></p>
+              <a href="#" class="footer-map-link" target="_blank">Locate on the map</a>
+              <p class="footer-address mt-2">Haier Thermocool Building, opposite SAO filling station, Challenge, Ibadan, Oyo State.<br /><strong>0906 281 9992</strong></p>
+              <a href="#" class="footer-map-link" target="_blank">Locate on the map</a>
+            </div>
+            <div class="col-6">
+              <h6 class="footer-col-title">Osogbo</h6>
+              <p class="footer-address">Opposite Jaiz bank, Ogo-Oluwa, Osogbo<br /><strong>0906 281 9997</strong></p>
+              <a href="#" class="footer-map-link" target="_blank">Locate on the map</a>
+            </div>
+            <div class="col-6">
+              <h6 class="footer-col-title">Abuja</h6>
+              <p class="footer-address">Suite Banking Hall SF, Febson Mall, Wuse Zone 4, Abuja<br /><strong>090 628 20000</strong></p>
+              <a href="#" class="footer-map-link" target="_blank">Locate on the map</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Footer Bottom -->
+      <div class="footer-bottom">
+        <p>Copyright &copy; 2026 | SQI ICT Consultants | Powered by Edozzier</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ================================================================
+       BACK TO TOP BUTTON
+  ================================================================ -->
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+  <div class="git_footer">
+    <a href="https://github.com/Analyst-Foundry">By Analyst Foundry</a>
+  </div>
+
+  <!-- ================================================================
+       SCRIPTS
+  ================================================================ -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

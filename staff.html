@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+  <title>Staff Portal – SQI College of ICT</title>
+  <meta name="description" content="SQI College of ICT Staff / Admin Portal — Secure sign-in for staff, administrators and registry officers." />
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <!-- Google Fonts: Open Sans -->
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ============================================================
+       CSS VARIABLES
+    ============================================================ */
+    :root {
+      --blue-primary: rgb(0,11,63);
+      --blue-dark:    rgb(9,3,38);
+      --blue-mid:     rgb(0,11,63);
+      --blue-light:   rgb(46,163,242);
+      --blue-deeper:  rgb(86,195,249);
+
+      /* Admin sidebar — much darker than student */
+      --admin-bg:      #0c1a0f;
+      --admin-bg2:     #0f2214;
+      --admin-panel:   #142b18;
+      --admin-accent:  #1e7d34;
+      --admin-border:  rgba(255,255,255,.08);
+
+      --white:         #ffffff;
+      --off-white:     #f8f9fa;
+      --grey-bg:       #f0f2f5;
+      --border:        #dee2e6;
+      --border-lt:     #e9ecef;
+      --text:          #212529;
+      --text-mid:      #495057;
+      --text-soft:     #6c757d;
+      --text-muted:    #adb5bd;
+      --dark-bg:       #1a1a1a;
+
+      --shadow-sm:     0 2px 12px rgba(0,0,0,.08);
+      --shadow-md:     0 6px 28px rgba(0,0,0,.12);
+      --shadow-lg:     0 16px 56px rgba(0,0,0,.2);
+
+      --radius:        10px;
+      --radius-lg:     16px;
+      --t:             .25s ease;
+    }
+
+    /* ============================================================
+       RESET & BASE
+    ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; }
+
+    html, body {
+      height: 100%;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 15px;
+      color: var(--text);
+      overflow-x: hidden;
+    }
+    body {
+      background: var(--grey-bg);
+      min-height: 135vh;
+      display: flex;
+      flex-direction: column;
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; transition: color var(--t); }
+    img { max-width: 100%; display: block; }
+
+    /* ============================================================
+       LAYOUT WRAPPER
+    ============================================================ */
+    .portal-wrapper {
+      display: flex;
+      min-height: 100vh;
+      flex: 1;
+    }
+
+    /* ============================================================
+       LEFT PANEL — ADMIN DARK BRANDING
+    ============================================================ */
+    .portal-left {
+      width: 45%;
+      background: linear-gradient(160deg, var(--blue-dark) 0%, var(--blue-primary) 50%, #2aad6a 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 48px 52px;
+      position: relative;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    /* Decorative circles */
+    .portal-left::before {
+      content: '';
+      position: absolute;
+      width: 480px; height: 480px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.05);
+      top: -180px; right: -160px;
+      pointer-events: none;
+    }
+    .portal-left::after {
+      content: '';
+      position: absolute;
+      width: 320px; height: 320px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.04);
+      bottom: -120px; left: -80px;
+      pointer-events: none;
+    }
+
+    /* Pattern overlay */
+    .portal-left-pattern {
+      position: absolute; inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
+      pointer-events: none;
+    }
+
+    /* Left — content */ ***
+    .portal-left-top { position: relative; z-index: 1; }
+
+    /* Logo */
+    .portal-logo-wrap {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 40px;
+    }
+    .portal-logo-img {
+      height: 52px;
+      width: auto;
+      object-fit: contain;
+      border-radius: 8px;
+      background: rgba(255,255,255,.15);
+      padding: 4px 8px;
+    }
+    .portal-logo-txt {
+      display: flex; flex-direction: column;
+    }
+    .portal-logo-name {
+      font-size: 16px; font-weight: 800;
+      color: var(--white); line-height: 1.2;
+    }
+    .portal-logo-sub {
+      font-size: 11px; color: rgba(255,255,255,.7);
+      letter-spacing: .5px;
+    }
+
+    /* Admin badge */
+    .admin-role-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(30,125,52,.25);
+      border: 1px solid rgba(30,125,52,.35);
+      color: #6fcf88;
+      border-radius: 100px;
+      padding: 5px 14px;
+      font-size: 11px; font-weight: 700;
+      letter-spacing: 1px; text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+    .admin-role-badge i { font-size: 11px; }
+
+    /* Left headline */
+    .portal-left-headline {
+      font-size: clamp(26px, 3.5vw, 40px);
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+    .portal-left-sub {
+      font-size: 15px;
+      color: rgba(255,255,255,.82);
+      line-height: 1.7;
+      margin-bottom: 40px;
+      max-width: 380px;
+    }
+
+    /* Admin features */
+    .admin-features {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .admin-feature {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .admin-feature:hover {
+      background: rgba(255,255,255,.07);
+      border-color: rgba(30,125,52,.3);
+    }
+    .admin-feature-icon {
+      width: 40px; height: 40px;
+      background: rgba(255,255,255,.15);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      font-size: 18px; color: var(--white);
+      backdrop-filter: blur(4px);
+    }
+    .admin-feature-body h6{
+      font-size: 14px; color: rgba(255,255,255,.9);
+      font-weight: 500; line-height: 1.3;
+    }
+    .admin-feature-body p {
+      font-size: 12px; color: rgba(255,255,255,.5); margin: 0; line-height: 1.4;
+    }
+
+    /* Left bottom */
+    .portal-left-bottom {
+      position: relative; z-index: 1;
+      border-top: 1px solid rgba(255,255,255,.15);
+      padding-top: 24px;
+    }
+    .portal-left-bottom p {
+      font-size: 12px;
+      color: rgba(255,255,255,.55);
+      margin: 0;
+    }
+    .security-notice {
+      display: flex; align-items: center; gap: 10px;
+    }
+    .security-notice i { color: #6fcf88; font-size: 14px; }
+    .security-notice p { font-size: 12px; color: rgba(255,255,255,.45); margin: 0; }
+
+    /* ============================================================
+       RIGHT PANEL — LOGIN FORM
+    ============================================================ */
+    .portal-right {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 32px;
+      background: var(--white);
+      overflow-y: auto;
+    }
+
+    .login-card {
+      width: 100%; max-width: 440px;
+    }
+
+    /* Form heading */
+    .login-heading {
+      font-size: clamp(22px, 3vw, 32px);
+      font-weight: 800; color: var(--text);
+      line-height: 1.2; margin-bottom: 6px;
+    }
+    .login-sub {
+      font-size: 13.5px; color: var(--text-soft);
+      margin-bottom: 32px; line-height: 1.65;
+    }
+
+    /* -------- Form fields -------- */
+    .field-group { margin-bottom: 20px; }
+    .field-label {
+      font-size: 13px; font-weight: 700;
+      color: var(--text-mid); margin-bottom: 7px; display: block;
+    }
+
+    /* Role selector */
+    .role-select-wrap { position: relative; }
+    .role-select-icon {
+      position: absolute; left: 15px; top: 50%; transform: translateY(-50%);
+      color: var(--text-muted); font-size: 15px; pointer-events: none; z-index: 5;
+    }
+    .role-select {
+      width: 100%;
+      padding: 13px 14px 13px 44px;
+      border: 1.5px solid var(--border); border-radius: var(--radius);
+      font-family: 'Open Sans', sans-serif;
+      font-size: 14px; color: var(--text); background: var(--white);
+      outline: none; cursor: pointer; appearance: none;
+      -webkit-appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%236c757d' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      background-size: 12px;
+      transition: border-color var(--t), box-shadow var(--t);
+    }
+    .role-select:focus {
+      border-color: var(--blue-dark);
+      box-shadow: 0 0 0 3px rgba(21,87,36,.12);
+    }
+    .role-select option:disabled { color: var(--text-muted); }
+
+    /* Input with icon */
+    .input-wrap { position: relative; }
+    .input-icon {
+      position: absolute; left: 15px; top: 50%; transform: translateY(-50%);
+      color: var(--text-muted); font-size: 15px; pointer-events: none; z-index: 5;
+    }
+    .form-input {
+      width: 100%;
+      padding: 13px 14px 13px 44px;
+      border: 1.5px solid var(--border); border-radius: var(--radius);
+      font-family: 'Open Sans', sans-serif;
+      font-size: 14px; color: var(--text); background: var(--white);
+      outline: none;
+      transition: border-color var(--t), box-shadow var(--t);
+    }
+    .form-input::placeholder { color: var(--text-muted); }
+    .form-input:focus {
+      border-color: var(--blue-dark);
+      box-shadow: 0 0 0 3px rgba(21,87,36,.12);
+    }
+    .form-input.has-toggle { padding-right: 44px; }
+    .form-input.is-invalid { border-color: #dc3545; box-shadow: 0 0 0 3px rgba(220,53,69,.12); }
+
+    /* Password toggle */
+    .pw-toggle {
+      position: absolute; right: 14px; top: 50%; transform: translateY(-50%);
+      background: none; border: none; padding: 0;
+      color: var(--text-muted); font-size: 16px; cursor: pointer; z-index: 5;
+      line-height: 1; transition: color var(--t);
+    }
+    .pw-toggle:hover { color: var(--blue-dark); }
+
+    /* Options row */
+    .form-options {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 26px; flex-wrap: wrap; gap: 10px;
+    }
+    .custom-check {
+      display: flex; align-items: center; gap: 9px; cursor: pointer;
+    }
+    .custom-check input[type="checkbox"] {
+      width: 17px; height: 17px;
+      border: 1.5px solid var(--border);
+      border-radius: 4px; accent-color: var(--blue-dark); cursor: pointer; flex-shrink: 0;
+    }
+    .custom-check span { font-size: 13px; color: var(--text-mid); font-weight: 500; }
+    .forgot-link {
+      font-size: 13px; font-weight: 600; color: var(--blue-dark);
+      transition: color var(--t);
+    }
+    .forgot-link:hover { color: var(--blue-primary); text-decoration: underline; }
+
+    /* Submit button */
+    .btn-signin {
+      display: flex; align-items: center; justify-content: center; gap: 9px;
+      width: 100%; padding: 14px;
+      background: linear-gradient(135deg, var(--blue-dark) 0%, var(--blue-primary) 100%);
+      color: var(--white); border: none; border-radius: var(--radius);
+      font-family: 'Open Sans', sans-serif;
+      font-size: 15px; font-weight: 700; cursor: pointer;
+      transition: opacity var(--t), transform var(--t), box-shadow var(--t);
+      box-shadow: 0 4px 16px rgba(21,87,36,.35);
+      margin-bottom: 24px;
+    }
+    .btn-signin:hover {
+      opacity: .9; transform: translateY(-1px);
+      box-shadow: 0 8px 24px rgba(21,87,36,.45);
+    }
+    .btn-signin:active { transform: translateY(0); }
+    .spinner {
+      width: 18px; height: 18px;
+      border: 2px solid rgba(255,255,255,.4);
+      border-top-color: var(--white);
+      border-radius: 50%; display: none;
+      animation: spin .7s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .btn-signin.loading .btn-txt { display: none; }
+    .btn-signin.loading .spinner { display: block; }
+
+    /* Alert */
+    .form-alert {
+      display: none; padding: 12px 16px; border-radius: var(--radius);
+      font-size: 13.5px; font-weight: 600; margin-bottom: 18px;
+      align-items: center; gap: 10px;
+    }
+    .form-alert.error { display: flex; background: #fff5f5; border: 1px solid #ffc5c5; color: #c53030; }
+    .form-alert.success { display: flex; background: var(--blue-light); border: 1px solid var(--blue-deeper); color: var(--blue-dark); }
+
+    /* Security warning box */
+    .security-box {
+      background: #fffbf0;
+      border: 1px solid #ffd54f;
+      border-radius: var(--radius);
+      padding: 13px 16px;
+      font-size: 12.5px; color: #664d03;
+      display: flex; align-items: flex-start; gap: 10px;
+      margin-bottom: 24px; line-height: 1.55;
+    }
+    .security-box i { color: #f59e0b; flex-shrink: 0; margin-top: 1px; }
+
+    /* Links row */
+    .links-row {
+      text-align: center; font-size: 13px; color: var(--text-muted);
+    }
+    .links-row a { color: var(--blue-dark); font-weight: 600; transition: color var(--t); }
+    .links-row a:hover { color: var(--blue); text-decoration: underline; }
+
+    /* ============================================================
+       FOOTER STRIP
+    ============================================================ */
+    .portal-footer-strip {
+      background: var(--off-white);
+      border-top: 1px solid var(--border-lt);
+      padding: 12px 32px;
+      text-align: center;
+      font-size: 12px;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+    .portal-footer-strip a { color: var(--blue-primary); font-weight: 600; }
+
+    .git_footer{
+      display: inline-flex;
+      justify-content: space-between;
+      height: 50px;
+      width: 100%;
+      border-top: 0px solid rgb(218, 220, 222);
+      align-items: center;
+      padding-left: 30px;
+      background-color: rgb(0, 0, 0);
+    }
+
+    .git_footer a{
+      text-decoration: none;
+      color: rgb(232, 17, 35);
+      font-size: 20px;
+      font-weight: 600;
+    }
+
+    /* ============================================================
+       RESPONSIVE
+    ============================================================ */
+    @media (max-width: 991.98px) {
+      .portal-wrapper { flex-direction: column; }
+      .portal-left { width: 100%; padding: 36px 28px 32px; }
+      .portal-illustration { display: none; }
+      .portal-right { padding: 36px 24px; }
+    }
+
+    @media (max-width: 575.98px) {
+      .portal-left { padding: 28px 20px 24px; }
+      .portal-right { padding: 28px 16px; }
+      .login-heading { font-size: 24px; }
+      .admin-features { gap: 8px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ================================================================
+       MAIN LAYOUT
+  ================================================================ -->
+  <div class="portal-wrapper">
+
+    <!-- ============================================================
+         LEFT PANEL — DARK ADMIN BRANDING
+    ============================================================ -->
+    <div class="portal-left">
+      <div class="portal-left-pattern"></div>
+
+      <div class="portal-left-top">
+
+        <!-- Logo -->
+        <div class="portal-logo-wrap">
+          <img
+            src="Images/icon.jpg"
+            alt="SQI College of ICT"
+            class="portal-logo-img"
+            onerror="this.style.display='none';"
+          />
+          <div class="portal-logo-txt">
+            <span class="portal-logo-name">SQI College of ICT</span>
+            <span class="portal-logo-sub">Acquire In-Demand Tech Skills</span>
+          </div>
+        </div>
+
+        <!-- Admin badge -->
+        <span class="admin-role-badge">
+          <i class="fas fa-shield-halved"></i> Staff &amp; Admin Access
+        </span>
+
+        <!-- Headline -->
+        <h1 class="portal-left-headline">
+          Administration<br /><span class="accent">Control Panel</span>
+        </h1>
+        <p class="portal-left-sub">Secure, centralised portal for staff, administrators, registry officers and finance teams at SQI College of ICT.</p>
+
+        <!-- Features -->
+        <div class="admin-features">
+          <div class="admin-feature">
+            <div class="admin-feature-icon"><i class="fas fa-users-cog"></i></div>
+            <div class="admin-feature-body">
+              <h6>Student &amp; Staff Management</h6>
+              <p>Manage enrolments, profiles, roles and access levels</p>
+            </div>
+          </div>
+          <div class="admin-feature">
+            <div class="admin-feature-icon"><i class="fas fa-chart-bar"></i></div>
+            <div class="admin-feature-body">
+              <h6>Reports &amp; Analytics</h6>
+              <p>Generate academic, financial and institutional reports</p>
+            </div>
+          </div>
+          <div class="admin-feature">
+            <div class="admin-feature-icon"><i class="fas fa-file-invoice-dollar"></i></div>
+            <div class="admin-feature-body">
+              <h6>Finance &amp; Payment Records</h6>
+              <p>Track tuition payments, invoices and scholarships</p>
+            </div>
+          </div>
+          <div class="admin-feature">
+            <div class="admin-feature-icon"><i class="fas fa-gear"></i></div>
+            <div class="admin-feature-body">
+              <h6>System Configuration</h6>
+              <p>Academic calendar, course setup, and portal settings</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom security notice -->
+      <div class="portal-left-bottom">
+        <div class="security-notice">
+          <i class="fas fa-lock"></i>
+          <p>This portal is restricted to authorised SQI personnel only. Unauthorised access is strictly prohibited.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================================
+         RIGHT PANEL — ADMIN LOGIN FORM
+    ============================================================ -->
+    <div class="portal-right">
+      <div class="login-card">
+
+        <!-- Heading -->
+        <h2 class="login-heading">Staff Sign In</h2>
+        <p class="login-sub">Enter your credentials to access the administration control panel.</p>
+
+        <!-- Security warning -->
+        <div class="security-box">
+          <i class="fas fa-triangle-exclamation"></i>
+          <span>This is a <strong>restricted system</strong>. Only authorised SQI staff and administrators may access this portal. All sessions are logged and monitored.</span>
+        </div>
+
+        <!-- Error alert -->
+        <div class="form-alert" id="formAlert" role="alert">
+          <i class="fas fa-exclamation-circle"></i>
+          <span id="alertMsg">Invalid credentials. Please check and try again.</span>
+        </div>
+
+        <!-- FORM -->
+        <form id="adminLoginForm" novalidate autocomplete="on">
+
+          <!-- Role / Department -->
+          <div class="field-group">
+            <label class="field-label" for="roleSelect">Role / Department</label>
+            <div class="role-select-wrap">
+              <i class="fas fa-sitemap role-select-icon"></i>
+              <select class="role-select" id="roleSelect" name="role">
+                <option value="" disabled selected>Select your role…</option>
+                <option value="admin">Administrator</option>
+                <option value="rector">Rector</option>
+                <option value="registrar">Registrar</option>
+                <option value="exams">Exams &amp; Records</option>
+                <option value="finance">Finance Officer</option>
+                <option value="admissions">Admissions Officer</option>
+                <option value="instructor">Instructor / Lecturer</option>
+                <option value="it">IT Support</option>
+                <option value="hr">Human Resources</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Staff Email / ID -->
+          <div class="field-group">
+            <label class="field-label" for="staffEmail">Staff Email / Staff ID</label>
+            <div class="input-wrap">
+              <i class="fas fa-envelope input-icon"></i>
+              <input
+                type="email"
+                class="form-input"
+                id="staffEmail"
+                name="email"
+                placeholder="Enter your staff email or ID"
+                required
+                autocomplete="username"
+              />
+            </div>
+          </div>
+
+          <!-- Password -->
+          <div class="field-group">
+            <label class="field-label" for="staffPw">Password</label>
+            <div class="input-wrap">
+              <i class="fas fa-lock input-icon"></i>
+              <input
+                type="password"
+                class="form-input has-toggle"
+                id="staffPw"
+                name="password"
+                placeholder="Enter your password"
+                required
+                autocomplete="current-password"
+              />
+              <button type="button" class="pw-toggle" id="pwToggle" aria-label="Toggle password">
+                <i class="fas fa-eye" id="pwIcon"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Options -->
+          <div class="form-options">
+            <label class="custom-check">
+              <input type="checkbox" name="remember" id="rememberMe" />
+              <span>Keep me signed in</span>
+            </label>
+            <a href="staff.html" class="forgot-link">
+              Forgot password?
+            </a>
+          </div>
+
+          <!-- Submit -->
+          <button type="submit" class="btn-signin" id="signInBtn">
+            <span class="btn-txt"><i class="fas fa-shield-halved"></i>&nbsp; Sign In Securely</span>
+            <span class="spinner"></span>
+          </button>
+
+        </form>
+
+        <!-- Links -->
+        <div class="links-row">
+          <a href="student.html">
+            <i class="fas fa-arrow-left" style="font-size:11px;"></i> Student Portal
+          </a>
+          &nbsp;&nbsp;·&nbsp;&nbsp;
+          <a href="index.html">SQI Website</a>
+          &nbsp;&nbsp;·&nbsp;&nbsp;
+          <a href="contact.html">Contact IT Support</a>
+        </div>
+
+      </div>
+    </div>
+
+  </div><!-- /portal-wrapper -->
+
+  <!-- Footer strip -->
+  <div class="portal-footer-strip">
+    <i class="fas fa-shield-halved" style="color:#6fcf88;font-size:13px;"></i>
+    <span>Powered by <a href="#" target="_blank" rel="noopener">Edossier</a> &nbsp;|&nbsp; &copy; 2026 SQI College of ICT. Restricted access — authorised personnel only.</span>
+  </div>
+
+  <div class="git_footer">
+    <a href="https://github.com/Analyst-Foundry">By Analyst Foundry</a>
+  </div>
+
+  <!-- ================================================================
+       SCRIPTS
+  ================================================================ -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    (function () {
+      'use strict';
+
+      /* ---- Password toggle ---- */
+      const staffPw  = document.getElementById('staffPw');
+      const pwToggle = document.getElementById('pwToggle');
+      const pwIcon   = document.getElementById('pwIcon');
+
+      if (pwToggle) {
+        pwToggle.addEventListener('click', function () {
+          const isPass = staffPw.type === 'password';
+          staffPw.type = isPass ? 'text' : 'password';
+          pwIcon.classList.toggle('fa-eye',      !isPass);
+          pwIcon.classList.toggle('fa-eye-slash', isPass);
+          staffPw.focus();
+        });
+      }
+
+      /* ---- Form submit ---- */
+      const form     = document.getElementById('adminLoginForm');
+      const btn      = document.getElementById('signInBtn');
+      const alert    = document.getElementById('formAlert');
+      const alertMsg = document.getElementById('alertMsg');
+      const roleEl   = document.getElementById('roleSelect');
+      const emailEl  = document.getElementById('staffEmail');
+      const pwEl     = document.getElementById('staffPw');
+
+      if (form) {
+        form.addEventListener('submit', function (e) {
+          e.preventDefault();
+
+          alert.style.display = 'none';
+          alert.className = 'form-alert';
+          [emailEl, pwEl].forEach(el => el.classList.remove('is-invalid'));
+
+          const role  = roleEl.value;
+          const email = emailEl.value.trim();
+          const pw    = pwEl.value.trim();
+          let valid   = true;
+
+          if (!role) {
+            valid = false;
+          }
+          if (!email) {
+            emailEl.classList.add('is-invalid'); valid = false;
+          }
+          if (!pw) {
+            pwEl.classList.add('is-invalid'); valid = false;
+          }
+          if (!valid) {
+            alertMsg.textContent = 'Please fill in all fields including your role selection.';
+            alert.classList.add('error');
+            alert.style.display = 'flex';
+            return;
+          }
+
+          /* Show loading */
+          btn.classList.add('loading');
+          btn.disabled = true;
+
+          /* Simulate auth → redirect */
+          setTimeout(function () {
+            btn.classList.remove('loading');
+            btn.disabled = false;
+            alertMsg.textContent = 'Authenticating… redirecting to your dashboard.';
+            alert.classList.add('success');
+            alert.style.display = 'flex';
+
+            setTimeout(function () {
+              window.location.href = 'staff.html';
+            }, 1200);
+          }, 1800);
+        });
+
+        [emailEl, pwEl].forEach(function (el) {
+          el.addEventListener('input', function () {
+            el.classList.remove('is-invalid');
+            alert.style.display = 'none';
+          });
+        });
+      }
+
+    })();
+  </script>
+
+</body>
+</html>

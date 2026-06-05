@@ -1,0 +1,1125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+  <title>Our Story - Acquire In-Demand Tech skills.</title>
+  <meta name="description" content="Founded in 2008, SQI College of ICT is an NBTE accredited institution in Nigeria offering industry-ready tech education." />
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <!-- Google Fonts: Open Sans -->
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ============================================================
+       CSS VARIABLES  — matches every other SQI page
+    ============================================================ */
+    :root {
+      --blue-primary: rgb(0,11,63);
+      --blue-dark:    rgb(9,3,38);
+      --blue-deeper:  rgb(86,195,249);
+      --blue-light:   rgb(46,163,242);
+      --blue-mid:     rgb(0,11,63);
+      --orange-primary: rgb(239,112,40);
+      --white:        #ffffff;
+      --off-white:    #f8f9fa;
+      --grey:         #f2f4f6;
+      --border:       #dee2e6;
+      --border-lt:    #e9ecef;
+      --text:         #212529;
+      --text-mid:     #495057;
+      --text-soft:    #6c757d;
+      --text-muted:   #adb5bd;
+      --dark-bg:      #1a1a1a;
+      --shadow-xs:    0 1px 4px rgba(0,0,0,.06);
+      --shadow-sm:    0 2px 12px rgba(0,0,0,.08);
+      --shadow-md:    0 6px 28px rgba(0,0,0,.13);
+      --shadow-lg:    0 12px 48px rgba(0,0,0,.18);
+      --radius:       8px;
+      --radius-lg:    14px;
+      --navbar-h:     72px;
+      --t:            .25s ease;
+    }
+
+    /* ============================================================
+       RESET & BASE
+    ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Open Sans', sans-serif;
+      font-size: 15px;
+      color: var(--text);
+      background: var(--white);
+      line-height: 1.75;
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; text-decoration: none; transition: color var(--t); }
+    a:hover { color: var(--blue-primary); }
+    img { max-width: 100%; display: block; }
+    ul { list-style: none; padding: 0; margin: 0; }
+
+    /* ============================================================
+       FRAUD POPUP MODAL
+    ============================================================ */
+    .fraud-dialog  { max-width: 380px; }
+    .fraud-content {
+      border: none; border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg); overflow: hidden;
+    }
+    .fraud-body {
+      padding: 40px 32px 32px; text-align: center; position: relative;
+    }
+    .fraud-x {
+      position: absolute; top: 14px; right: 14px;
+      background: none; border: none; font-size: 22px; line-height: 1;
+      cursor: pointer; color: var(--text-soft); transition: color var(--t);
+    }
+    .fraud-x:hover { color: var(--text); }
+    .fraud-bell-img {
+      width: 64px; height: 64px; object-fit: contain;
+      margin: 0 auto 16px; display: block;
+    }
+    .fraud-body h5 { font-size: 18px; font-weight: 700; color: var(--text); margin-bottom: 14px; }
+    .fraud-body p  { font-size: 13.5px; color: var(--text-mid); line-height: 1.65; margin-bottom: 10px; }
+    .fraud-ok {
+      display: inline-block; margin-top: 14px; padding: 10px 32px;
+      background: var(--blue-primary); color: var(--white);
+      border: none; border-radius: var(--radius);
+      font-size: 14px; font-weight: 700; cursor: pointer;
+      transition: background var(--t);
+    }
+    .fraud-ok:hover { background: var(--blue-dark); }
+
+    /* ============================================================
+       STICKY NAVBAR
+    ============================================================ */
+  .sqi-navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: var(--white);
+      box-shadow: 0 2px 10px rgba(0,0,0,.10);
+      transition: box-shadow var(--transition);
+    }
+    .sqi-navbar.scrolled { box-shadow: 0 4px 20px rgba(0,0,0,.15); }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: var(--navbar-h);
+    }
+
+    /* Logo */
+    .nav-logo img {
+      height: 52px;
+      width: auto;
+      object-fit: contain;
+    }
+    .logo-fallback {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .logo-badge {
+      background: var(--blue);
+      color: var(--white);
+      font-weight: 800;
+      font-size: 14px;
+      padding: 6px 10px;
+      border-radius: 6px;
+      letter-spacing: 1px;
+    }
+    .logo-words { display: flex; flex-direction: column; }
+    .logo-words span { font-size: 14px; font-weight: 700; color: var(--blue-dark); }
+    .logo-words small { font-size: 10px; color: var(--text-soft); }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 6px;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--text);
+      border-radius: 2px;
+      transition: all .3s;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* Nav menu */
+    .nav-menu { display: flex; align-items: center; gap: 2px; }
+
+    .nav-item { position: relative; }
+    .nav-link {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      padding: 8px 13px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+      border-radius: var(--radius);
+      white-space: nowrap;
+      transition: color var(--transition), background var(--transition);
+    }
+    .nav-link:hover, .nav-link.active { color: var(--blue); background: var(--blue-light); }
+    .nav-link .chevron {
+      font-size: 10px;
+      transition: transform .25s;
+    }
+    .nav-item:hover .chevron { transform: rotate(180deg); }
+
+    /* Dropdown */
+    .dropdown {
+      display: none;
+      position: absolute;
+      top: calc(100% + 4px);
+      left: 0;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-md);
+      min-width: 250px;
+      padding: 6px 0;
+      animation: dropIn .2s ease;
+      z-index: 200;
+    }
+    @keyframes dropIn {
+      from { opacity: 0; transform: translateY(-8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .nav-item:hover .dropdown { display: block; }
+    .dropdown a {
+      display: block;
+      padding: 9px 18px;
+      font-size: 13.5px;
+      font-weight: 500;
+      color: var(--text);
+      border-left: 3px solid transparent;
+      transition: background var(--transition), color var(--transition), border-color var(--transition);
+    }
+    .dropdown a:hover {
+      background: var(--blue-light);
+      color: var(--blue);
+      border-left-color: var(--blue);
+    }
+
+    /* ============================================================
+       PAGE HERO BANNER
+    ============================================================ */
+    .page-hero {
+      background: var(--blue-dark);
+      padding: 72px 0 64px;
+      position: relative; overflow: hidden;
+    }
+    .page-hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(0,0,0,.25) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .page-hero .container { position: relative; z-index: 1; }
+    .page-hero h1 {
+      font-size: clamp(22px, 4vw, 38px);
+      font-weight: 800; color: var(--white);
+      line-height: 1.25; margin-bottom: 22px;
+      text-transform: uppercase; letter-spacing: .5px;
+    }
+    .page-hero p {
+      font-size: 15px; color: rgba(255,255,255,.85);
+      line-height: 1.75; max-width: 780px; margin-bottom: 14px;
+    }
+    .page-hero p:last-child { margin-bottom: 0; }
+
+    /* ============================================================
+       AT A GLANCE — text + logo image
+    ============================================================ */
+    .glance-section { padding: 70px 0 50px; background: var(--white); }
+
+    .glance-grid {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 60px;
+      align-items: start;
+    }
+
+    /* Mission / Vision tabs */
+    .mv-tabs {
+      display: flex; gap: 0; margin-top: 32px;
+      border-bottom: 2px solid var(--border);
+    }
+    .mv-tab-btn {
+      padding: 12px 28px; font-size: 13px; font-weight: 700;
+      color: var(--text-soft); background: none; border: none; cursor: pointer;
+      border-bottom: 3px solid transparent; margin-bottom: -2px;
+      transition: color var(--t), border-color var(--t);
+      letter-spacing: .5px; text-transform: uppercase;
+    }
+    .mv-tab-btn.active { color: var(--blue-primary); border-bottom-color: var(--blue-primary); }
+    .mv-tab-btn:hover  { color: var(--blue-primary); }
+
+    /* Tab panels */
+    .mv-panels { margin-top: 0; }
+    .mv-panel { display: none; padding-top: 28px; }
+    .mv-panel.active { display: block; animation: fadeTab .3s ease; }
+    @keyframes fadeTab {
+      from { opacity: 0; transform: translateY(8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .mv-panel h3 {
+      font-size: 20px; font-weight: 700;
+      color: var(--blue-dark); margin-bottom: 14px;
+    }
+    .mv-panel p { font-size: 14.5px; color: var(--text-mid); line-height: 1.8; margin-bottom: 18px; }
+    .mv-panel p:last-child { margin-bottom: 0; }
+    .mv-panel strong { color: var(--text); }
+
+    .target-list { margin: 10px 0 18px; padding-left: 4px; }
+    .target-list li { font-size: 14px; color: var(--text-mid); padding: 4px 0; line-height: 1.65; }
+
+    .objectives-list { counter-reset: obj; padding-left: 4px; }
+    .objectives-list li {
+      counter-increment: obj; font-size: 14px; color: var(--text-mid);
+      padding: 5px 0 5px 28px; position: relative; line-height: 1.65;
+    }
+    .objectives-list li::before {
+      content: counter(obj) ".";
+      position: absolute; left: 0; font-weight: 700; color: var(--blue-primary);
+    }
+
+    /* Right logo column */
+    .glance-logo-col {
+      display: flex; flex-direction: column; align-items: center; gap: 20px;
+      position: sticky; top: calc(var(--navbar-h) + 24px);
+    }
+    .glance-logo-col img {
+      width: 100%; max-width: 300px; height: auto; object-fit: contain;
+    }
+
+    /* ============================================================
+       WHAT WE STAND FOR
+    ============================================================ */
+    .stand-for-section { background: var(--blue-dark); padding: 72px 0; color: var(--white); }
+    .stand-for-section h2 {
+      font-size: clamp(22px, 3vw, 34px); font-weight: 800; text-align: center;
+      margin-bottom: 36px; text-transform: uppercase; letter-spacing: .5px;
+    }
+    .stand-for-intro { font-size: 15px; color: rgba(255,255,255,.85); text-align: center; margin-bottom: 28px; }
+    .stand-for-bullets { max-width: 680px; margin: 0 auto; }
+    .stand-for-bullets li {
+      font-size: 15px; color: rgba(255,255,255,.85);
+      padding: 8px 0 8px 28px; position: relative; line-height: 1.7;
+    }
+    .stand-for-bullets li::before {
+      content: '•'; position: absolute; left: 0;
+      color: var(--blue-mid); font-size: 18px; line-height: 1.5;
+    }
+    .stand-for-extra {
+      max-width: 680px; margin: 24px auto 0;
+      font-size: 14.5px; color: rgba(255,255,255,.75);
+      line-height: 1.75; text-align: center;
+    }
+
+    /* ============================================================
+       STATS COUNTER
+    ============================================================ */
+    .stats-section { background: #111111; padding: 70px 0; }
+    .stats-heading {
+      font-size: clamp(20px, 3vw, 30px); font-weight: 800;
+      color: var(--white); text-align: center; margin-bottom: 52px; line-height: 1.3;
+    }
+    .stats-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;
+    }
+    .stat-item {
+      text-align: center; padding: 28px 20px;
+      border-right: 1px solid rgba(255,255,255,.1);
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-number {
+      font-size: clamp(38px, 5vw, 58px); font-weight: 800; color: var(--white);
+      line-height: 1; margin-bottom: 10px;
+      display: flex; align-items: baseline; justify-content: center; gap: 2px;
+    }
+    .stat-number .suffix { font-size: clamp(22px, 3vw, 34px); font-weight: 800; }
+    .stat-label {
+      font-size: 11px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 2px; color: rgba(255,255,255,.55);
+    }
+
+    /* ============================================================
+       CORE VALUES
+    ============================================================ */
+    .values-section { background: var(--off-white); padding: 72px 0; }
+    .values-label {
+      font-size: 12px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 2px; color: var(--blue-primary); text-align: center; margin-bottom: 12px;
+    }
+    .values-title {
+      font-size: clamp(22px, 3vw, 32px); font-weight: 800;
+      text-align: center; color: var(--text); margin-bottom: 48px;
+    }
+    .values-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+    .value-card {
+      background: var(--white); border-radius: var(--radius-lg);
+      border: 1px solid var(--border); padding: 32px 24px 28px;
+      text-align: center; box-shadow: var(--shadow-sm);
+      transition: transform var(--t), box-shadow var(--t), border-color var(--t);
+    }
+    .value-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); border-color: var(--blue-mid); }
+    .value-icon {
+      width: 64px; height: 64px; background: var(--blue-light);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 18px; transition: background var(--t);
+    }
+    .value-icon i { font-size: 24px; color: var(--blue-primary); transition: color var(--t); }
+    .value-card:hover .value-icon { background: var(--blue-primary); }
+    .value-card:hover .value-icon i { color: var(--white); }
+    .value-card h4 { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 10px; line-height: 1.35; }
+    .value-card p  { font-size: 13px; color: var(--text-soft); margin-bottom: 18px; line-height: 1.65; }
+    .value-learn {
+      font-size: 13px; font-weight: 700; color: var(--blue-primary);
+      border-bottom: 1px solid transparent; transition: border-color var(--t);
+    }
+    .value-learn:hover { color: var(--blue-dark); border-bottom-color: var(--blue-dark); }
+
+    /* ============================================================
+       SCROLL REVEAL
+    ============================================================ */
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity .55s ease, transform .55s ease; }
+    .reveal.in { opacity: 1; transform: none; }
+
+    /* ============================================================
+       FOOTER  — identical to all other SQI pages
+    ============================================================ */
+.sqi-footer {
+  background: #1a1a1a;
+  color: rgba(255,255,255,.72);
+  padding: 0;
+}
+
+.footer-top-row {
+  padding: 60px 0 40px;
+}
+
+/* Brand */
+.footer-brand h4 {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.footer-brand p {
+  font-size: 13.5px;
+  color: rgba(255,255,255,.65);
+  line-height: 1.65;
+}
+
+/* Socials */
+.footer-socials {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.footer-socials a {
+  width: 36px;
+  height: 36px;
+  background: rgba(255,255,255,.1);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255,255,255,.8);
+  font-size: 15px;
+  transition: background var(--transition), color var(--transition);
+}
+.footer-socials a:hover {
+  background: var(--blue-primary);
+  color: var(--white);
+}
+
+/* Emails */
+.footer-emails h6 {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: rgba(255,255,255,.5);
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.footer-emails ul li {
+  margin-bottom: 6px;
+}
+.footer-emails ul li a {
+  font-size: 13px;
+  color: rgb(86,195,249);
+  transition: color var(--transition);
+}
+.footer-emails ul li a:hover { color: var(--orange-primary); }
+
+/* Col titles */
+.footer-col-title {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: rgba(255,255,255,.5);
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+/* Quick links */
+.footer-links li {
+  margin-bottom: 8px;
+}
+.footer-links li a {
+  font-size: 13px;
+  color: rgba(255,255,255,.65);
+  transition: color var(--transition);
+}
+.footer-links li a:hover { color: var(--orange-primary); }
+
+/* Addresses */
+.footer-address {
+  font-size: 12px;
+  color: rgba(255,255,255,.6);
+  line-height: 1.6;
+  margin-bottom: 4px;
+}
+.footer-address strong { color: rgba(255,255,255,.85); }
+
+.footer-map-link {
+  font-size: 12px;
+  color: var(--orange-primary);
+  font-weight: 600;
+  transition: color var(--transition);
+}
+.footer-map-link:hover {
+  color: rgb(86,195,249);
+  text-decoration: underline;
+}
+
+/* Footer bottom */
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,.1);
+  padding: 18px 0;
+  text-align: center;
+}
+.footer-bottom p {
+  font-size: 13px;
+  color: rgba(255,255,255,.45);
+  margin: 0;
+}
+
+/* ================================================================
+   BACK TO TOP
+   ================================================================ */
+.back-to-top {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 999;
+  width: 42px;
+  height: 42px;
+  background: var(--blue-primary);
+  color: var(--white);
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(0,0,0,.25);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(12px);
+  transition: opacity 0.3s, transform 0.3s, background 0.2s;
+}
+.back-to-top.visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+.back-to-top:hover { background: var(--blue-dark); }
+
+.git_footer{
+    display: inline-flex;
+    justify-content: space-between;
+    height: 50px;
+    width: 100%;
+    border-top: 0px solid rgb(218, 220, 222);
+    align-items: center;
+    padding-left: 30px;
+    background-color: rgb(0, 0, 0);
+}
+
+.git_footer a{
+    text-decoration: none;
+    color: rgb(232, 17, 35);
+    font-size: 20px;
+    font-weight: 600;
+}
+
+    /* ============================================================
+       RESPONSIVE
+    ============================================================ */
+    @media (max-width: 1023px) {
+      .glance-grid { grid-template-columns: 1fr; gap: 36px; }
+      .glance-logo-col { position: static; flex-direction: row; justify-content: flex-start; }
+      .values-grid { grid-template-columns: repeat(2, 1fr); }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .stat-item:nth-child(2) { border-right: none; }
+      .stat-item:nth-child(3) { border-top: 1px solid rgba(255,255,255,.1); }
+      .stat-item:nth-child(4) { border-top: 1px solid rgba(255,255,255,.1); border-right: none; }
+    }
+    @media (max-width: 991.98px) {
+      .sqi-nav-list { padding: 10px 0; gap: 0; }
+      .sqi-nav-link { border-radius: 0; }
+      .sqi-drop { box-shadow: none; border: none; background: var(--off-white); animation: none; margin-top: 0 !important; padding-left: 12px; }
+    }
+    @media (max-width: 767px) {
+      .page-hero { padding: 48px 0 44px; }
+      .glance-section { padding: 48px 0; }
+      .stand-for-section { padding: 52px 0; }
+      .stats-section { padding: 52px 0; }
+      .values-section { padding: 52px 0; }
+      .values-grid { grid-template-columns: 1fr; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .mv-tab-btn { padding: 10px 16px; font-size: 12px; }
+      .btt { bottom: 16px; right: 16px; width: 38px; height: 38px; font-size: 14px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ================================================================
+       FRAUD WARNING POPUP
+  ================================================================ -->
+  <div class="modal fade" id="fraudModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered fraud-dialog">
+      <div class="modal-content fraud-content">
+        <div class="modal-body fraud-body">
+          <button class="fraud-x" data-bs-dismiss="modal" type="button">&times;</button>
+          <img
+            src="Images/red-bell.png"
+            alt="Alert" class="fraud-bell-img"
+            onerror="this.outerHTML='<span style=\'font-size:3rem;display:block;margin-bottom:14px;\'>🔔</span>'"
+          />
+          <h5>Please be advised!</h5>
+          <p>Do not make any payment for our courses or services to any account or platform other than corporate accounts provided by SQI College of ICT.</p>
+          <p>The College will not be held responsible for any loss or issue arising from payments made to unauthorised individuals or channels.</p>
+          <p><strong>Thank you for your cooperation.</strong></p>
+          <button class="fraud-ok" data-bs-dismiss="modal" type="button">OK, I understand</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================================================================
+       STICKY NAVBAR
+  ================================================================ -->
+  <nav class="sqi-navbar" id="sqiNavbar">
+    <div class="container">
+      <div class="nav-inner">
+
+        <!-- Logo -->
+        <a href="index.html" class="nav-logo">
+          <img src="Images/icon.jpg" alt="SQI College of ICT"
+            onerror="this.style.display='none';document.getElementById('logoFb').style.display='flex';" />
+          <div id="logoFb" class="logo-fallback" style="display:none;">
+            <span class="logo-badge">SQI</span>
+            <div class="logo-words">
+              <span>SQI College of ICT</span>
+              <small>Acquire In-Demand Tech Skills</small>
+            </div>
+          </div>
+        </a>
+
+        <!-- Hamburger -->
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+
+        <!-- Menu -->
+        <ul class="nav-menu" id="navMenu">
+
+          <li class="nav-item">
+            <a href="#" class="nav-link">About <i class="fas fa-chevron-down chevron"></i></a>
+            <ul class="dropdown">
+              <li><a href="story.html">Our Story</a></li>
+              <li><a href="team.html">Our Team</a></li>
+              <li><a href="campus.html">Campus Info</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a href="#" class="nav-link">Programmes <i class="fas fa-chevron-down chevron"></i></a>
+            <ul class="dropdown">
+              <li><a href="pre-nd.html">Pre-National Diploma</a></li>
+              <li><a href="nd.html">National Diploma</a></li>
+              <li><a href="procert.html">Professional Diploma Program</a></li>
+              <li><a href="epcp.html">Executive Professional Certificate Programme</a></li>
+              <li><a href="bsc.html">Bachelor Degree | LAUTECH PT</a></li>
+              <li><a href="post-utme.html">Post-UTME</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a href="#" class="nav-link">Admissions <i class="fas fa-chevron-down chevron"></i></a>
+            <ul class="dropdown">
+              <li><a href="afap.html">Apply for a Programme</a></li>
+              <li><a href="mos.html">Mode of Study</a></li>
+              <li><a href="tuition.html">Tuition</a></li>
+              <li><a href="https://drive.google.com/file/d/1w_itppr3K0MMy5Sdf8uFkCO7eCyAYiRf/view?usp=sharing">Student's Handbook</a></li>
+              <li><a href="faq.html">Frequently Asked Questions</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a href="#" class="nav-link">E-Portal <i class="fas fa-chevron-down chevron"></i></a>
+            <ul class="dropdown">
+              <li><a href="student.html">Student</a></li>
+              <li><a href="staff.html">Staff</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a href="scholarship.html" class="nav-link">SQI Scholarship</a>
+          </li>
+          <li class="nav-item">
+            <a href="news.html" class="nav-link">News</a>
+          </li>
+          <li class="nav-item">
+            <a href="contact.html" class="nav-link">Contact</a>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ================================================================
+       PAGE HERO BANNER
+  ================================================================ -->
+  <section class="page-hero">
+    <div class="container">
+      <h1>SQI College of ICT at a Glance</h1>
+      <p>Founded in 2008, SQI (Soft Quest Incorporated) College of ICT is an NBTE accredited institution in Nigeria, offering Professional, National Diploma, and National Innovation Diploma in high-demand Software Engineering, Cybersecurity, Artificial Intelligence, and Product Design e.t.c.</p>
+      <p>SQI's hands-on training model ensures graduates complete real-world projects and are industry-ready from day one.</p>
+      <p>SQI has campuses across Nigeria, including: Ogbomoso Campus, Dugbe (Ibadan) Campus, Iwo Road (Ibadan) Campus, Challenge (Ibadan) Campus, Abeokuta Campus, Lagos Campus, Osogbo Campus, Abuja Campus and Virtual Campus.</p>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       AT A GLANCE — Mission/Vision Tabs + Logo Image
+  ================================================================ -->
+  <section class="glance-section">
+    <div class="container">
+      <div class="glance-grid">
+
+        <!-- LEFT: Tab content -->
+        <div class="glance-text-col">
+          <div class="mv-tabs">
+            <button class="mv-tab-btn active" data-tab="mission">Our Mission</button>
+            <button class="mv-tab-btn" data-tab="vision">Our Vision</button>
+          </div>
+
+          <div class="mv-panels">
+
+            <!-- MISSION -->
+            <div class="mv-panel active" id="panel-mission">
+              <h3>Making Africa a Pool of Tech Talents</h3>
+              <p>Students at SQI College of ICT learn through immersive, project-based training supported by experienced faculty, modern facilities, and a strong mentorship culture that promotes inclusion and productivity.</p>
+              <p>Our programs are designed to meet global industry standards, combining quality instruction with continuous research and feedback from industry partners to ensure graduates are truly job-ready.</p>
+              <p>As a private technical institution, we provide a credible alternative pathway to higher education through competency-based training for youths and working adults. In collaboration with government and industry, we help address skills gaps, expand access to technical education, and contribute to workforce development that supports national and global economic growth.</p>
+
+              <p><strong>Our Target Groups</strong><br />
+              We provide credible alternative forms of education that will cater to the needs of:</p>
+              <ul class="target-list">
+                <li>i. School leavers who wish to acquire demonstrable practical skills to secure employment or generate employment</li>
+                <li>ii. Persons seeking career paths that do not need university degrees</li>
+                <li>iii. Persons who have not studied for some time and desire to do so</li>
+                <li>iv. Persons without time for full-time study but want to enhance their skills</li>
+                <li>v. Persons wishing to go into self-employment</li>
+                <li>vi. University graduates seeking employable skills and</li>
+                <li>vii. Adults seeking opportunities to re-skill themselves.</li>
+              </ul>
+
+              <p><strong>Objectives and Scope</strong><br />
+              Our objective is to expand access to vocational and technical education by providing <strong>industry-relevant, competency-based ICT skills</strong> that serve as a credible alternative to traditional higher education.</p>
+
+              <p>We also envisage to fulfill the following specific objectives:</p>
+              <ol class="objectives-list">
+                <li>Expand access to post-basic education for learners of all ages</li>
+                <li>Provide flexible, private sector–driven training aligned with industry needs</li>
+                <li>Bridge the gap between education, technology, and the labor market</li>
+                <li>Deliver modern, up-to-date curricula using 21st-century technologies</li>
+                <li>Develop creative, critical thinkers capable of transforming skills into value</li>
+                <li>Improve employability and promote economic empowerment</li>
+                <li>Economically empower the individual and community by increasing employability</li>
+                <li>Set new standards in design and delivery of competency and skills based Education and Training</li>
+                <li>Provide industry expertise, resources, and practical know-how through training and partnerships</li>
+                <li>Create pathways to employment through strong industry partnerships</li>
+              </ol>
+            </div>
+
+            <!-- VISION -->
+            <div class="mv-panel" id="panel-vision">
+              <h3>Making Africa a Tech Continent… One Mind at a Time!</h3>
+              <p>SQI College of ICT envisions a future where Africa leads in technology innovation and digital transformation. We believe that through quality, accessible, and practical ICT education, Africa can produce world-class technology talents who compete globally.</p>
+              <p>Our vision is to be the premier technology college in Africa — recognized for excellence in training, industry partnerships, and producing graduates who are not just job-ready but capable of creating jobs and driving innovation across the continent.</p>
+              <p>We see a Nigeria — and an Africa — where skills-based education is respected and valued on par with traditional university degrees; where young people have multiple credible pathways to economic empowerment; and where technology becomes the engine of sustainable development and national growth.</p>
+              <p>To achieve this vision, we continuously invest in our faculty, infrastructure, curriculum, and partnerships — building an institution that is student-centered, industry-aligned, and future-focused.</p>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- RIGHT: SQI Logo -->
+        <div class="glance-logo-col">
+          <img
+            src="Images/icon.jpg"
+            alt="SQI College of ICT Official Logo"
+            onerror="this.src='Images/icon.jpg'"
+          />
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       WHAT WE STAND FOR
+  ================================================================ -->
+  <section class="stand-for-section">
+    <div class="container">
+      <h2 class="reveal">What We Stand For</h2>
+      <p class="stand-for-intro reveal">We are committed to:</p>
+      <ul class="stand-for-bullets reveal">
+        <li>Quality, competency-based training aligned with industry needs</li>
+        <li>Flexible learning structures that support students and working professionals</li>
+        <li>Bridging the gap between education and employment through strong industry collaboration</li>
+      </ul>
+      <p class="stand-for-extra reveal">As part of national efforts to expand access to technical and vocational education, we provide a credible alternative pathway to higher education—equipping youths and adults with practical, employable skills required in today's economy.</p>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       STATS COUNTER
+  ================================================================ -->
+  <section class="stats-section" id="statsSection">
+    <div class="container">
+      <h2 class="stats-heading">Making Africa a Tech Continent... One Mind at a Time</h2>
+      <div class="stats-grid">
+
+        <div class="stat-item reveal">
+          <div class="stat-number">
+            <span class="count-up" data-target="17">0</span><span class="suffix">+</span>
+          </div>
+          <p class="stat-label">Years Founded</p>
+        </div>
+
+        <div class="stat-item reveal">
+          <div class="stat-number">
+            <span class="count-up" data-target="9">0</span>
+          </div>
+          <p class="stat-label">Campuses</p>
+        </div>
+
+        <div class="stat-item reveal">
+          <div class="stat-number">
+            <span class="count-up" data-target="10">0</span><span class="suffix">+</span>
+          </div>
+          <p class="stat-label">Partnerships</p>
+        </div>
+
+        <div class="stat-item reveal">
+          <div class="stat-number">
+            <span class="count-up" data-target="100">0</span><span class="suffix">K+</span>
+          </div>
+          <p class="stat-label">Alumni</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       CORE VALUES
+  ================================================================ -->
+  <section class="values-section">
+    <div class="container">
+      <p class="values-label">Our core values</p>
+      <h2 class="values-title">What Drives Us Every Day</h2>
+      <div class="values-grid">
+
+        <div class="value-card reveal">
+          <div class="value-icon"><i class="fas fa-award"></i></div>
+          <h4>Respect for superiors and constituted authority</h4>
+          <p>We embrace due respect for all forms of leadership position.</p>
+          <a href="#" class="value-learn">Learn More</a>
+        </div>
+
+        <div class="value-card reveal">
+          <div class="value-icon"><i class="fas fa-heart"></i></div>
+          <h4>Unity and love</h4>
+          <p>Due understanding and communion among fellows.</p>
+          <a href="#" class="value-learn">Learn More</a>
+        </div>
+
+        <div class="value-card reveal">
+          <div class="value-icon"><i class="fas fa-clock"></i></div>
+          <h4>Punctuality</h4>
+          <p>This we believe is the key to achieving great success.</p>
+          <a href="#" class="value-learn">Learn More</a>
+        </div>
+
+        <div class="value-card reveal">
+          <div class="value-icon"><i class="fas fa-star"></i></div>
+          <h4>Exemplary Leadership</h4>
+          <p>To be a leader by clear cut examples.</p>
+          <a href="#" class="value-learn">Learn More</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       FOOTER — identical to all SQI pages
+  ================================================================ -->
+  <footer class="sqi-footer">
+    <div class="container">
+      <div class="row g-5 footer-top-row">
+
+        <!-- Brand + Socials + Emails -->
+        <div class="col-lg-3 col-md-6">
+          <div class="footer-brand">
+            <h4>Hello, we're SQI College of ICT</h4>
+            <p>We provide and lead others in quality ICT education.</p>
+          </div>
+          <div class="footer-socials mt-3">
+            <a href="#" title="Follow on Facebook" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" title="Follow on X" target="_blank"><i class="fab fa-x-twitter"></i></a>
+            <a href="#" title="Follow on LinkedIn" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" title="Follow on Youtube" target="_blank"><i class="fab fa-youtube"></i></a>
+            <a href="#" title="Follow on Instagram" target="_blank"><i class="fab fa-instagram"></i></a>
+          </div>
+          <div class="footer-emails mt-4">
+            <h6>Send us a mail</h6>
+            <ul>
+              <li><a href="#">enquiry@sqi.edu.ng</a></li>
+              <li><a href="#">admissions@sqi.edu.ng</a></li>
+              <li><a href="#">examsandrecords@sqi.edu.ng</a></li>
+              <li><a href="#">rector@sqi.edu.ng</a></li>
+              <li><a href="#">partnerships@sqi.edu.ng</a></li>
+              <li><a href="#">internship@sqi.edu.ng</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="col-lg-2 col-md-6 col-sm-6">
+          <h6 class="footer-col-title">Quick Links</h6>
+          <ul class="footer-links">
+            <li><a href="#">Application Portal</a></li>
+            <li><a href="student.html">Student Portal</a></li>
+            <li><a href="procert.html">Professional Courses</a></li>
+            <li><a href="nd.html">ND Courses</a></li>
+            <li><a href="campus.html">Campus Info</a></li>
+            <li><a href="#">Accommodation</a></li>
+            <li><a href="scholarship.html">SQI Scholarship</a></li>
+            <li><a href="#">SQI Anthem</a></li>
+            <li><a href="#">Donate</a></li>
+          </ul>
+        </div>
+
+        <!-- Locations col 1 -->
+        <div class="col-lg-4 col-md-6">
+          <div class="row g-3">
+            <div class="col-6">
+              <h6 class="footer-col-title">Ogbomoso</h6>
+              <p class="footer-address">Old Ilorin Road, Opposite Yoaco Filling Station, Yoaco, Ogbomoso.<br /><strong>0906 281 9991, 0906 281 9993</strong></p>
+              <a href="#" class="footer-map-link" target="_blank">Locate on the map</a>
+              <h6 class="footer-col-title">Ibadan</h6>
+              <p class="footer-address">First Floor, H25 Heritage Mall, Opposite Central Bank of Nigeria, Dugbe, Ibadan.<br /><strong>0906 281 9994</strong></p>
+              <a href="#" class="footer-map-link" target="_blank">Locate on the map</a>
+            </div>
+            <div class="col-6">
+              <h6 class="footer-col-title">Lagos</h6>
+              <p class="footer-address">Suite 219, Opic Plaza, Mobolaji Bank Anthony Way, beside Sheraton Hotel, Ikeja, Lagos<br /><strong>0906 281 9999</strong></p>
+              <a href="#" class="footer-map-link" target="_blank">Locate on the map</a>
+              <h6 class="footer-col-title">Abeokuta</h6>
+              <p class="footer-address">First floor, OPIC Tower building, Okeilewo, Abeokuta.<br /><strong>0906 281 9996</strong></p>
+              <a href="#" class="footer-map-link" target="_blank">Locate on the map</a>
+            </div>
+            <div class="col-6">
+              <h6 class="footer-col-title">Virtual</h6>
+              <p class="footer-address">Available Globally Online.<br /><strong>0906 281 9992</strong></p>
+              <a href="#" class="footer-map-link" target="_blank">Locate on the map</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Locations col 2 -->
+        <div class="col-lg-3 col-md-6">
+          <div class="row g-3">
+            <div class="col-12">
+              <p class="footer-address mt-2">Christianah Oyinade Ajoke House, beside First Bank, Arisekola Central Mosque, Opposite Jaiz bank, Idi Ape, Iwo road, Ibadan.<br /><strong>0906 281 9995</strong></p>
+              <a href="#" class="footer-map-link" target="_blank">Locate on the map</a>
+              <p class="footer-address mt-2">Haier Thermocool Building, opposite SAO filling station, Challenge, Ibadan, Oyo State.<br /><strong>0906 281 9992</strong></p>
+              <a href="#" class="footer-map-link" target="_blank">Locate on the map</a>
+            </div>
+            <div class="col-6">
+              <h6 class="footer-col-title">Osogbo</h6>
+              <p class="footer-address">Opposite Jaiz bank, Ogo-Oluwa, Osogbo<br /><strong>0906 281 9997</strong></p>
+              <a href="#" class="footer-map-link" target="_blank">Locate on the map</a>
+            </div>
+            <div class="col-6">
+              <h6 class="footer-col-title">Abuja</h6>
+              <p class="footer-address">Suite Banking Hall SF, Febson Mall, Wuse Zone 4, Abuja<br /><strong>090 628 20000</strong></p>
+              <a href="#" class="footer-map-link" target="_blank">Locate on the map</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Footer Bottom -->
+      <div class="footer-bottom">
+        <p>Copyright &copy; 2026 | SQI ICT Consultants | Powered by Edozzier</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ================================================================
+       BACK TO TOP BUTTON
+  ================================================================ -->
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+  <div class="git_footer">
+    <a href="https://github.com/Analyst-Foundry">By Analyst Foundry</a>
+  </div>
+
+  <!-- ================================================================
+       SCRIPTS
+  ================================================================ -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    (function () {
+      'use strict';
+
+      /* ---- Fraud modal ---- */
+      const fraudEl = document.getElementById('fraudModal');
+      if (fraudEl) {
+        const fm = new bootstrap.Modal(fraudEl, { keyboard: true });
+        setTimeout(() => fm.show(), 800);
+      }
+
+      /* ---- Sticky navbar shadow ---- */
+      const nav = document.getElementById('sqiNavbar');
+      const sn  = () => nav.classList.toggle('scrolled', window.scrollY > 10);
+      window.addEventListener('scroll', sn, { passive: true }); sn();
+
+      /* ---- Dropdown chevron ---- */
+      document.querySelectorAll('.sqi-dd').forEach(el => {
+        el.addEventListener('show.bs.dropdown', () => {
+          const c = el.querySelector('.sqi-chev'); if (c) c.style.transform = 'rotate(180deg)';
+        });
+        el.addEventListener('hide.bs.dropdown', () => {
+          const c = el.querySelector('.sqi-chev'); if (c) c.style.transform = 'rotate(0deg)';
+        });
+      });
+
+      /* ---- Close mobile nav on item click ---- */
+      const nc = document.getElementById('navmenu');
+      document.querySelectorAll('#navmenu .sqi-di').forEach(i => {
+        i.addEventListener('click', () => {
+          if (window.innerWidth < 992) bootstrap.Collapse.getInstance(nc)?.hide();
+        });
+      });
+
+      /* ---- Mission / Vision tabs ---- */
+      const tabBtns   = document.querySelectorAll('.mv-tab-btn');
+      const tabPanels = document.querySelectorAll('.mv-panel');
+      tabBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          tabBtns.forEach(b => b.classList.remove('active'));
+          tabPanels.forEach(p => p.classList.remove('active'));
+          btn.classList.add('active');
+          const target = document.getElementById('panel-' + btn.dataset.tab);
+          if (target) target.classList.add('active');
+        });
+      });
+
+      /* ---- Scroll reveal ---- */
+      const ro = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (!e.isIntersecting) return;
+          const siblings = Array.from(
+            (e.target.closest('.row') || e.target.parentElement)
+              .querySelectorAll('.reveal:not(.in)')
+          );
+          const idx = siblings.indexOf(e.target);
+          setTimeout(() => e.target.classList.add('in'), Math.min(idx * 80, 400));
+          ro.unobserve(e.target);
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+      document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+
+      /* ---- Counter animation ---- */
+      let countersStarted = false;
+      function animateCounters() {
+        if (countersStarted) return;
+        countersStarted = true;
+        document.querySelectorAll('.count-up').forEach(el => {
+          const target   = parseInt(el.dataset.target, 10);
+          const duration = 1800;
+          const start    = performance.now();
+          function step(now) {
+            const progress = Math.min((now - start) / duration, 1);
+            const eased    = 1 - Math.pow(1 - progress, 3);
+            el.textContent = Math.floor(eased * target);
+            if (progress < 1) requestAnimationFrame(step);
+            else el.textContent = target;
+          }
+          requestAnimationFrame(step);
+        });
+      }
+      const statsEl = document.getElementById('statsSection');
+      if (statsEl) {
+        const so = new IntersectionObserver(entries => {
+          if (entries[0].isIntersecting) { animateCounters(); so.disconnect(); }
+        }, { threshold: 0.3 });
+        so.observe(statsEl);
+      }
+
+      /* ---- Back to top ---- */
+      const btt = document.getElementById('btt');
+      window.addEventListener('scroll', () => btt.classList.toggle('on', window.scrollY > 400), { passive: true });
+      btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    })();
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,1368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+  <title>Scholarship - Acquire In-Demand Tech skills.</title>
+  <meta name="description" content="SQI College of ICT annual scholarship program — study a tech course at little or no cost. Open to individuals aged 13–28." />
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <!-- Google Fonts: Open Sans -->
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ============================================================
+       CSS VARIABLES
+    ============================================================ */
+    :root {
+      --blue-primary: rgb(0,11,63);
+      --blue-dark:    rgb(9,3,38);
+      --blue-deeper:  rgb(86,195,249);
+      --blue-light:   rgb(46,163,242);
+      --blue-mid:     rgb(0,11,63);
+      --orange-primary: rgb(239,112,40);
+      --white:        #ffffff;
+      --off-white:    #f8f9fa;
+      --grey:         #f2f4f6;
+      --border:       #dee2e6;
+      --border-lt:    #e9ecef;
+      --text:         #212529;
+      --text-mid:     #495057;
+      --text-soft:    #6c757d;
+      --text-muted:   #adb5bd;
+      --dark-bg:      #1a1a1a;
+      --shadow-xs:    0 1px 4px rgba(0,0,0,.06);
+      --shadow-sm:    0 2px 12px rgba(0,0,0,.08);
+      --shadow-md:    0 6px 28px rgba(0,0,0,.13);
+      --shadow-lg:    0 12px 48px rgba(0,0,0,.18);
+      --radius:       8px;
+      --radius-lg:    14px;
+      --navbar-h:     72px;
+      --t:            .25s ease;
+    }
+
+    /* ============================================================
+       RESET & BASE
+    ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; }
+
+    body {
+      font-family: 'Open Sans', sans-serif;
+      font-size: 15px; color: var(--text);
+      background: var(--white); line-height: 1.75; overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; transition: color var(--t); }
+    a:hover { color: var(--blue-primary); }
+    img { max-width: 100%; display: block; }
+    ul { list-style: none; padding: 0; margin: 0; }
+
+    /* ============================================================
+       FRAUD POPUP MODAL
+    ============================================================ */
+    .fraud-dialog  { max-width: 380px; }
+    .fraud-content { border: none; border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); overflow: hidden; }
+    .fraud-body    { padding: 40px 32px 32px; text-align: center; position: relative; }
+    .fraud-x {
+      position: absolute; top: 14px; right: 14px;
+      background: none; border: none; font-size: 22px; line-height: 1;
+      cursor: pointer; color: var(--text-soft); transition: color var(--t);
+    }
+    .fraud-x:hover { color: var(--text); }
+    .fraud-bell-img { width: 64px; height: 64px; object-fit: contain; margin: 0 auto 16px; display: block; }
+    .fraud-body h5 { font-size: 18px; font-weight: 700; color: var(--text); margin-bottom: 14px; }
+    .fraud-body p  { font-size: 13.5px; color: var(--text-mid); line-height: 1.65; margin-bottom: 10px; }
+    .fraud-ok {
+      display: inline-block; margin-top: 14px; padding: 10px 32px;
+      background: var(--blue-primary); color: var(--white); border: none;
+      border-radius: var(--radius); font-size: 14px; font-weight: 700; cursor: pointer;
+      transition: background var(--t);
+    }
+    .fraud-ok:hover { background: var(--blue-dark); }
+
+    /* ============================================================
+       STICKY NAVBAR
+    ============================================================ */
+  .sqi-navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: var(--white);
+      box-shadow: 0 2px 10px rgba(0,0,0,.10);
+      transition: box-shadow var(--transition);
+    }
+    .sqi-navbar.scrolled { box-shadow: 0 4px 20px rgba(0,0,0,.15); }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: var(--navbar-h);
+    }
+
+    /* Logo */
+    .nav-logo img {
+      height: 52px;
+      width: auto;
+      object-fit: contain;
+    }
+    .logo-fallback {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .logo-badge {
+      background: var(--blue);
+      color: var(--white);
+      font-weight: 800;
+      font-size: 14px;
+      padding: 6px 10px;
+      border-radius: 6px;
+      letter-spacing: 1px;
+    }
+    .logo-words { display: flex; flex-direction: column; }
+    .logo-words span { font-size: 14px; font-weight: 700; color: var(--blue-dark); }
+    .logo-words small { font-size: 10px; color: var(--text-soft); }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 6px;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--text);
+      border-radius: 2px;
+      transition: all .3s;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* Nav menu */
+    .nav-menu { display: flex; align-items: center; gap: 2px; }
+
+    .nav-item { position: relative; }
+    .nav-link {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      padding: 8px 13px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+      border-radius: var(--radius);
+      white-space: nowrap;
+      transition: color var(--transition), background var(--transition);
+    }
+    .nav-link:hover, .nav-link.active { color: var(--blue); background: var(--blue-light); }
+    .nav-link .chevron {
+      font-size: 10px;
+      transition: transform .25s;
+    }
+    .nav-item:hover .chevron { transform: rotate(180deg); }
+
+    /* Dropdown */
+    .dropdown {
+      display: none;
+      position: absolute;
+      top: calc(100% + 4px);
+      left: 0;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-md);
+      min-width: 250px;
+      padding: 6px 0;
+      animation: dropIn .2s ease;
+      z-index: 200;
+    }
+    @keyframes dropIn {
+      from { opacity: 0; transform: translateY(-8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .nav-item:hover .dropdown { display: block; }
+    .dropdown a {
+      display: block;
+      padding: 9px 18px;
+      font-size: 13.5px;
+      font-weight: 500;
+      color: var(--text);
+      border-left: 3px solid transparent;
+      transition: background var(--transition), color var(--transition), border-color var(--transition);
+    }
+    .dropdown a:hover {
+      background: var(--blue-light);
+      color: var(--blue);
+      border-left-color: var(--blue);
+    }
+
+    /* ============================================================
+       SHARED BUTTONS
+    ============================================================ */
+    .btn-apply {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 13px 32px; background: var(--blue-primary); color: var(--white) !important;
+      border: none; border-radius: var(--radius); font-size: 15px; font-weight: 700; cursor: pointer;
+      transition: background var(--t), transform var(--t), box-shadow var(--t);
+      box-shadow: 0 4px 16px rgba(30,125,52,.28);
+    }
+    .btn-apply:hover { background: var(--blue-dark); transform: translateY(-2px); box-shadow: 0 8px 26px rgba(30,125,52,.38); }
+    .btn-apply-sm {
+      display: inline-flex; align-items: center; gap: 7px;
+      padding: 10px 24px; background: var(--blue-primary); color: var(--white) !important;
+      border: none; border-radius: var(--radius); font-size: 13.5px; font-weight: 700;
+      transition: background var(--t), transform var(--t);
+    }
+    .btn-apply-sm:hover { background: var(--blue-dark); transform: translateY(-1px); }
+
+    /* ============================================================
+       HERO BANNER
+    ============================================================ */
+    .scholarship-hero {
+      width: 100%; overflow: hidden; line-height: 0;
+      max-height: 520px;
+    }
+    .scholarship-hero img {
+      width: 100%; max-height: 520px;
+      object-fit: cover; object-position: center;
+    }
+
+    /* ============================================================
+       INTRO SECTION
+    ============================================================ */
+    .intro-section { background: var(--white); padding: 72px 0; border-bottom: 1px solid var(--border-lt); }
+    .intro-section h2 {
+      font-size: clamp(22px, 3.5vw, 36px); font-weight: 800; color: var(--text);
+      line-height: 1.25; margin-bottom: 24px;
+    }
+    .intro-section h2 .highlight { color: var(--blue-primary); }
+    .intro-body { font-size: 15px; color: var(--text-mid); line-height: 1.85; margin-bottom: 14px; }
+    .intro-body:last-of-type { margin-bottom: 0; }
+    .intro-body strong { color: var(--text); }
+
+    /* ============================================================
+       REGISTRATION STATUS + COUNTDOWN
+    ============================================================ */
+    .reg-section {
+      background: var(--blue-dark); padding: 60px 0; text-align: center; color: var(--white);
+    }
+    .reg-status-badge {
+      display: inline-block;
+      background: rgba(255,255,255,.12);
+      border: 1px solid rgba(255,255,255,.25);
+      border-radius: 100px; padding: 7px 22px;
+      font-size: 16px; font-weight: 800;
+      color: var(--white); letter-spacing: 1px;
+      text-transform: uppercase; margin-bottom: 28px;
+    }
+
+    /* Countdown grid */
+    .countdown-grid {
+      display: flex; justify-content: center; align-items: center;
+      gap: 16px; flex-wrap: wrap; margin-bottom: 36px;
+    }
+    .countdown-unit {
+      background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.18);
+      border-radius: var(--radius-lg); padding: 18px 22px 14px;
+      min-width: 100px; text-align: center; backdrop-filter: blur(4px);
+    }
+    .countdown-num {
+      font-size: clamp(36px, 5vw, 52px); font-weight: 800;
+      color: var(--white); line-height: 1; display: block;
+      font-variant-numeric: tabular-nums;
+    }
+    .countdown-lbl {
+      font-size: 10px; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; color: rgba(255,255,255,.6); margin-top: 7px;
+    }
+    .countdown-sep {
+      font-size: 40px; font-weight: 700; color: rgba(255,255,255,.4);
+      line-height: 1; margin-top: -10px; align-self: center;
+    }
+
+    /* ============================================================
+       OUR STRENGTH
+    ============================================================ */
+    .strength-section { background: var(--off-white); padding: 72px 0; border-bottom: 1px solid var(--border-lt); }
+    .strength-section h4 {
+      font-size: clamp(18px, 2.5vw, 24px); font-weight: 800;
+      color: var(--text); text-transform: uppercase; letter-spacing: 1px;
+      margin-bottom: 28px; padding-bottom: 14px;
+      border-bottom: 3px solid var(--blue-primary);
+    }
+    .strength-list li {
+      font-size: 15px; color: var(--text-mid); line-height: 1.75;
+      padding: 10px 0 10px 26px; position: relative;
+      border-bottom: 1px solid var(--border-lt);
+    }
+    .strength-list li:last-child { border-bottom: none; }
+    .strength-list li::before {
+      content: '';
+      position: absolute; left: 0; top: 17px;
+      width: 8px; height: 8px; background: var(--blue-primary); border-radius: 50%;
+    }
+
+    /* ============================================================
+       COLLEGE IMAGE DIVIDER
+    ============================================================ */
+    .college-img-wrap {
+      overflow: hidden; line-height: 0;
+    }
+    .college-img-wrap img {
+      width: 100%; max-height: 420px;
+      object-fit: cover; object-position: center;
+      transition: transform .4s ease;
+    }
+    .college-img-wrap:hover img { transform: scale(1.02); }
+
+    /* ============================================================
+       WHO IS ELIGIBLE
+    ============================================================ */
+    .eligible-section { background: var(--white); padding: 72px 0; border-bottom: 1px solid var(--border-lt); }
+    .eligible-section h4 {
+      font-size: clamp(18px, 2.5vw, 24px); font-weight: 800; color: var(--text);
+      text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px;
+    }
+    .eligible-intro { font-size: 15px; color: var(--text-mid); line-height: 1.85; margin-bottom: 20px; }
+    .eligible-intro strong { color: var(--text); }
+    .targets-heading {
+      font-size: 15px; font-weight: 800; color: var(--text);
+      margin-bottom: 14px; margin-top: 24px;
+    }
+    .targets-heading span { font-size: 16px; }
+    .target-list li {
+      font-size: 14.5px; color: var(--text-mid); line-height: 1.7;
+      padding: 8px 0 8px 26px; position: relative;
+      border-bottom: 1px solid var(--border-lt);
+    }
+    .target-list li:last-child { border-bottom: none; }
+    .target-list li::before {
+      content: ''; position: absolute; left: 0; top: 16px;
+      width: 7px; height: 7px; background: var(--blue-primary); border-radius: 50%;
+    }
+
+    /* ============================================================
+       TERMS & CONDITIONS
+    ============================================================ */
+    .terms-section { background: var(--off-white); padding: 72px 0; border-bottom: 1px solid var(--border-lt); }
+    .terms-section h3 {
+      font-size: clamp(20px, 3vw, 28px); font-weight: 800;
+      color: var(--text); text-transform: uppercase; letter-spacing: 1px;
+      margin-bottom: 28px; padding-bottom: 14px;
+      border-bottom: 3px solid var(--blue-primary);
+    }
+
+    /* Main bullet list */
+    .terms-main-list li {
+      font-size: 14.5px; color: var(--text-mid); line-height: 1.75;
+      padding: 8px 0 8px 26px; position: relative;
+      border-bottom: 1px solid var(--border-lt);
+    }
+    .terms-main-list li:last-child { border-bottom: none; }
+    .terms-main-list li::before { content: '–'; position: absolute; left: 0; color: var(--blue-primary); font-weight: 700; }
+    .terms-main-list a { color: var(--blue-primary); font-weight: 600; }
+
+    /* Sub-section blocks */
+    .terms-block {
+      background: var(--white); border: 1px solid var(--border-lt);
+      border-left: 4px solid var(--blue-primary);
+      border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+      padding: 22px 24px; box-shadow: var(--shadow-xs);
+      margin-bottom: 20px;
+    }
+    .terms-block-title {
+      font-size: 13px; font-weight: 800; text-transform: uppercase;
+      letter-spacing: 1.5px; color: var(--blue-dark);
+      margin-bottom: 14px; padding-bottom: 8px;
+      border-bottom: 1px solid var(--border-lt);
+    }
+    .terms-alpha-list { padding-left: 0; }
+    .terms-alpha-list li {
+      font-size: 14px; color: var(--text-mid); line-height: 1.8;
+      padding: 6px 0 6px 28px; position: relative;
+    }
+    .terms-alpha-list li[data-l]::before {
+      content: attr(data-l) '.';
+      position: absolute; left: 0; font-weight: 700; color: var(--blue-dark);
+    }
+    .terms-alpha-list li strong { color: var(--text); }
+
+    /* Sub-items (i, ii …) */
+    .terms-sub { padding-left: 20px; margin-top: 6px; }
+    .terms-sub li {
+      font-size: 13.5px; color: var(--text-mid); line-height: 1.75;
+      padding: 3px 0 3px 22px; position: relative;
+    }
+    .terms-sub li[data-l]::before { content: attr(data-l) '.'; position: absolute; left: 0; font-weight: 700; color: var(--text-muted); }
+
+    /* Campus contacts */
+    .campus-contacts {
+      background: var(--blue-light); border: 1px solid var(--blue-primary);
+      border-radius: var(--radius); padding: 20px 22px;
+      margin-top: 24px;
+    }
+    .campus-contacts p { font-size: 14px; color: var(--text-mid); margin-bottom: 6px; line-height: 1.6; }
+    .campus-contacts p:last-child { margin-bottom: 0; }
+    .campus-contacts strong { color: var(--text); }
+
+    /* ============================================================
+       FAQ ACCORDION
+    ============================================================ */
+    .faq-section { background: var(--white); padding: 72px 0; border-bottom: 1px solid var(--border-lt); }
+    .faq-section h2 { font-size: clamp(20px, 3vw, 28px); font-weight: 800; color: var(--text); margin-bottom: 36px; padding-bottom: 14px; border-bottom: 3px solid var(--blue-light); }
+    .sqi-accordion { border-radius: var(--radius-lg); overflow: hidden; }
+    .sqi-accordion .accordion-item { border: 1px solid var(--border) !important; border-radius: 0 !important; border-bottom: none !important; background: var(--white); }
+    .sqi-accordion .accordion-item:first-child { border-radius: var(--radius) var(--radius) 0 0 !important; }
+    .sqi-accordion .accordion-item:last-child { border-bottom: 1px solid var(--border) !important; border-radius: 0 0 var(--radius) var(--radius) !important; }
+    .sqi-accordion .accordion-button { font-family: 'Open Sans', sans-serif; font-size: 14.5px; font-weight: 700; color: var(--text); background: var(--white); padding: 18px 22px; box-shadow: none !important; }
+    .sqi-accordion .accordion-button:not(.collapsed) { color: var(--blue-primary); background: var(--blue-light); }
+    .sqi-accordion .accordion-button:not(.collapsed)::after { filter: invert(38%) sepia(72%) saturate(500%) hue-rotate(100deg); }
+    .sqi-accordion .accordion-body { font-size: 14px; color: var(--text-mid); line-height: 1.8; padding: 14px 22px 18px; background: var(--white); }
+    .sqi-accordion .accordion-body p { margin-bottom: 10px; }
+    .sqi-accordion .accordion-body p:last-child { margin-bottom: 0; }
+    .sqi-accordion .accordion-body strong { color: var(--text); }
+    .sqi-accordion .accordion-body a { color: var(--blue-primary); font-weight: 600; }
+
+    /* ============================================================
+       GET SCHOLARSHIP CTA BAND
+    ============================================================ */
+    .scholarship-cta-band {
+      background: linear-gradient(135deg, var(--blue-dark) 0%, var(--blue-primary) 100%);
+      padding: 72px 0; text-align: center;
+    }
+    .scholarship-cta-band h2 {
+      font-size: clamp(22px, 3.5vw, 36px); font-weight: 800;
+      color: var(--white); margin-bottom: 32px; line-height: 1.25;
+    }
+    .scholarship-cta-band .btn-apply {
+      background: var(--white); color: var(--blue-dark) !important;
+      box-shadow: 0 4px 20px rgba(0,0,0,.2);
+    }
+    .scholarship-cta-band .btn-apply:hover { background: var(--off-white); }
+
+    /* ============================================================
+       BLOG SECTION
+    ============================================================ */
+    .blog-section { background: var(--off-white); padding: 72px 0; border-top: 1px solid var(--border-lt); }
+    .blog-section .section-h2 {
+      font-size: clamp(22px, 3vw, 30px); font-weight: 800; color: var(--text);
+      margin-bottom: 8px;
+    }
+    .blog-section .section-sub { font-size: 14px; color: var(--text-soft); margin-bottom: 44px; }
+    .news-card {
+      background: var(--white); border: 1px solid var(--border-lt);
+      border-radius: var(--radius-lg); overflow: hidden;
+      box-shadow: var(--shadow-sm); height: 100%;
+      display: flex; flex-direction: column;
+      transition: transform var(--t), box-shadow var(--t), border-color var(--t);
+    }
+    .news-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); border-color: var(--blue-primary); }
+    .news-card-img { width: 100%; height: 190px; overflow: hidden; background: var(--grey); }
+    .news-card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s; }
+    .news-card:hover .news-card-img img { transform: scale(1.05); }
+    .news-card-body { padding: 20px; flex: 1; display: flex; flex-direction: column; }
+    .news-date { font-size: 12px; color: var(--text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: .5px; margin-bottom: 8px; display: block; }
+    .news-card-body h3 { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 10px; line-height: 1.4; flex: 1; }
+    .news-card-body h3 a { color: var(--text); transition: color var(--t); }
+    .news-card-body h3 a:hover { color: var(--blue-primary); }
+    .news-body { font-size: 13px; color: var(--text-soft); line-height: 1.65; margin-bottom: 16px; }
+    .news-read-more { font-size: 13px; font-weight: 700; color: var(--blue-primary); transition: color var(--t); }
+    .news-read-more:hover { color: var(--blue-dark); text-decoration: underline; }
+
+    /* ============================================================
+       SCROLL REVEAL
+    ============================================================ */
+    .reveal { opacity: 0; transform: translateY(26px); transition: opacity .55s ease, transform .55s ease; }
+    .reveal.in { opacity: 1; transform: none; }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+.sqi-footer {
+  background: #1a1a1a;
+  color: rgba(255,255,255,.72);
+  padding: 0;
+}
+
+.footer-top-row {
+  padding: 60px 0 40px;
+}
+
+/* Brand */
+.footer-brand h4 {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.footer-brand p {
+  font-size: 13.5px;
+  color: rgba(255,255,255,.65);
+  line-height: 1.65;
+}
+
+/* Socials */
+.footer-socials {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.footer-socials a {
+  width: 36px;
+  height: 36px;
+  background: rgba(255,255,255,.1);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255,255,255,.8);
+  font-size: 15px;
+  transition: background var(--transition), color var(--transition);
+}
+.footer-socials a:hover {
+  background: var(--blue-primary);
+  color: var(--white);
+}
+
+/* Emails */
+.footer-emails h6 {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: rgba(255,255,255,.5);
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.footer-emails ul li {
+  margin-bottom: 6px;
+}
+.footer-emails ul li a {
+  font-size: 13px;
+  color: rgb(86,195,249);
+  transition: color var(--transition);
+}
+.footer-emails ul li a:hover { color: var(--orange-primary); }
+
+/* Col titles */
+.footer-col-title {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: rgba(255,255,255,.5);
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+/* Quick links */
+.footer-links li {
+  margin-bottom: 8px;
+}
+.footer-links li a {
+  font-size: 13px;
+  color: rgba(255,255,255,.65);
+  transition: color var(--transition);
+}
+.footer-links li a:hover { color: var(--orange-primary); }
+
+/* Addresses */
+.footer-address {
+  font-size: 12px;
+  color: rgba(255,255,255,.6);
+  line-height: 1.6;
+  margin-bottom: 4px;
+}
+.footer-address strong { color: rgba(255,255,255,.85); }
+
+.footer-map-link {
+  font-size: 12px;
+  color: var(--orange-primary);
+  font-weight: 600;
+  transition: color var(--transition);
+}
+.footer-map-link:hover {
+  color: rgb(86,195,249);
+  text-decoration: underline;
+}
+
+/* Footer bottom */
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,.1);
+  padding: 18px 0;
+  text-align: center;
+}
+.footer-bottom p {
+  font-size: 13px;
+  color: rgba(255,255,255,.45);
+  margin: 0;
+}
+
+/* ================================================================
+   BACK TO TOP
+   ================================================================ */
+.back-to-top {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 999;
+  width: 42px;
+  height: 42px;
+  background: var(--blue-primary);
+  color: var(--white);
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(0,0,0,.25);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(12px);
+  transition: opacity 0.3s, transform 0.3s, background 0.2s;
+}
+.back-to-top.visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+.back-to-top:hover { background: var(--blue-dark); }
+
+.git_footer{
+    display: inline-flex;
+    justify-content: space-between;
+    height: 50px;
+    width: 100%;
+    border-top: 0px solid rgb(218, 220, 222);
+    align-items: center;
+    padding-left: 30px;
+    background-color: rgb(0, 0, 0);
+}
+
+.git_footer a{
+    text-decoration: none;
+    color: rgb(232, 17, 35);
+    font-size: 20px;
+    font-weight: 600;
+}
+
+    /* ============================================================
+       RESPONSIVE
+    ============================================================ */
+    @media (max-width: 991.98px) {
+      .sqi-nav-list { padding: 10px 0; gap: 0; }
+      .sqi-nav-link { border-radius: 0; }
+      .sqi-drop { box-shadow: none; border: none; background: var(--off-white); animation: none; margin-top: 0 !important; padding-left: 12px; }
+      .countdown-sep { display: none; }
+    }
+    @media (max-width: 767.98px) {
+      .scholarship-hero img { max-height: 280px; }
+      .intro-section, .strength-section, .eligible-section, .terms-section, .faq-section, .blog-section { padding: 52px 0; }
+      .btt { bottom: 16px; right: 16px; width: 38px; height: 38px; font-size: 14px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ================================================================
+       FRAUD WARNING POPUP
+  ================================================================ -->
+  <div class="modal fade" id="fraudModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered fraud-dialog">
+      <div class="modal-content fraud-content">
+        <div class="modal-body fraud-body">
+          <button class="fraud-x" data-bs-dismiss="modal" type="button">&times;</button>
+          <img src="Images/red-bell.png" alt="Alert" class="fraud-bell-img"
+            onerror="this.outerHTML='<span style=\'font-size:3rem;display:block;margin-bottom:14px;\'>🔔</span>'" />
+          <h5>Please be advised!</h5>
+          <p>Do not make any payment for our courses or services to any account or platform other than corporate accounts provided by SQI College of ICT.</p>
+          <p>The College will not be held responsible for any loss or issue arising from payments made to unauthorised individuals or channels.</p>
+          <p><strong>Thank you for your cooperation.</strong></p>
+          <button class="fraud-ok" data-bs-dismiss="modal" type="button">OK, I understand</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================================================================
+       STICKY NAVBAR
+  ================================================================ -->
+  <nav class="sqi-navbar" id="sqiNavbar">
+    <div class="container">
+      <div class="nav-inner">
+
+        <!-- Logo -->
+        <a href="index.html" class="nav-logo">
+          <img src="Images/icon.jpg" alt="SQI College of ICT"
+            onerror="this.style.display='none';document.getElementById('logoFb').style.display='flex';" />
+          <div id="logoFb" class="logo-fallback" style="display:none;">
+            <span class="logo-badge">SQI</span>
+            <div class="logo-words">
+              <span>SQI College of ICT</span>
+              <small>Acquire In-Demand Tech Skills</small>
+            </div>
+          </div>
+        </a>
+
+        <!-- Hamburger -->
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+
+        <!-- Menu -->
+        <ul class="nav-menu" id="navMenu">
+
+          <li class="nav-item">
+            <a href="#" class="nav-link">About <i class="fas fa-chevron-down chevron"></i></a>
+            <ul class="dropdown">
+              <li><a href="story.html">Our Story</a></li>
+              <li><a href="team.html">Our Team</a></li>
+              <li><a href="campus.html">Campus Info</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a href="#" class="nav-link">Programmes <i class="fas fa-chevron-down chevron"></i></a>
+            <ul class="dropdown">
+              <li><a href="pre-nd.html">Pre-National Diploma</a></li>
+              <li><a href="nd.html">National Diploma</a></li>
+              <li><a href="procert.html">Professional Diploma Program</a></li>
+              <li><a href="epcp.html">Executive Professional Certificate Programme</a></li>
+              <li><a href="bsc.html">Bachelor Degree | LAUTECH PT</a></li>
+              <li><a href="post-utme.html">Post-UTME</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a href="#" class="nav-link">Admissions <i class="fas fa-chevron-down chevron"></i></a>
+            <ul class="dropdown">
+              <li><a href="afap.html">Apply for a Programme</a></li>
+              <li><a href="mos.html">Mode of Study</a></li>
+              <li><a href="tuition.html">Tuition</a></li>
+              <li><a href="https://drive.google.com/file/d/1w_itppr3K0MMy5Sdf8uFkCO7eCyAYiRf/view?usp=sharing">Student's Handbook</a></li>
+              <li><a href="faq.html">Frequently Asked Questions</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a href="#" class="nav-link">E-Portal <i class="fas fa-chevron-down chevron"></i></a>
+            <ul class="dropdown">
+              <li><a href="student.html">Student</a></li>
+              <li><a href="staff.html">Staff</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a href="scholarship.html" class="nav-link">SQI Scholarship</a>
+          </li>
+          <li class="nav-item">
+            <a href="news.html" class="nav-link">News</a>
+          </li>
+          <li class="nav-item">
+            <a href="contact.html" class="nav-link">Contact</a>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ================================================================
+       HERO BANNER
+  ================================================================ -->
+  <div class="scholarship-hero">
+    <img src="images/scholarship/1.jpg"
+      alt="SQI 2024 Scholarship Programme Banner"
+      onerror="this.src='images/scholarship/1.jpg'" />
+  </div>
+
+  <!-- ================================================================
+       INTRO SECTION
+  ================================================================ -->
+  <section class="intro-section">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-9">
+          <h2 class="reveal">Study at SQI at <span class="highlight">little or NO cost!</span></h2>
+          <p class="intro-body reveal">In 2011 SQI College of ICT, then known as SQI ICT Academy, launched a yearly scholarship program to open a wider window of opportunity to every promising individual who is passionate about acquiring an ICT skill, and today we have trained and certified over <strong>10,000+ youths</strong> who currently hold important and viable positions in various organizations nationwide.</p>
+          <p class="intro-body reveal">The scholarship program is open to every individual between the ages of <strong>13 to 28.</strong><br />This annual scholarship program gives everyone (i.e O-level, A-Level, School Leavers, Undergraduates, Employed Graduates, Unemployed Graduates etc.) an opportunity to take any of our ICT courses at little or no cost.</p>
+          <p class="intro-body reveal">The scholarship program has over the years taken many unique approaches to identify and evaluate suitable candidates for the award of either full or partial scholarship.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       REGISTRATION STATUS + COUNTDOWN
+  ================================================================ -->
+  <section class="reg-section">
+    <div class="container text-center">
+      <div class="reg-status-badge reveal">Registration Closed</div>
+      <div class="countdown-grid reveal" id="countdownWrap">
+        <div class="countdown-unit">
+          <span class="countdown-num" id="cd-days">00</span>
+          <span class="countdown-lbl">Day(s)</span>
+        </div>
+        <span class="countdown-sep">:</span>
+        <div class="countdown-unit">
+          <span class="countdown-num" id="cd-hours">00</span>
+          <span class="countdown-lbl">Hour(s)</span>
+        </div>
+        <span class="countdown-sep">:</span>
+        <div class="countdown-unit">
+          <span class="countdown-num" id="cd-mins">00</span>
+          <span class="countdown-lbl">Minute(s)</span>
+        </div>
+        <span class="countdown-sep">:</span>
+        <div class="countdown-unit">
+          <span class="countdown-num" id="cd-secs">00</span>
+          <span class="countdown-lbl">Second(s)</span>
+        </div>
+      </div>
+      <a href="#" class="btn-apply reveal" style="margin: 0 auto;">
+        <i class="fas fa-pen-to-square"></i> Apply now
+      </a>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       OUR STRENGTH
+  ================================================================ -->
+  <section class="strength-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8">
+          <h4 class="reveal">OUR STRENGTH</h4>
+          <ul class="strength-list reveal">
+            <li>We love what we do and we believe no one is a dullard, we never get tired of imparting knowledge.</li>
+            <li>We don't instruct, we mentor! So, you get to absorb not just the skills but the very character that makes us successful.</li>
+            <li>We don't cage, we encourage and support your wild ideas (unconventional)!</li>
+            <li>Our students only graduate by the book but in the real sense we incubate them with our ICT hub facility until their larva could fly.</li>
+            <li>We become a home to our students, when you face a challenge you think is too big for you out there, you can call home.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       COLLEGE IMAGE DIVIDER
+  ================================================================ -->
+  <div class="college-img-wrap">
+    <img src="Images/scholarship/3 college.jpg" alt="SQI College of ICT"
+      onerror="this.src='Images/scholarship/3 college.jpg'" />
+  </div>
+
+  <!-- ================================================================
+       WHO IS ELIGIBLE
+  ================================================================ -->
+  <section class="eligible-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8">
+          <h4 class="reveal">Who is eligible?</h4>
+          <p class="eligible-intro reveal">The scholarship program is open to every individual between ages <strong>13 to 28.</strong><br />This annual scholarship program gives everyone (i.e O-level, A-Level, School Leavers, Employed Graduates, Unemployed Graduates e.tc) an opportunity to take any of our computer courses at little or no cost.</p>
+
+          <h5 class="targets-heading reveal"><span>🎯</span> Our Target Groups</h5>
+          <ul class="target-list reveal">
+            <li>School leavers who wish to acquire demonstrable practical skills to secure employment or generate employment.</li>
+            <li>Persons seeking career paths that do not need university degrees.</li>
+            <li>Persons who have not studied for some time and desire to do so.</li>
+            <li>Persons without time for full-time study but want to enhance their skills.</li>
+            <li>Persons wishing to go into self-employment.</li>
+            <li>University graduates seeking employable skills and adults seeking opportunities to re-skill themselves.</li>
+          </ul>
+
+          <div class="mt-4 reveal">
+            <a href="#" class="btn-apply-sm">
+              <i class="fas fa-pen-to-square"></i> Apply now
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       TERMS & CONDITIONS
+  ================================================================ -->
+  <section class="terms-section">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-10">
+          <h3 class="reveal">TERMS &amp; CONDITIONS</h3>
+
+          <ul class="terms-main-list reveal">
+            <li>The scholarship test is over 100. The candidate's score determines the discount that the candidate will enjoy.</li>
+            <li>A candidate must score 86% and above to qualify for a full scholarship.</li>
+            <li>A candidate who scores below 86% will qualify for a discount-based scholarship.</li>
+            <li>Candidates who score below 40% will be compensated with a 20% discount.</li>
+            <li>This year's scholarship test shall be conducted on-site and online at all our campuses. (Check <a href="#" target="_blank">here</a> for addresses).</li>
+          </ul>
+
+          <!-- Full Scholarship Terms -->
+          <div class="terms-block reveal mt-4">
+            <p class="terms-block-title">FULL SCHOLARSHIP TERMS</p>
+            <ul class="terms-alpha-list">
+              <li data-l="a"><strong>Only the first 100 persons to score 86% and above in this year's test will be considered for the full scholarship (i.e. it is on a first-come, first-serve basis.) and will be divided into 40 for physical classes and 60 for virtual classes</strong></li>
+              <li data-l="b"><strong>Full scholarship can only be applied to one course</strong>. (i.e., a candidate will take a course of choice for FREE).</li>
+            </ul>
+          </div>
+
+          <!-- Discount-Based Terms -->
+          <div class="terms-block reveal">
+            <p class="terms-block-title">DISCOUNT-BASED SCHOLARSHIP TERMS</p>
+            <ul class="terms-alpha-list">
+              <li data-l="a">Any candidate <strong>below 86%</strong> will be considered for the discount-based scholarship.</li>
+              <li data-l="b">The scholarship is percentage-based, that is, the percentage score of a participant will be the discount deducted from the total of what he or she is required to pay. Candidates who score <strong>below 40 percent (40%)</strong> will be compensated with a 20 percent discount.</li>
+              <li data-l="c">The discount-based scholarship is applicable to all levels of the chosen course.</li>
+            </ul>
+          </div>
+
+          <!-- Payment Terms -->
+          <div class="terms-block reveal">
+            <p class="terms-block-title">PAYMENT TERMS</p>
+            <ul class="terms-alpha-list">
+              <li data-l="a">All candidates are expected to pay a non-refundable acceptance fee of six thousand Naira (<strong>₦6,000</strong>) not later than two (2) weeks after the scholarship result is out. Failure to do this shall result in the forfeiture of the scholarship.
+                <ul class="terms-sub mt-2">
+                  <li data-l="N.B">The acceptance fee is for the acknowledgment of the scholarship offered.</li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Other Terms -->
+          <div class="terms-block reveal">
+            <p class="terms-block-title">OTHER TERMS AND CONDITIONS</p>
+            <ul class="terms-alpha-list">
+              <li data-l="a">All candidates for this year's scholarship will commence classes on the 5th of August, 2024 for their first cohort, therefore candidates are enjoined to make their payments on time to join the first cohort, else, once the class limit is filled, participants will be drafted for the weekend classes or the next cohort which starts on the 2nd of September, 2024.</li>
+              <li data-l="b">Candidates who desire to use the scholarship discount to study the course of their choice must have completed their course on or before the 31st of July, 2025 regardless of whether the course was deferred or not. Failure to do so means the scholarship discount will be revoked and candidates will need to complete the payment for their course which the discount had covered earlier.</li>
+              <li data-l="c">Should a candidate desire to defer their course to a later period, notification of absence or deferment of training must be done in writing to the office of the Registrar, for proper consideration and approval.</li>
+              <li data-l="d">The scholarship can be applied to one (1) course only. Should the candidate decide to register for more than one course, the candidate will be required to pay for the other course in full.</li>
+              <li data-l="e">Successful candidates are to conduct themselves well as ambassadors of the college. Any behavior that violates the values of the college within or outside the campus premises may result in the forfeiture of the scholarship.</li>
+              <li data-l="f">A prospective candidate can only take the test once during the scholarship period. Any candidate who attempts to take the test more than once will be disqualified from the scholarship program.</li>
+              <li data-l="g">Any candidate caught involved in malpractice during the scholarship test shall be disqualified.</li>
+              <li data-l="h">Only those within the age range of <strong>13-28 years old</strong> are eligible for the scholarship.</li>
+              <li data-l="i">Kindly note that the scholarship cannot be combined with any other main discount (IT/Corp member/Laurel). It can only be combined with installments bonuses like one time payment and half payment.</li>
+              <li data-l="j">The scholarship program is not open to international students (students not within the African continent).</li>
+            </ul>
+          </div>
+
+          <!-- Campus helplines -->
+          <div class="campus-contacts reveal">
+            <p>Should you have any further questions feel free to reach us through our designated helpline via call or WhatsApp contacts below.</p>
+            <p><strong>Ogbomoso Campus – 09062819991</strong></p>
+            <p><strong>Dugbe Campus – 09062819994</strong></p>
+            <p><strong>Iwo Road Campus – 09062819995</strong></p>
+            <p><strong>Abeokuta Campus – 09062819996</strong></p>
+            <p><strong>Challenge Campus – 09062819992</strong></p>
+            <p><strong>Osogbo Campus – 09062819997</strong></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       FAQ ACCORDION
+  ================================================================ -->
+  <section class="faq-section">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-10">
+          <h2 class="reveal">Frequently Asked Questions</h2>
+
+          <div class="accordion sqi-accordion reveal" id="faqAcc">
+
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#f1" aria-expanded="true">
+                  What's the ICT Scholarship all about?
+                </button>
+              </h2>
+              <div id="f1" class="accordion-collapse collapse show" data-bs-parent="#faqAcc">
+                <div class="accordion-body">
+                  <p>The annual scholarship gives everyone (i.e O-level, School Leavers, Employed Graduates, Unemployed Graduates, Corpers etc.) an opportunity to take any of our computer course(s) at little or no cost by just taking the scholarship test. We have a record of over <strong>10,000 students</strong> that have successfully been trained and certified just by taking advantage of this scholarship opportunity.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#f2">
+                  What about the test, is it a must?
+                </button>
+              </h2>
+              <div id="f2" class="accordion-collapse collapse" data-bs-parent="#faqAcc">
+                <div class="accordion-body">
+                  <p>Yes, if you are interested in having a discount. This year's scholarship test will be scheduled for everyone between 13th of July 2024 and 31st July 2024 after they've first applied by registering on our <a href="#" target="_blank">website</a>.</p>
+                  <p><strong>Physical Test | Mondays – Thursdays – 1 PM – 4 PM</strong></p>
+                  <p><strong>Fridays and Saturdays – 9AM – 3 PM</strong></p>
+                  <p><strong>Online Test holds only on Saturdays 4 PM – 5 PM</strong></p>
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#f3">
+                  Do I have to pay to partake in the scholarship test?
+                </button>
+              </h2>
+              <div id="f3" class="accordion-collapse collapse" data-bs-parent="#faqAcc">
+                <div class="accordion-body">
+                  <p>No, registration and test is <strong>FREE!</strong></p>
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#f4">
+                  How many questions and what duration is the test?
+                </button>
+              </h2>
+              <div id="f4" class="accordion-collapse collapse" data-bs-parent="#faqAcc">
+                <div class="accordion-body">
+                  <p>The test is a total of <strong>50 questions</strong> across different sections, and you have <strong>35 minutes</strong> to answer all.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#f5">
+                  Tell me more about the test questions
+                </button>
+              </h2>
+              <div id="f5" class="accordion-collapse collapse" data-bs-parent="#faqAcc">
+                <div class="accordion-body">
+                  <p>The test comprises of three sections: <strong>Critical thinking, Inductive Reasoning, and General Knowledge.</strong> Prior knowledge of how to use a computer is not a prerequisite.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#f6">
+                  What do I bring when coming for the test?
+                </button>
+              </h2>
+              <div id="f6" class="accordion-collapse collapse" data-bs-parent="#faqAcc">
+                <div class="accordion-body">
+                  <p>Absolutely nothing! Our computers will be available for every registered candidate to take the test for FREE.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#f7">
+                  How do I get selected?
+                </button>
+              </h2>
+              <div id="f7" class="accordion-collapse collapse" data-bs-parent="#faqAcc">
+                <div class="accordion-body">
+                  <p>Once you've taken the test, your score will be sent immediately to your registered email. Candidates having an average score of 40% and above will be offered a percentage-based scholarship according to their grades. E.g, For a <strong>₦50,000</strong> course, if your test result is 60%, you automatically get a 60% discount so you pay <strong>₦20,000</strong> only.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#f8">
+                  When do I get started with my training?
+                </button>
+              </h2>
+              <div id="f8" class="accordion-collapse collapse" data-bs-parent="#faqAcc">
+                <div class="accordion-body">
+                  <p>Once you have registered, taken the test, and received your test score, our counseling team will meet with you to tell you when the next course batch training will kick off.</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       GET SCHOLARSHIP CTA BAND
+  ================================================================ -->
+  <section class="scholarship-cta-band">
+    <div class="container text-center">
+      <h2 class="reveal">Get a scholarship to study a tech course</h2>
+      <a href="#" class="btn-apply reveal" style="margin: 0 auto;">
+        <i class="fas fa-pen-to-square"></i> Apply Now
+      </a>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       BLOG SECTION
+  ================================================================ -->
+  <section class="blog-section">
+    <div class="container">
+      <h2 class="section-h2 reveal">Our Blog</h2>
+      <p class="section-sub reveal">Get informed with latest news and updates</p>
+
+      <div class="row g-4">
+
+        <div class="col-md-4">
+          <div class="news-card reveal">
+            <div class="news-card-img">
+              <a href="#">
+                <img src="Images/scholarship/2.jpg" alt="LAUTECH Partnership"
+                  onerror="this.src='Images/scholarship/2.jpg'" />
+              </a>
+            </div>
+            <div class="news-card-body">
+              <span class="news-date">Feb 13, 2026</span>
+              <h3><a href="#">SQI College of ICT Partners with Ladoke Akintola University of Technology LAUTECH</a></h3>
+              <p class="news-body">SQI College of ICT is pleased to formally announce a strategic academic collaboration with Ladoke Akintola University of Technology (LAUTECH) for the support and coordination of selected LAUTECH Part-Time Degree Programmes.</p>
+              <a href="#" class="news-read-more">read more</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="news-card reveal">
+            <div class="news-card-img">
+              <a href="#">
+                <img src="Images/scholarship/3.jpg" alt="Convocation"
+                  onerror="this.src='Images/scholarship/3.jpg'" />
+              </a>
+            </div>
+            <div class="news-card-body">
+              <span class="news-date">Nov 22, 2025</span>
+              <h3><a href="#">SQI College of ICT Holds First Convocation, Honours Pioneer Graduates</a></h3>
+              <p class="news-body">SQI College of ICT, Ogbomoso, marked a landmark achievement on Saturday, 22nd November 2025, as the institution held its maiden Convocation Ceremony at its main campus along Old Ilorin Road, Ogbomoso.</p>
+              <a href="#" class="news-read-more">read more</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="news-card reveal">
+            <div class="news-card-img">
+              <a href="#">
+                <img src="Images/scholarship/4.jpg" alt="Matriculation"
+                  onerror="this.src='Images/scholarship/4.jpg'" />
+              </a>
+            </div>
+            <div class="news-card-body">
+              <span class="news-date">May 5, 2025</span>
+              <h3><a href="#">Students embrace new opportunities with matriculation at SQI College of ICT</a></h3>
+              <p class="news-body">SQI College of ICT, Ogbomoso, on Saturday, May 3, 2025, held its 6th Matriculation Ceremony for the 2024/2025 academic session.</p>
+              <a href="#" class="news-read-more">read more</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       FOOTER
+  ================================================================ -->
+  <footer class="sqi-footer">
+    <div class="container">
+      <div class="row g-5 footer-top-row">
+
+        <!-- Brand + Socials + Emails -->
+        <div class="col-lg-3 col-md-6">
+          <div class="footer-brand">
+            <h4>Hello, we're SQI College of ICT</h4>
+            <p>We provide and lead others in quality ICT education.</p>
+          </div>
+          <div class="footer-socials mt-3">
+            <a href="#" title="Follow on Facebook" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" title="Follow on X" target="_blank"><i class="fab fa-x-twitter"></i></a>
+            <a href="#" title="Follow on LinkedIn" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" title="Follow on Youtube" target="_blank"><i class="fab fa-youtube"></i></a>
+            <a href="#" title="Follow on Instagram" target="_blank"><i class="fab fa-instagram"></i></a>
+          </div>
+          <div class="footer-emails mt-4">
+            <h6>Send us a mail</h6>
+            <ul>
+              <li><a href="#">enquiry@sqi.edu.ng</a></li>
+              <li><a href="#">admissions@sqi.edu.ng</a></li>
+              <li><a href="#">examsandrecords@sqi.edu.ng</a></li>
+              <li><a href="#">rector@sqi.edu.ng</a></li>
+              <li><a href="#">partnerships@sqi.edu.ng</a></li>
+              <li><a href="#">internship@sqi.edu.ng</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="col-lg-2 col-md-6 col-sm-6">
+          <h6 class="footer-col-title">Quick Links</h6>
+          <ul class="footer-links">
+            <li><a href="#">Application Portal</a></li>
+            <li><a href="student.html">Student Portal</a></li>
+            <li><a href="procert.html">Professional Courses</a></li>
+            <li><a href="nd.html">ND Courses</a></li>
+            <li><a href="campus.html">Campus Info</a></li>
+            <li><a href="#">Accommodation</a></li>
+            <li><a href="scholarship.html">SQI Scholarship</a></li>
+            <li><a href="#">SQI Anthem</a></li>
+            <li><a href="#">Donate</a></li>
+          </ul>
+        </div>
+
+        <!-- Locations col 1 -->
+        <div class="col-lg-4 col-md-6">
+          <div class="row g-3">
+            <div class="col-6">
+              <h6 class="footer-col-title">Ogbomoso</h6>
+              <p class="footer-address">Old Ilorin Road, Opposite Yoaco Filling Station, Yoaco, Ogbomoso.<br /><strong>0906 281 9991, 0906 281 9993</strong></p>
+              <a href="#" class="footer-map-link" target="_blank">Locate on the map</a>
+              <h6 class="footer-col-title">Ibadan</h6>
+              <p class="footer-address">First Floor, H25 Heritage Mall, Opposite Central Bank of Nigeria, Dugbe, Ibadan.<br /><strong>0906 281 9994</strong></p>
+              <a href="#" class="footer-map-link" target="_blank">Locate on the map</a>
+            </div>
+            <div class="col-6">
+              <h6 class="footer-col-title">Lagos</h6>
+              <p class="footer-address">Suite 219, Opic Plaza, Mobolaji Bank Anthony Way, beside Sheraton Hotel, Ikeja, Lagos<br /><strong>0906 281 9999</strong></p>
+              <a href="#" class="footer-map-link" target="_blank">Locate on the map</a>
+              <h6 class="footer-col-title">Abeokuta</h6>
+              <p class="footer-address">First floor, OPIC Tower building, Okeilewo, Abeokuta.<br /><strong>0906 281 9996</strong></p>
+              <a href="#" class="footer-map-link" target="_blank">Locate on the map</a>
+            </div>
+            <div class="col-6">
+              <h6 class="footer-col-title">Virtual</h6>
+              <p class="footer-address">Available Globally Online.<br /><strong>0906 281 9992</strong></p>
+              <a href="#" class="footer-map-link" target="_blank">Locate on the map</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Locations col 2 -->
+        <div class="col-lg-3 col-md-6">
+          <div class="row g-3">
+            <div class="col-12">
+              <p class="footer-address mt-2">Christianah Oyinade Ajoke House, beside First Bank, Arisekola Central Mosque, Opposite Jaiz bank, Idi Ape, Iwo road, Ibadan.<br /><strong>0906 281 9995</strong></p>
+              <a href="#" class="footer-map-link" target="_blank">Locate on the map</a>
+              <p class="footer-address mt-2">Haier Thermocool Building, opposite SAO filling station, Challenge, Ibadan, Oyo State.<br /><strong>0906 281 9992</strong></p>
+              <a href="#" class="footer-map-link" target="_blank">Locate on the map</a>
+            </div>
+            <div class="col-6">
+              <h6 class="footer-col-title">Osogbo</h6>
+              <p class="footer-address">Opposite Jaiz bank, Ogo-Oluwa, Osogbo<br /><strong>0906 281 9997</strong></p>
+              <a href="#" class="footer-map-link" target="_blank">Locate on the map</a>
+            </div>
+            <div class="col-6">
+              <h6 class="footer-col-title">Abuja</h6>
+              <p class="footer-address">Suite Banking Hall SF, Febson Mall, Wuse Zone 4, Abuja<br /><strong>090 628 20000</strong></p>
+              <a href="#" class="footer-map-link" target="_blank">Locate on the map</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Footer Bottom -->
+      <div class="footer-bottom">
+        <p>Copyright &copy; 2026 | SQI ICT Consultants | Powered by Edozzier</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ================================================================
+       BACK TO TOP BUTTON
+  ================================================================ -->
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+  <div class="git_footer">
+    <a href="https://github.com/Analyst-Foundry">By Analyst Foundry</a>
+  </div>
+
+
+  <!-- ================================================================
+       SCRIPTS
+  ================================================================ -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    (function () {
+      'use strict';
+
+      /* ---- Fraud modal ---- */
+      const fraudEl = document.getElementById('fraudModal');
+      if (fraudEl) {
+        const fm = new bootstrap.Modal(fraudEl, { keyboard: true });
+        setTimeout(() => fm.show(), 800);
+      }
+
+      /* ---- Sticky navbar ---- */
+      const nav = document.getElementById('sqiNavbar');
+      const sn = () => nav.classList.toggle('scrolled', window.scrollY > 10);
+      window.addEventListener('scroll', sn, { passive: true }); sn();
+
+      /* ---- Dropdown chevron ---- */
+      document.querySelectorAll('.sqi-dd').forEach(el => {
+        el.addEventListener('show.bs.dropdown', () => { const c = el.querySelector('.sqi-chev'); if (c) c.style.transform = 'rotate(180deg)'; });
+        el.addEventListener('hide.bs.dropdown', () => { const c = el.querySelector('.sqi-chev'); if (c) c.style.transform = 'rotate(0deg)'; });
+      });
+
+      /* ---- Close mobile nav ---- */
+      const nc = document.getElementById('navmenu');
+      document.querySelectorAll('#navmenu .sqi-di').forEach(i => {
+        i.addEventListener('click', () => { if (window.innerWidth < 992) bootstrap.Collapse.getInstance(nc)?.hide(); });
+      });
+
+      /* ---- COUNTDOWN TIMER ---- */
+      // Registration closed — target was August 31, 2024; show 00:00:00:00
+      const TARGET = new Date('2024-08-31T23:59:59Z').getTime();
+      const cdDays  = document.getElementById('cd-days');
+      const cdHours = document.getElementById('cd-hours');
+      const cdMins  = document.getElementById('cd-mins');
+      const cdSecs  = document.getElementById('cd-secs');
+      function pad(n) { return String(Math.max(0, n)).padStart(2, '0'); }
+      function updateCd() {
+        const diff = TARGET - Date.now();
+        if (diff <= 0) { cdDays.textContent = cdHours.textContent = cdMins.textContent = cdSecs.textContent = '00'; return; }
+        cdDays.textContent  = pad(Math.floor(diff / 86400000));
+        cdHours.textContent = pad(Math.floor((diff % 86400000) / 3600000));
+        cdMins.textContent  = pad(Math.floor((diff % 3600000)  / 60000));
+        cdSecs.textContent  = pad(Math.floor((diff % 60000)    / 1000));
+      }
+      updateCd(); setInterval(updateCd, 1000);
+
+      /* ---- Scroll reveal ---- */
+      const ro = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (!e.isIntersecting) return;
+          const siblings = Array.from((e.target.closest('.row') || e.target.parentElement).querySelectorAll('.reveal:not(.in)'));
+          const idx = siblings.indexOf(e.target);
+          setTimeout(() => e.target.classList.add('in'), Math.min(idx * 90, 450));
+          ro.unobserve(e.target);
+        });
+      }, { threshold: 0.08, rootMargin: '0px 0px -24px 0px' });
+      document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+
+      /* ---- Back to top ---- */
+      const btt = document.getElementById('btt');
+      window.addEventListener('scroll', () => btt.classList.toggle('on', window.scrollY > 400), { passive: true });
+      btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    })();
+  </script>
+
+</body>
+</html>
